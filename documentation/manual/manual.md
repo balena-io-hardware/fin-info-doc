@@ -1,4 +1,5 @@
 
+![Fin logo](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/fin_logo.png)
 
 | **Document Type** | User Manual |
 | --- | --- |
@@ -32,6 +33,10 @@
 | **Temperature range** | -25 to 70 celsius degrees |
 
 # Device mapping
+
+![Fin mapping top](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/mapping_top.png)
+
+![Fin mapping bottom](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/mapping_bottom.png)
 
 | **#** | **Name** | **Notes/Description** |
 | --- | --- | --- |
@@ -111,6 +116,8 @@ _NOTE: a CM3L module needs to be inserted in the balena Fin!_
 
 After a couple of seconds, the balena Fin eMMC should be detected on your computer by Etcher, which will initialize and list the board as a Compute Module based device (the name might change in the future). Proceed as usual, select the image you want to write, and press the &quot;Flash!&quot; button.
 
+![Etcher enumerating the Balena Fin](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/etcher_usbboot.png)
+
 After flash is complete, power off your balena Fin and unplug the DEBUG micro-USB cable. Powering the balena Fin on will now result in the device booting from the freshly-written eMMC.
 
 _NOTE: On managed resinOS, if you configured networking correctly on the resin.io dashboard while downloading the image to flash, this is the point when the device provisions and shows up in your application dashboard. If the device fails to connect to the configured WiFi SSID, the usual 4-blinks pattern will be shown on the ACT status LED_
@@ -132,6 +139,8 @@ _You can access the boot partition of your balena Fin by simply attaching it to 
 **resinOS / resin.io instructions:**
 
 - Download the Balena Fin (CM3) device type image (on resin.io, create a Balena Fin (CM3) application first):
+
+![Fin device type on resin.io](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/fin_device_type.png)
 
 - Flash and boot your device.
 
@@ -178,6 +187,7 @@ This device sports 9 status LEDs varying from power, eMMC, ethernet, WiFi, WAN, 
 
 We are working on identifying and documenting cards known to work out of the box on the board. If you plan on adding LTE capability to the device, we suggest the Quectel EC20EA-MINIPCIE: the card is known to work out of the box, hence only APN configuration is required. On ResinOS (2.0.0+) you do so by adding a NetworkManager profile in the boot partition under the &quot;system-connections&quot; folder. You can find more info about this on our docs at:[https://docs.resin.io/deployment/network/2.0.0/#cellular-modem-setup](https://docs.resin.io/deployment/network/2.0.0/#cellular-modem-setup).
 
+![Fin bottom with mPCIe modem](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/fin_bottom_modem.jpg)
 
 Disabling RF activity on mPCIe radio cards
 
