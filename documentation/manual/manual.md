@@ -1,4 +1,3 @@
-
 ![Fin logo](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/fin_logo.png)
 
 | **Document Type** | User Manual |
