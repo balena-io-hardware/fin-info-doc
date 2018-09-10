@@ -8,7 +8,7 @@ It will boot, but some peripherials won't work without some minor modification:
 * RTC (Real Time Clock): while the `balena-fin` device tree overlay is merged upstream, you still need to set in in your `config.txt` ( `dtoverlay=balena-fin` ).
 * RGB LED: while the `balena-fin` device tree overlay is merged upstream, you still need to set in in your `config.txt` ( `dtoverlay=balena-fin` ).
 * miniPCIe airplane mode switch GPIO: while the `balena-fin` device tree overlay is merged upstream, you still need to set in in your `config.txt` ( `dtoverlay=balena-fin` ).
-* DSI and CSI connectors (camera and display) + automatic HAT identification over I2C: As per the standard Raspberry Pi Foundation design (dt-blob.bon section of https://www.raspberrypi.org/documentation/hardware/computemodule/cm-peri-sw-guide.md ) you need to add the Balena Fin [dt-blob.bin](https://github.com/resin-io/balena-fin/raw/master/software/dt-blob/dt-blob.bin) in the root of the boot partition
+* DSI and CSI connectors (camera and display) + automatic HAT identification over I2C: As per the standard Raspberry Pi Foundation design (dt-blob.bin section of https://www.raspberrypi.org/documentation/hardware/computemodule/cm-peri-sw-guide.md ) you need to add the Balena Fin [dt-blob.bin](https://github.com/resin-io/balena-fin/raw/master/software/dt-blob/dt-blob.bin) in the root of the boot partition
 
 ## Is Balena Fin HAT compliant?
 Yes it is, including power over HAT (5V @2.5A)
