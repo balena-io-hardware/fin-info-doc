@@ -110,7 +110,7 @@ The Raspberry Pi Foundation provides a tool that allows the Compute Module to ex
 
 _If you want to use the tool provided by the Raspberry Pi Foundation instead, please follow their instructions_ [_here_](https://www.raspberrypi.org/documentation/hardware/computemodule/cm-emmc-flashing.md)_._
 
-Once you have everything set up on your computer, run Etcher on your computer, connect your balena Fin via CM3L Debug port (9) and power it from the POWER IN port (12).
+Once you have everything set up on your computer, run Etcher on your computer, connect your balena Fin via CM3L Debug port (22) and power it from the POWER IN port (12).
 
 _NOTE: a CM3L module needs to be inserted in the balena Fin!_
 
