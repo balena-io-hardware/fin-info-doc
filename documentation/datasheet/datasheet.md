@@ -77,7 +77,7 @@ Balena Fin (current version or a compatible later revision) availability is guar
 
 # 4. Block diagram
 
-![Fin block diagram](https://github.com/resin-io/balena-fin/raw/master/documentation/datasheet/pictures/fin_block_diagram.svg)
+![Fin block diagram](https://github.com/resin-io/balena-fin/raw/master/documentation/datasheet/pictures/fin_block_diagram.png)
 
 # 5. Mechanical specifications (mm)
 
