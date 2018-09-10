@@ -8,6 +8,7 @@ It will boot, but some peripherials won't work without some minor modification:
 * RTC (Real Time Clock): while the `balena-fin` device tree overlay is merged upstream, you still need to set in in your `config.txt` ( `dtoverlay=balena-fin` ).
 * RGB LED: while the `balena-fin` device tree overlay is merged upstream, you still need to set in in your `config.txt` ( `dtoverlay=balena-fin` ).
 * miniPCIe airplane mode switch GPIO: while the `balena-fin` device tree overlay is merged upstream, you still need to set in in your `config.txt` ( `dtoverlay=balena-fin` ).
+* DSI and CSI connectors (camera and display) + automatic HAT identification over I2C: As per the standard Raspberry Pi Foundation design (dt-blob.bon section of https://www.raspberrypi.org/documentation/hardware/computemodule/cm-peri-sw-guide.md ) you need to add the Balena Fin [dt-blob.bin](https://github.com/resin-io/balena-fin/raw/master/software/dt-blob/dt-blob.bin) in the root of the boot partition
 
 ## Is Balena Fin HAT compliant?
 Yes it is, including power over HAT (5V @2.5A)
@@ -23,6 +24,12 @@ You can power the board from the DC 5.5/2.1mm barrel jack connector or the 2 pos
 
 ## I cannot see any wireless interface listed, wifi does not work
 Please make sure you have the `balena-fin` device tree overlay set in in your `config.txt` ( `dtoverlay=balena-fin` ).
+
+## My HAT does not work on the Balena Fin unless I manually set up things that are automatic on a Raspberry Pi 3
+Please make sure you have the Balena Fin [dt-blob.bin](https://github.com/resin-io/balena-fin/raw/master/software/dt-blob/dt-blob.bin) in the root of the boot partition
+
+## Raspberry Pi camera or display don't work on my Balena Fin
+Please make sure you have the Balena Fin [dt-blob.bin](https://github.com/resin-io/balena-fin/raw/master/software/dt-blob/dt-blob.bin) in the root of the boot partition
 
 ## WiFi signal is very weak
 Please make sure you have the antenna switch on the right position based on your setup (OFF for internal antenna, ON for external antenna)
