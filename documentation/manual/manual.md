@@ -7,7 +7,7 @@
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Proposed |
 
-# Specs
+# 1. Specs
 
 | **Main processor** | Raspberry Pi Compute Module 3 Lite - BCM2837 quad-core ARM Cortex A53 (ArmV8) at 1.2GHz |
 | --- | --- |
@@ -31,7 +31,7 @@
 | **User feedback** | 1 x RGB LED, 9 x Status LEDs |
 | **Temperature range** | -25 to 70 celsius degrees |
 
-# Device mapping
+# 2. Device mapping
 
 ![Fin mapping top](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/mapping_top.png)
 
@@ -73,7 +73,7 @@
 | 32 | mPCIE | Mini PCI express socket |
 | 33 | Antenna switch | 2 position switch - when set to OFF, the WiFi/BT combo chip (14) uses the WiFi/BT embedded antenna (16). When set to ON, the WiFi/BT combo chip (14) uses the WiFi/BT uFL antenna connector (15) |
 
-# Assembly &amp; Set up
+# 3. Assembly &amp; Set up
 
 Raspberry Pi Compute Module
 
@@ -95,7 +95,7 @@ Power
 
 You can power the balena Fin from either a 5.5/2.1mm Barrel Jack (mapping 24) with positive polarity on the middle element or the Phoenix connector (mapping 23). The negative polarity of the Phoenix connector is labeled on the PCB with a "-" symbol. You can also power the balena Fin from the 5V pins exposed by the HAT connector, 2.5A are required as per the HAT specification.
 
-# Developer Instructions
+# 4. Developer Instructions
 
 ## Flashing CM3L on Balena Fin
 
@@ -211,7 +211,7 @@ Disabling HDMI
 
 _NOTE: A firmata-based firmware and client library is under development. This will allow users to easily interact with the co-processor from the CM3L without needing to write their own firmware._
 
-# Embedding the Balena Fin in products
+# 5. Embedding the Balena Fin in products
 
 ## Labelling
 
