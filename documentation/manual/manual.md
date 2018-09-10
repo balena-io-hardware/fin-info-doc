@@ -94,7 +94,7 @@ You can attach an external antenna on the uFL socket (mapping 15). In order to e
 
 Power
 
-You can power the balena Fin from either a 5.5/2.1mm Barrel Jack (mapping 24) with positive polarity on the middle element or the Phoenix connector (mapping 23). The negative polarity of the Phoenix connector is labeled on the PCB with a &quot;-&quot; symbol. You can also power the balena Fin from the 5V pins exposed by the HAT connector, 2.5A are required as per the HAT specification.
+You can power the balena Fin from either a 5.5/2.1mm Barrel Jack (mapping 24) with positive polarity on the middle element or the Phoenix connector (mapping 23). The negative polarity of the Phoenix connector is labeled on the PCB with a "-" symbol. You can also power the balena Fin from the 5V pins exposed by the HAT connector, 2.5A are required as per the HAT specification.
 
 # Developer Instructions
 
@@ -102,9 +102,9 @@ You can power the balena Fin from either a 5.5/2.1mm Barrel Jack (mapping 24) wi
 
 The balena Fin supports the Raspberry Pi Compute Module 3 **lite** (CM3L).
 
-&quot;Lite&quot; means that the module itself has the eMMC socket unpopulated and the traces are exposed via SODIMM-200. This is very important since the standard CM3 has a fixed 4GB eMMC. Instead, with the CM3L, the balena Fin can expose variable storage sizes via its embedded eMMC wired to the CM3L via the SODIMM-200 pins.
+"Lite" means that the module itself has the eMMC socket unpopulated and the traces are exposed via SODIMM-200. This is very important since the standard CM3 has a fixed 4GB eMMC. Instead, with the CM3L, the balena Fin can expose variable storage sizes via its embedded eMMC wired to the CM3L via the SODIMM-200 pins.
 
-_NOTE: Any recent OS distribution (2018+) for the Raspberry Pi 3 Model B should be compatible with the balena Fin. This includes Raspbian and resinOS 2.x targeting the &quot;Balena Fin&quot; device-type._
+_NOTE: Any recent OS distribution (2018+) for the Raspberry Pi 3 Model B should be compatible with the balena Fin. This includes Raspbian and resinOS 2.x targeting the "Balena Fin" device-type._
 
 The Raspberry Pi Foundation provides a tool that allows the Compute Module to expose the eMMC as a mass storage device that can be flashed like any other media. We implemented this feature directly in Etcher by developing our own native nodeJS implementation, which is currently up to 3 times faster. This feature is available on [E](https://etcher.io/)[tcher](https://etcher.io/)starting from version 1.2.1 for OSX and Windows (Windows still needs the Raspberry Pi Foundation [usbboot](https://github.com/raspberrypi/usbboot/blob/master/win32/rpiboot_setup.exe) drivers installed, but we are working on integrating the drivers into Etcher in an upcoming release).
 
@@ -114,7 +114,7 @@ Once you have everything set up on your computer, run Etcher on your computer, c
 
 _NOTE: a CM3L module needs to be inserted in the balena Fin!_
 
-After a couple of seconds, the balena Fin eMMC should be detected on your computer by Etcher, which will initialize and list the board as a Compute Module based device (the name might change in the future). Proceed as usual, select the image you want to write, and press the &quot;Flash!&quot; button.
+After a couple of seconds, the balena Fin eMMC should be detected on your computer by Etcher, which will initialize and list the board as a Compute Module based device (the name might change in the future). Proceed as usual, select the image you want to write, and press the "Flash!" button.
 
 ![Etcher enumerating the Balena Fin](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/etcher_usbboot.png)
 
@@ -161,47 +161,47 @@ There are plenty of guides on how to interact with the chip, including the follo
 
 ## Controlling the RGB LED
 
-- echo 504 \&gt; /sys/class/gpio/export # (Red)
-- echo 505 \&gt; /sys/class/gpio/export # (Green)
-- echo 506 \&gt; /sys/class/gpio/export # (Blue)
-- echo &quot;out&quot; \&gt; /sys/class/gpio/gpio504/direction
-- echo &quot;out&quot; \&gt; /sys/class/gpio/gpio505/direction
-- echo &quot;out&quot; \&gt; /sys/class/gpio/gpio506/direction
+- `echo 504 > /sys/class/gpio/export # (Red)`
+- `echo 505 > /sys/class/gpio/export # (Green)`
+- `echo 506 > /sys/class/gpio/export # (Blue)`
+- `echo "out" > /sys/class/gpio/gpio504/direction`
+- `echo "out" > /sys/class/gpio/gpio505/direction`
+- `echo "out" > /sys/class/gpio/gpio506/direction`
 
 Now that you have the 3 GPIO LED pins ready, you can define your target color by setting each LED to high or low. For example, to turn the RGB off:
 
-- echo 0 \&gt; /sys/class/gpio/gpio504/value
-- echo 0 \&gt; /sys/class/gpio/gpio505/value
-- echo 0 \&gt; /sys/class/gpio/gpio506/value
+- `echo 0 > /sys/class/gpio/gpio504/value`
+- `echo 0 > /sys/class/gpio/gpio505/value`
+- `echo 0 > /sys/class/gpio/gpio506/value`
 
 ## Toggling the Status LED bank
 
 This device sports 9 status LEDs varying from power, eMMC, ethernet, WiFi, WAN, etc. There is a switch which allows users to toggle them all on and off via software.
 
-- echo 511 \&gt; /sys/class/gpio/export
-- echo &quot;out&quot; \&gt; /sys/class/gpio/gpio511/direction
-- echo 0 \&gt; /sys/class/gpio/gpio511/value # turn off
-- echo 1 \&gt; /sys/class/gpio/gpio511/value # turn on
+- `echo 511 > /sys/class/gpio/export`
+- `echo "out" > /sys/class/gpio/gpio511/direction`
+- `echo 0 > /sys/class/gpio/gpio511/value # turn off`
+- `echo 1 > /sys/class/gpio/gpio511/value # turn on`
 
 ## Cellular via mPCIe card
 
-We are working on identifying and documenting cards known to work out of the box on the board. If you plan on adding LTE capability to the device, we suggest the Quectel EC20EA-MINIPCIE: the card is known to work out of the box, hence only APN configuration is required. On ResinOS (2.0.0+) you do so by adding a NetworkManager profile in the boot partition under the &quot;system-connections&quot; folder. You can find more info about this on our docs at:[https://docs.resin.io/deployment/network/2.0.0/#cellular-modem-setup](https://docs.resin.io/deployment/network/2.0.0/#cellular-modem-setup).
+We are working on identifying and documenting cards known to work out of the box on the board. If you plan on adding LTE capability to the device, we suggest the Quectel EC20EA-MINIPCIE: the card is known to work out of the box, hence only APN configuration is required. On ResinOS (2.0.0+) you do so by adding a NetworkManager profile in the boot partition under the "system-connections" folder. You can find more info about this on our docs at:[https://docs.resin.io/deployment/network/2.0.0/#cellular-modem-setup](https://docs.resin.io/deployment/network/2.0.0/#cellular-modem-setup).
 
 ![Fin bottom with mPCIe modem](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/fin_bottom_modem.jpg)
 
 Disabling RF activity on mPCIe radio cards
 
-- echo 508 \&gt; /sys/class/gpio/export
-- echo &quot;out&quot; \&gt; /sys/class/gpio/gpio508/direction
-- echo 1 \&gt; /sys/class/gpio/gpio508/value # mPCIe on
-- echo 0 \&gt; /sys/class/gpio/gpio508/value # mPCIe off
+- `echo 508 > /sys/class/gpio/export`
+- `echo "out" > /sys/class/gpio/gpio508/direction`
+- `echo 1 > /sys/class/gpio/gpio508/value # mPCIe on`
+- `echo 0 > /sys/class/gpio/gpio508/value # mPCIe off`
 
 Disabling HDMI
 
-- echo 507 \&gt; /sys/class/gpio/export
-- echo &quot;out&quot; \&gt; /sys/class/gpio/gpio507/direction
-- echo 1 \&gt; /sys/class/gpio/gpio507/value # HDMI off
-- echo 0 \&gt; /sys/class/gpio/gpio507/value # HDMI on
+- `echo 507 > /sys/class/gpio/export`
+- `echo "out" > /sys/class/gpio/gpio507/direction`
+- `echo 1 > /sys/class/gpio/gpio507/value # HDMI off`
+- `echo 0 > /sys/class/gpio/gpio507/value # HDMI on`
 
 ## Power saving
 
@@ -235,13 +235,13 @@ This device complies with Part 15 rules. Operation is subject to the following t
 
 **Non-modification Warning**
 
-Any changes or modifications to this device not expressly approved by the party responsible for compliance could void the user&#39;s authority to operate this equipment.
+Any changes or modifications to this device not expressly approved by the party responsible for compliance could void the user's authority to operate this equipment.
 
 **RF Exposure Statement**
 
-This equipment complies with FCC/IC radiation exposure limits set forth for an uncontrolled environment and meets the FCC radio frequency (RF) Exposure Guidelines and RSS-102 of the IC radiofrequency (RF) Exposure rules. This equipment should be installed and operated keeping the radiator at least 20cm or more away from person&#39;s body.
+This equipment complies with FCC/IC radiation exposure limits set forth for an uncontrolled environment and meets the FCC radio frequency (RF) Exposure Guidelines and RSS-102 of the IC radiofrequency (RF) Exposure rules. This equipment should be installed and operated keeping the radiator at least 20cm or more away from person's body.
 
-Cet équipement est conforme aux limites d&#39;exposition aux rayonnements énoncées pour un environnement non contrôlé et respecte les règles les radioélectriques (RF) de la FCC lignes directrices d&#39;exposition dans et d&#39;exposition aux fréquences radioélectriques (RF) CNR-102 de l&#39;IC. Cet équipement doitêtre installé et utilisé en gardant une distance de 20 cm ou plus entre le dispositif rayonnant et le corps
+Cet équipement est conforme aux limites d'exposition aux rayonnements énoncées pour un environnement non contrôlé et respecte les règles les radioélectriques (RF) de la FCC lignes directrices d'exposition dans et d'exposition aux fréquences radioélectriques (RF) CNR-102 de l'IC. Cet équipement doitêtre installé et utilisé en gardant une distance de 20 cm ou plus entre le dispositif rayonnant et le corps
 
 **Note** : This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:
 
