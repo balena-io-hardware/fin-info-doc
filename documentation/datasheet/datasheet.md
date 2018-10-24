@@ -1,9 +1,9 @@
-![Fin logo](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/fin_logo.png)
+![Fin logo](https://github.com/balena-io/balena-fin/raw/master/documentation/manual/pictures/fin_logo.png)
 
 | **Document Type** | Datasheet |
 | --- | --- |
 | **Product ID:** | BLNFN100001 (20173009) |
-| **Product Name** | Balena Fin |
+| **Product Name** | BalenaFin |
 | **Document Version** | 0.0.4 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Proposed |
@@ -19,7 +19,7 @@
 
 # 1. Introduction
 
-Balena Fin is a carrier board for the Raspberry Pi Compute Module 3 Lite produced by the Raspberry Pi Foundation. For more informations about the Raspberry Pi Compute Module 3 Lite please refer to the following links:
+BalenaFin is a carrier board for the Raspberry Pi Compute Module 3 Lite produced by the Raspberry Pi Foundation. For more informations about the Raspberry Pi Compute Module 3 Lite please refer to the following links:
 
 Datasheet:
 
@@ -31,13 +31,13 @@ Schematics:
 
 # 2. Availability and Support
 
-Balena Fin (current version or a compatible later revision) availability is guaranteed until at least to January 2023
+BalenaFin (current version or a compatible later revision) availability is guaranteed until at least to January 2023
 
-# 3. Balena Fin images and mapping
+# 3. BalenaFin images and mapping
 
-![Fin mapping top](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/mapping_top.png)
+![Fin mapping top](https://github.com/balena-io/balena-fin/raw/master/documentation/manual/pictures/mapping_top.png)
 
-![Fin mapping bottom](https://github.com/resin-io/balena-fin/raw/master/documentation/manual/pictures/mapping_bottom.png)
+![Fin mapping bottom](https://github.com/balena-io/balena-fin/raw/master/documentation/manual/pictures/mapping_bottom.png)
 
 | **#** | **Name** | **Notes/Description** |
 | --- | --- | --- |
@@ -77,13 +77,13 @@ Balena Fin (current version or a compatible later revision) availability is guar
 
 # 4. Block diagram
 
-![Fin block diagram](https://github.com/resin-io/balena-fin/raw/master/documentation/datasheet/pictures/fin_block_diagram.png)
+![Fin block diagram](https://github.com/balena-io/balena-fin/raw/master/documentation/datasheet/pictures/fin_block_diagram.png)
 
 # 5. Mechanical specifications (mm)
 
-![Fin mechanical top](https://github.com/resin-io/balena-fin/raw/master/documentation/datasheet/pictures/fin_mechanical_top.png)
+![Fin mechanical top](https://github.com/balena-io/balena-fin/raw/master/documentation/datasheet/pictures/fin_mechanical_top.png)
 
-![Fin mechanical bottom](https://github.com/resin-io/balena-fin/raw/master/documentation/datasheet/pictures/fin_mechanical_bottom.png)
+![Fin mechanical bottom](https://github.com/balena-io/balena-fin/raw/master/documentation/datasheet/pictures/fin_mechanical_bottom.png)
 
 # 6. General specifications
 
