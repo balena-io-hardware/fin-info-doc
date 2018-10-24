@@ -62,7 +62,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 19 | USB | 2 x USB Type-A |
 | 20 | USB2 ON Status LED | The green LED stays on as long as there is enough current flowing on the bottom USB port. When this LED is off, it means a fault or under-voltage is happening on the bottom USB port |
 | 21 | Ethernet | 10/100 ethernet RJ45 connector |
-| 22 | DBG - Programming port | micro-USB connector that allows to flash the eMMC from a host computer using etcher.io or usbboot. If the device is powered on while there is a cable connected to this port, it will enter a programming mode exposing its eMMC as mass-storage to a host computer (via etcher.io or usbboot) |
+| 22 | DBG - Programming port | micro-USB connector that allows to flash the eMMC from a host computer using [balenaEtcher](balena.io/etcher) or usbboot. If the device is powered on while there is a cable connected to this port, it will enter a programming mode exposing its eMMC as mass-storage to a host computer (via balenaEtcher or usbboot) |
 | 23 | 2-POS Phoenix connector | 6-24V input power. This is a Industry standard connector. _Use either this or the Barrel Jack connector (24) - never both at the same time!_ |
 | 24 | 2.1 / 5.5 mm Barrel Jack connector | 6-24V input power. _Use either this or the Phoenix connector (23) - never both at the same time!_ |
 | 25 | Co-Processor I/O connector | 8 x GPIO / ADC, 1 x SPI, 1 x I2C, 1 x Debug UART |
