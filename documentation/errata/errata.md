@@ -10,8 +10,9 @@
 
 ## Errata history
 
-| Errata # | **Date (dd/mm/yyyy)** | **Description** | **Author** | **Impact** |
-| --- | --- | --- | --- | --- | --- |
+
+| **Errata #** | **Date (dd/mm/yyyy)** | **Description** | **Author** | **Impact** |  
+| --- | --- | --- | --- | --- | --- |  
 | 1 | 09/12/2018 | Environment operating temperature range | Nicolas Tzovanis | Information |
 
 Impact Definition: each erratum is marked with an impact, as defined below:
