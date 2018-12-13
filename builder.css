@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+td, th {
+    border: 1px solid #2A506F;
+    padding: 5px;
+    font-size: 12px;
+}
+th {
+  color: #AC3BB4;
+}
+body {
+  color: #395E7A;
+  font-size: 13px;
+}
