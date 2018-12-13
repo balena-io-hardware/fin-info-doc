@@ -4,7 +4,7 @@ the source of all kind of information regarding the Balena Fin board https://bal
 ## Building pdf releases
 
 ```
-npm install && npm build
+npm install && npm start
 ```
 
 `config.json` allows to define the document sources and the destination folder, along with customm styling
