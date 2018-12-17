@@ -11,9 +11,9 @@
 ## Errata history
 
 
-| **Errata #** | **Date (dd/mm/yyyy)** | **Description** | **Author** | **Impact** |  
-| --- | --- | --- | --- | --- | --- |  
-| 1 | 09/12/2018 | Environment operating temperature range | Nicolas Tzovanis | Information |
+| **Errata** | **Date (dd/mm/yyyy)** | **Description** | **Author** | **Impact** |  
+| --- | --- | --- | --- | --- |  
+| 1 | 09/12/2018 | Environment operating temperature range | Nicolas Tzovanis | Information |  
 
 Impact Definition: each erratum is marked with an impact, as defined below:
 
@@ -25,6 +25,6 @@ changed to match the device behavior.
 ## Errata Details
 
 1. **Description:** balenaFin data sheet v0.0.4 states that the working temperature range is -25°C to 70°C. The real environmental working temperature range is 0°C to 70°C.  
-**Impacts:** Whole board at low environment temperatures.
+**Impacts:** Whole board at low environment temperatures.  
 **Workaround:** None.  
 **Resolution:** The next revision of the data sheet, revision 0.0.5, will include a new specification for the valid temperature range.
