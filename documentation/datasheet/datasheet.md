@@ -4,7 +4,7 @@
 | --- | --- |
 | **Product ID:** | BLNFN100001 (20173009) |
 | **Product Name** | BalenaFin |
-| **Document Version** | 0.0.4 |
+| **Document Version** | 0.0.5 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Proposed |
 
@@ -16,6 +16,7 @@
 | 15/06/2018 | 0.0.2 | Carlo Maria Curinga | First release |
 | 26/06/2018 | 0.0.3 | Carlo Maria Curinga | Fixed voltage range in section 2 |
 | 31/07/2018 | 0.0.4 | Carlo Maria Curinga | Updated device mapping images |
+| 16/12/2018 | 0.0.5 | Nicolas Tzovanis | Updated operating temperature range |
 
 <div class="page-break"></div>
 
@@ -103,7 +104,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | --- | --- | --- | --- | --- |
 | Power input via power connectors | 6V | - | 24V | 12.5W |
 | Power input via HAT connector | 5V | 5V | 5V | 12.5W |
-| Operation temperature | -25 celsius | - | 70 celsius |   |
+| Operation temperature | 0 celsius | - | 70 celsius |   |
 
 <div class="page-break"></div>
 
