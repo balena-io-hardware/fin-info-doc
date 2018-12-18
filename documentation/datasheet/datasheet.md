@@ -4,7 +4,8 @@
 | --- | --- |
 | **Product ID:** | BLNFN100001 (20173009) |
 | **Product Name** | BalenaFin |
-| **Document Version** | 0.0.5 |
+| **Product Version** | 1.0.0 |
+| **Document Version** | 1.0.0 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Proposed |
 
@@ -17,6 +18,7 @@
 | 26/06/2018 | 0.0.3 | Carlo Maria Curinga | Fixed voltage range in section 2 |
 | 31/07/2018 | 0.0.4 | Carlo Maria Curinga | Updated device mapping images |
 | 16/12/2018 | 0.0.5 | Nicolas Tzovanis | Updated operating temperature range |
+| 16/12/2018 | 1.0.0 | Nicolas Tzovanis | Public release |
 
 <div class="page-break"></div>
 
@@ -83,6 +85,46 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 31 | eMMC | 8/16/32/64 GB class 5.1 industrial eMMC - main storage for the CM3L (30). Positioned under the CM3L (30) |
 | 32 | mPCIE | Mini PCI express socket |
 | 33 | Antenna switch | 2 position switch - when set to OFF, the WiFi/BT combo chip (14) uses the WiFi/BT embedded antenna (16). When set to ON, the WiFi/BT combo chip (14) uses the WiFi/BT uFL antenna connector (15) |
+
+## 3.1 HAT connector pinout
+
+| **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Notes/Description** |
+| --- | --- | --- |
+| 1 | 3V3 | 3.3V rail, shared with CM      | 2 | 5V | 5V rail, from regulator |
+| 3 | I2C1_SDA | Compute Module I2C1 Data  | 4 | 5V | 5V rail, from regulator |
+| 5 | I2C1_SCL | Compute Module I2C1 Clock | 6 | GND | Ground |
+| 7 | GPIO4 |  Compute Module GPIO_4       | 8 | GPIO14 | Compute Module GPIO_14 |
+| 9 | GND | Ground                         | 10 | GPIO15 | Compute Module GPIO_15 |
+| 11 | GPIO17 | Compute Module GPIO_17     | 12 | GPIO18 | Compute Module GPIO_18 |
+| 13 | GPIO27 | Compute Module GPIO_13     | 14 | GND | Ground |
+| 15 | GPIO22 | Compute Module GPIO_22     | 16 | GPIO23 | Compute Module GPIO_23 |
+| 17 | 3V3 | 3.3V rail, shared with CM     | 18 | GPIO24 | Compute Module GPIO_24 |
+| 19 | GPIO10 | Compute Module GPIO_10     | 20 | GND | Ground |
+| 21 | GPIO9 |  Compute Module GPIO_9      | 22 | GPIO25 | Compute Module GPIO_25 |
+| 23 | GPIO11 | Compute Module GPIO_11     | 24 | GPIO8 | Compute Module GPIO_8 |
+| 25 | GND | Ground                        | 26 | GPIO7 | Compute Module GPIO_7 |
+| 27 | I2C0_SDA | Compute Module I2C0 Data | 28 | I2C0_SCL | Compute Module I2C0 Clock |
+| 29 | GPIO5 |  Compute Module GPIO_5      | 30 | GND | Ground |
+| 31 | GPIO6 |  Compute Module GPIO_6      | 32 | GPIO12 | Compute Module GPIO_12 |
+| 33 | GPIO13 | Compute Module GPIO_13     | 34 | GND | Ground |
+| 35 | GPIO19 | Compute Module GPIO_19     | 36 | GPIO16 | Compute Module GPIO_16 |
+| 37 | GPIO26 | Compute Module GPIO_26     | 38 | GPIO20 | Compute Module GPIO_20 |
+| 39 | GND | Ground                        | 40 | GPIO21 | Compute Module GPIO_21 |  
+
+## 3.2 Artik020 connector pinout
+
+| **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Notes/Description** |
+| --- | --- | --- |
+| 1 | MCU_GPIO0 | Co-processor GPIO_0        | 2 | 3V3 | 3.3V rail, from regulator |
+| 3 | MCU_GPIO1 | Co-processor GPIO_1        | 4 | SPI_MCU_CS-CON_EXT |  |
+| 5 | MCU_GPIO2 | Co-processor GPIO_2        | 6 | SPI_MCU_CS-SCLK_EXT |  |
+| 7 | MCU_GPIO3 | Co-processor GPIO_3        | 8 | SPI_MCU_CS-MOSI_EXT |  |
+| 9 | MCU_GPIO4 | Co-processor GPIO_4        | 10 | SPI_MCU_CS-MISO_EXT |  |
+| 11 | MCU_GPIO5 | Co-processor GPIO_5       | 12 | DBG_uP-RX_DEV-TX_EXT |  |
+| 13 | MCU_GPIO6 | Co-processor GPIO_6       | 14 | DBG_uP-TX_DEV-RX_EXT |  |
+| 15 | MCU_GPIO7 | Co-processor GPIO_7       | 16 | I2C1_SDA_EXT | Compute Module I2C1 Data |
+| 17 | GND | Ground                          | 18 | I2C1_SCL_EXT | Compute Module I2C1 Clock |
+
 
 # 4. Block diagram
 
