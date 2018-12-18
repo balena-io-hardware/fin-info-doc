@@ -89,7 +89,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 ## 3.1 HAT connector pinout
 
 | **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Notes/Description** |
-| --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | 1 | 3V3 | 3.3V rail, shared with CM      | 2 | 5V | 5V rail, from regulator |
 | 3 | I2C1_SDA | Compute Module I2C1 Data  | 4 | 5V | 5V rail, from regulator |
 | 5 | I2C1_SCL | Compute Module I2C1 Clock | 6 | GND | Ground |
@@ -114,7 +114,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 ## 3.2 Artik020 connector pinout
 
 | **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Notes/Description** |
-| --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | 1 | MCU_GPIO0 | Co-processor GPIO_0        | 2 | 3V3 | 3.3V rail, from regulator |
 | 3 | MCU_GPIO1 | Co-processor GPIO_1        | 4 | SPI_MCU_CS-CON_EXT |  |
 | 5 | MCU_GPIO2 | Co-processor GPIO_2        | 6 | SPI_MCU_CS-SCLK_EXT |  |
