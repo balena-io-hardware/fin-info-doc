@@ -1,0 +1,28 @@
+{
+  "name": "balena-fin",
+  "version": "0.0.1",
+  "description": "the source of all kind of information regarding the Balena Fin board",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resin-io/balena-fin.git"
+  },
+  "author": "Carlo Maria Curinga",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/resin-io/balena-fin/issues"
+  },
+  "homepage": "https://github.com/resin-io/balena-fin#readme",
+  "jshintConfig": {
+    "esversion": 6,
+    "strict": true
+  },
+  "dependencies": {
+    "github-markdown-css": "^2.10.0",
+    "markdown-pdf": "^9.0.0"
+  },
+  "private": true
+}

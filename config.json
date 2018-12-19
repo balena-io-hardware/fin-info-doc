@@ -1,0 +1,7 @@
+{
+  "sources": [
+    "documentation/datasheet/datasheet.md"
+  ],
+  "destination": "dist",
+  "css": "builder.css"
+}
