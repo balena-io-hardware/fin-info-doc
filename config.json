@@ -1,6 +1,7 @@
 {
   "sources": [
-    "documentation/datasheet/datasheet.md"
+    "documentation/datasheet/datasheet.md",
+    "documentation/errata/errata.md"
   ],
   "destination": "pdf",
   "css": "builder.css"
