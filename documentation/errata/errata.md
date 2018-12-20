@@ -1,4 +1,4 @@
-![Fin logo](https://github.com/balena-io/balena-fin/raw/master/documentation/assets/balenaFin_logo.png)
+![Fin logo](../assets/balenaFin_logo.png)
 
 | **Document Type** | Errata |
 | --- | --- |
