@@ -11,7 +11,7 @@ the source of all kind of information regarding the Balena Fin board https://bal
 
 ```
 
-creates a page break, needs to have a blank line above and below as per the example
+creates a page break, needs to have a blank line above and one below as per the example
 
 ## Building pdf releases
 
