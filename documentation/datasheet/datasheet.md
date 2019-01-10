@@ -17,6 +17,8 @@
 | 26/06/2018 | 0.0.3 | Carlo Maria Curinga | Fixed voltage range in section 2 |
 | 31/07/2018 | 0.0.4 | Carlo Maria Curinga | Updated device mapping images |
 
+<div class="page-break"></div>
+
 # 1. Introduction
 
 BalenaFin is a carrier board for the Raspberry Pi Compute Module 3 Lite produced by the Raspberry Pi Foundation. For more informations about the Raspberry Pi Compute Module 3 Lite please refer to the following links:
@@ -33,11 +35,17 @@ Schematics:
 
 BalenaFin (current version or a compatible later revision) availability is guaranteed until at least to January 2023
 
+<div class="page-break"></div>
+
 # 3. BalenaFin images and mapping
 
 ![Fin mapping top](./pictures/mapping_top.png)
 
+<div class="page-break"></div>
+
 ![Fin mapping bottom](./pictures/mapping_bottom.png)
+
+<div class="page-break"></div>
 
 | **#** | **Name** | **Notes/Description** |
 | --- | --- | --- |
@@ -79,11 +87,15 @@ BalenaFin (current version or a compatible later revision) availability is guara
 
 ![Fin block diagram](./pictures/fin_block_diagram.png)
 
+<div class="page-break"></div>
+
 # 5. Mechanical specifications (mm)
 
 ![Fin mechanical top](./pictures/fin_mechanical_top.png)
 
 ![Fin mechanical bottom](./pictures/fin_mechanical_bottom.png)
+
+<div class="page-break"></div>
 
 # 6. General specifications
 
@@ -93,6 +105,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | Power input via HAT connector | 5V | 5V | 5V | 12.5W |
 | Operation temperature | -25 celsius | - | 70 celsius |   |
 
+<div class="page-break"></div>
 
 # 7. Radio specifications
 
@@ -111,6 +124,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | BT / BLE (main) | - | -86/-86 | -70 / -70 | dBm |
 | BT / BLE (secondary, co-processor) | - | -55.2/-47.2 | - | dBm |
 
+<div class="page-break"></div>
 
 # 8. Certification
 
@@ -158,6 +172,8 @@ Cet équipement est conforme aux limites d'exposition aux rayonnements énonce
 - Increase the separation between the equipment and receiver.
 - Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.
 - Consult the dealer or an experienced radio/TV technician for help.
+
+<div class="page-break"></div>
 
 # Canadian DOC Compliance Statement
 

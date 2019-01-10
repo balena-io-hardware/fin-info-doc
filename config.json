@@ -2,6 +2,6 @@
   "sources": [
     "documentation/datasheet/datasheet.md"
   ],
-  "destination": "dist",
+  "destination": "pdf",
   "css": "builder.css"
 }
