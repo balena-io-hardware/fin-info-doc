@@ -1,7 +1,8 @@
 {
   "sources": [
     "documentation/datasheet/datasheet.md",
-    "documentation/errata/errata.md"
+    "documentation/errata/errata.md",
+    "documentation/cases/modular_case/modular_case_datasheet.md"
   ],
   "destination": "pdf",
   "css": "builder.css"
