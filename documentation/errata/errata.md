@@ -28,6 +28,8 @@ Impact Definition: each erratum is marked with an impact, as defined below:
 - Information: the device behavior is not ideal but acceptable. Typically, the data sheet will be
 changed to match the device behavior.
 
+<div class="page-break"></div>
+
 ## Errata Details
 
 1. **Description:** balenaFin data sheet v0.0.4 states that the working temperature range is -25°C to 70°C. The real environmental working temperature range is 0°C to 70°C.  
