@@ -1,6 +1,6 @@
-![Fin logo](../assets/balenaFin_logo.png)
-
 <center>
+
+![Fin logo](../../assets/balenaFin_logo.png)
 
 | **Document Type** | Errata |
 | --- | --- |

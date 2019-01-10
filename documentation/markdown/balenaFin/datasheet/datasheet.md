@@ -1,6 +1,6 @@
-![Fin logo](./pictures/fin_logo.png)
-
 <center>
+
+![Fin logo](./pictures/fin_logo.png)
 
 | **Document Type** | Datasheet |
 | --- | --- |

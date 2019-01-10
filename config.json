@@ -1,8 +1,9 @@
 {
   "sources": [
-    "documentation/datasheet/datasheet.md",
-    "documentation/errata/errata.md",
-    "documentation/cases/modular_case/modular_case_datasheet.md"
+    "documentation/markdown/balenaFin/datasheet/datasheet.md",
+    "documentation/markdown/balenaFin/errata/errata.md",
+    "documentation/markdown/balenaFin/FAQ/FAQ.md",
+    "documentation/markdown/accesories/cases/modular_DIN_rail_case/datasheet/modular_case_datasheet.md"
   ],
   "destination": "pdf",
   "css": "builder.css"

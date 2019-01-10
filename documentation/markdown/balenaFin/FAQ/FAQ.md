@@ -1,3 +1,39 @@
+<center>
+
+![Fin logo](../../assets/balenaFin_logo.png)
+
+| **Document Type** | FAQ |
+| --- | --- |
+| **Product ID:** | BLNFN100001 (20173009) |
+| **Product Name** | BalenaFin |
+| **Product Version** | 1.0.0 |
+| **Document Version** | 1.0.0 |
+| **Author** | Carlo Maria Curinga |
+| **State (Draft/Proposed/Approved)** | Proposed |
+
+</center>
+
+## Revision history
+
+<center>
+
+| **Date (dd/mm/yyyy)** | **Version** | **Author** | **Description** |
+| --- | --- | --- | --- |
+| 10/01/2019 | 0.0.1 | Carlo Maria Curinga | First release |
+
+</center>
+
+Impact Definition: each erratum is marked with an impact, as defined below:
+
+- Minor: workaround exists.
+- Major: errata that do not conform to the data sheet or standard.
+- Information: the device behavior is not ideal but acceptable. Typically, the data sheet will be
+changed to match the device behavior.
+
+<div class="page-break"></div>
+
+## FAQ
+
 ## Is Balena Fin compatible with the Raspberry Pi Compute Module with integrated eMMC (CM1, CM3) ?
 No. Balena Fin is only compatible with the eMMC-less Raspberry Pi compute modules (aka `lite`)
 
