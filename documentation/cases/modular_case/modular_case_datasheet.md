@@ -12,6 +12,16 @@
 
 </center>
 
+## Revision history
+
+<center>
+
+| **Date (dd/mm/yyyy)** | **Version** | **Author** | **Description** |
+| --- | --- | --- | --- |
+| 24/05/2018 | 0.0.1 | Nicolas Tzovanis | First release |
+
+</center>
+
 <div class="page-break"></div>
 
 ## Case dimensions
