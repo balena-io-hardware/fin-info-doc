@@ -1,5 +1,7 @@
 ![Fin logo](../../assets/balenaFin_logo.png)
 
+<center>
+
 | **Document Type** | Datasheet |
 | --- | --- |
 | **Product ID:** | FIN00028 (v2) |
@@ -7,6 +9,8 @@
 | **Document Version** | 0.0.1 |
 | **Author** | Nicolas Tzovanis |
 | **State (Draft/Proposed/Approved)** | Draft |
+
+</center>
 
 <div class="page-break"></div>
 

@@ -1,5 +1,7 @@
 ![Fin logo](../assets/balenaFin_logo.png)
 
+<center>
+
 | **Document Type** | Errata |
 | --- | --- |
 | **Product ID:** | BLNFN100001 (20173009) |
@@ -8,12 +10,16 @@
 | **Author** | Nicolas Tzovanis |
 | **State (Draft/Proposed/Approved)** | Draft |
 
+</center>
+
 ## Errata history
 
+<center>
 
 | **Errata** | **Date (dd/mm/yyyy)** | **Description** | **Author** | **Impact** |  
 | --- | --- | --- | --- | --- |  
 | 1 | 09/12/2018 | Environment operating temperature range | Nicolas Tzovanis | Information |  
+</center>
 
 Impact Definition: each erratum is marked with an impact, as defined below:
 

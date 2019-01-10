@@ -1,5 +1,7 @@
 ![Fin logo](./pictures/fin_logo.png)
 
+<center>
+
 | **Document Type** | Datasheet |
 | --- | --- |
 | **Product ID:** | BLNFN100001 (20173009) |
@@ -9,7 +11,11 @@
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Proposed |
 
+</center>
+
 ## Revision history
+
+<center>
 
 | **Date (dd/mm/yyyy)** | **Version** | **Author** | **Description** |
 | --- | --- | --- | --- |
@@ -19,6 +25,8 @@
 | 31/07/2018 | 0.0.4 | Carlo Maria Curinga | Updated device mapping images |
 | 16/12/2018 | 0.0.5 | Nicolas Tzovanis | Updated operating temperature range |
 | 16/12/2018 | 1.0.0 | Nicolas Tzovanis | Public release |
+
+</center>
 
 <div class="page-break"></div>
 
