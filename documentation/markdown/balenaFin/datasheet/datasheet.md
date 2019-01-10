@@ -42,6 +42,8 @@ Schematics:
 
 [https://www.raspberrypi.org/documentation/hardware/computemodule/schematics.md](https://www.raspberrypi.org/documentation/hardware/computemodule/schematics.md)
 
+<div class="page-break"></div>
+
 # 2. Availability and Support
 
 BalenaFin (current version or a compatible later revision) availability is guaranteed until at least to January 2023
@@ -50,13 +52,10 @@ BalenaFin (current version or a compatible later revision) availability is guara
 
 # 3. BalenaFin images and mapping
 
-![Fin mapping top](./pictures/mapping_top.png)
+| Top | Bottom |
+| :--------------------------------------------------------: | :--------------------------------------------------------------: |
+| ![Fin mapping top](./pictures/mapping_top.png) | ![Fin mapping bottom](./pictures/mapping_bottom.png) |
 
-<div class="page-break"></div>
-
-![Fin mapping bottom](./pictures/mapping_bottom.png)
-
-<div class="page-break"></div>
 
 | **#** | **Name** | **Notes/Description** |
 | --- | --- | --- |
@@ -133,6 +132,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 15 | MCU_GPIO7 | Co-processor GPIO_7       | 16 | I2C1_SDA_EXT | Compute Module I2C1 Data |
 | 17 | GND | Ground                          | 18 | I2C1_SCL_EXT | Compute Module I2C1 Clock |
 
+<div class="page-break"></div>
 
 # 4. Block diagram
 
@@ -142,9 +142,9 @@ BalenaFin (current version or a compatible later revision) availability is guara
 
 # 5. Mechanical specifications (mm)
 
-![Fin mechanical top](./pictures/fin_mechanical_top.png)
-
-![Fin mechanical bottom](./pictures/fin_mechanical_bottom.png)
+| Top | Bottom |
+| :--------------------------------------------------------: | :--------------------------------------------------------------: |
+| ![Fin mapping top](./pictures/fin_mechanical_top.png) | ![Fin mapping bottom](./pictures/fin_mechanical_bottom.png) |
 
 <div class="page-break"></div>
 
@@ -188,12 +188,16 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | RCM | Australia | _ongoing_ |
 | OFCA | Hong Kong | _ongoing_ |
 
+<div class="page-break"></div>
+
 # 9. Labelling
 
 The end product must be labeled, in a visible area, with the following:
 
 - _Contains FCC ID: 2APW6BLN-FN-1-00001 IC: 24038-BLNFN100001_
 - _Contains FCC ID: QOQBGM111 IC: 5123A-BGM111_
+
+<div class="page-break"></div>
 
 # 10. Regulatory Insert
 
