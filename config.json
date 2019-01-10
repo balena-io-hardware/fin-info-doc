@@ -3,7 +3,7 @@
     "documentation/markdown/balenaFin/datasheet/datasheet.md",
     "documentation/markdown/balenaFin/errata/errata.md",
     "documentation/markdown/balenaFin/FAQ/FAQ.md",
-    "documentation/markdown/accesories/cases/modular_DIN_rail_case/datasheet/modular_case_datasheet.md"
+    "documentation/markdown/accesories/modular_DIN_rail_case/datasheet/datasheet.md"
   ],
   "destination": "pdf",
   "css": "builder.css"
