@@ -2,6 +2,9 @@
   "name": "balena-fin",
   "version": "0.0.1",
   "description": "the source of all kind of information regarding the Balena Fin board",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
