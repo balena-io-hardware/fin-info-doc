@@ -8,7 +8,7 @@
 | **Product Name** | balenaFin |
 | **Document Version** | 0.0.1 |
 | **Author** | Nicolas Tzovanis |
-| **State (Draft/Proposed/Approved)** | Draft |
+| **State (Draft/Proposed/Approved)** | Proposed |
 
 </center>
 
