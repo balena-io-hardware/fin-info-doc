@@ -19,4 +19,4 @@ creates a page break, needs to have a blank line above and below as per the exam
 npm install && npm start
 ```
 
-`config.json` allows to define the document sources and the destination folder, along with custom styling
+`config.json` allows to define the document sources and their destination folder, along with custom overall styling

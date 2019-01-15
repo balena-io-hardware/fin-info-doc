@@ -1,7 +1,9 @@
 {
-  "sources": [
-    "documentation/datasheet/datasheet.md"
+  "documents": [
+    {
+        "source": "documentation/datasheet/datasheet.md",
+        "destination": "pdf"
+    }
   ],
-  "destination": "pdf",
   "css": "builder.css"
 }
