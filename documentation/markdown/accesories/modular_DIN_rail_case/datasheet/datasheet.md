@@ -42,6 +42,7 @@ Standard ring for balenaFin, exposes the following ports:
 - Removable cap for WiFi external antenna
 - Removable cap for Bluetooth external antenna
 
+<div class="page-break"></div>
 
 ## 1.2 Terminal block ring
 
@@ -52,6 +53,8 @@ Standard ring for balenaFin, exposes the following ports:
 | ![Fin mapping top](pictures/terminal_ring_top.jpg) | ![Fin mapping bottom](pictures/terminal_ring_front.jpg) |
 
 The terminal block ring extends balenaFin I/O headers to the exterior of the case. Comes with a HAT and IDC cable. 
+
+<div class="page-break"></div>
 
 ### 1.2.1 Terminal block ring pin map
 
