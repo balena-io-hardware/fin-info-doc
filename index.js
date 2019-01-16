@@ -22,7 +22,7 @@ function createOutputDirectories(config) {
     for (var document of config.documents) {
       fs.promises.mkdir(document.destination, { recursive: true })
       .then (() => {
-        resolve();
+        resolve();Q
       })
       .catch(reject);
     }
