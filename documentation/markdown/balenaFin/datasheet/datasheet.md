@@ -120,7 +120,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 
 ## 3.2 Artik020 connector pinout
 
-| **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Notes/Description** |
+| **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Description** |
 | --- | --- | --- | --- | --- | --- |
 | 1 | MCU_GPIO0 | Co-processor GPIO_0        | 2 | 3V3 | 3.3V rail, from regulator |
 | 3 | MCU_GPIO1 | Co-processor GPIO_1        | 4 | SPI_MCU_CS-CON_EXT |  |
