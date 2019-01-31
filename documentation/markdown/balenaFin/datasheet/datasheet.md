@@ -160,17 +160,29 @@ BalenaFin (current version or a compatible later revision) availability is guara
 
 # 7. Radio specifications
 
-| **Parameter** | **Description** | **Min.** | **Typ.** | **Max.** | **Unit** |
-| --- | --- | --- | --- | --- | --- |
-| Frequency range | 11b / g / n (HT20/HT40) | 2412 | - | 2472 | MHz |
+### 7.1 Frequency range
+
+| **Description** | **Min.** | **Typ.** | **Max.** | **Unit** |
+| --- | --- | --- | --- | --- |
+| 11b / g / n (HT20/HT40) | 2412 | - | 2472 | MHz |
 | 11a / ac (HT80) | 5180 | - | 5825 | MHz |
 | BT / BLE (main) | 2402 | - | 2480 | MHz |
 | BT / BLE (secondary, co-processor) | 2400 | - | 2483.5 | MHz |
-| TX Output Power | 11b/11g/11n-2G(20TH/40TH) | 10 / 10 / 10 | 12 / 12 / 12 | 14/ 14/ 14 | dBm |
+
+### 7.2 TX Output Power
+
+| **Description** | **Min.** | **Typ.** | **Max.** | **Unit** |
+| --- | --- | --- | --- | --- |
+| 11b/11g/11n-2G(20TH/40TH) | 10 / 10 / 10 | 12 / 12 / 12 | 14/ 14/ 14 | dBm |
 | 11a/11n-5G20TH/40TH/11ac | 10 / 10 / 8 / 6 | 12 / 12 / 10 / 8 | 14 / 14 / 12 / 10 | dBm |
 | BT / BLE (main) | -6 | 0 | 4 | dBm |
 | BT / BLE (secondary, co-processor) | -26 | - | 8 | dBm |
-| RX Sensitivity | 11b/11g/11n-2G(20TH/40TH) | - | -87/-73/-69/-66 | -76 / -65 / -64/-61 | dBm |
+
+### 7.3 RX Sensitivity
+
+| **Description** | **Min.** | **Typ.** | **Max.** | **Unit** |
+| --- | --- | --- | --- | --- |
+| 11b/11g/11n-2G(20TH/40TH) | - | -87/-73/-69/-66 | -76 / -65 / -64/-61 | dBm |
 | 11a/11n-5G(20TH/40TH)/11ac | - | -71/-68/-65/-57 | -65 / -64/-61 /-51 | dBm |
 | BT / BLE (main) | - | -86/-86 | -70 / -70 | dBm |
 | BT / BLE (secondary, co-processor) | - | -55.2/-47.2 | - | dBm |
