@@ -50,24 +50,31 @@ Both versions provide DIN-rail and VESA mounting on the bottom of the case.
 
 ## 2.1 No phoenix ring version
 
-- Modular DIN-rail Case for balenaFin (bottom, balenaFin ring and lid)
-- Din rail clip
-- M3x8mm self-tapping screw
-- DC-099 5.5 x 2.1mm DC Power Jack panel mount
-- 3 x M3x20mm self-tapping screws
+1. Modular DIN-rail Case for balenaFin  
+    1.1 - Bottom  
+    1.2 - Lid  
+    1.3 - balenaFin ring  
+2. Din rail clip
+3. M3x8mm self-tapping screw
+4. 3 x M3x20mm self-tapping screws
+5. DC-099 5.5 x 2.1mm DC Power Jack panel mount
 
 ![Fin block diagram](./pictures/standard_components.jpg)
 
 ## 2.2 Phoenix ring version
 
-- Modular DIN-rail Case for balenaFin (bottom, balenaFin ring, phoenix ring and lid)
-- Din rail clip
-- M3x8mm self-tapping screw
-- DC-099 5.5 x 2.1mm DC Panel Power Jack 
-- 3 x M3x38mm self-tapping screws
-- 15-POS female phoenix panel mount
-- 15-POS ribbon cable
-- Phoenix ring HAT board
+1. Modular DIN-rail Case for balenaFin  
+    1.1 Bottom  
+    1.2 Lid  
+    1.3 balenaFin ring  
+    1.4 Phoenix ring 
+2. Din rail clip
+3. DC-099 5.5 x 2.1mm DC Power Jack panel mount
+4. 15-POS female phoenix panel mount
+5. 15-POS ribbon cable
+6. M3x8mm self-tapping screw
+7. 3 x M3x20mm self-tapping screws
+8. Phoenix ring HAT board
 
 ![Fin block diagram](./pictures/phoenix_components.jpg)
 
@@ -136,7 +143,9 @@ __Only if using phoenix ring version__
 __Only if using standard version__
 - Secure the assembly with the M3x20mm self-tapping screws.
 
+![Fin block diagram](./pictures/3_3_c.jpg)
+
 __Only if using phoenix ring version__
 - Secure the assembly with the M3x38mm self-tapping screws.
 
-![Fin block diagram](./pictures/3_3_c.jpg)
+![Fin block diagram](./pictures/3_3_d.jpg)
