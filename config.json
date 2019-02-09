@@ -1,6 +1,21 @@
 {
   "documents": [
-
+    {
+        "source": "documentation/markdown/balenaFin/datasheet/datasheet.md",
+        "destination": "documentation/PDF/balenaFin/datasheet"
+    },
+    {
+        "source": "documentation/markdown/balenaFin/errata/errata.md",
+        "destination": "documentation/PDF/balenaFin/errata"
+    },
+    {
+        "source": "documentation/markdown/balenaFin/FAQ/FAQ.md",
+        "destination": "documentation/PDF/balenaFin/FAQ"
+    },
+    {
+        "source": "documentation/markdown/accesories/modular_DIN_rail_case/datasheet/datasheet.md",
+        "destination": "documentation/PDF/accesories/modular_DIN_rail_case/datasheet"
+    },
     {
         "source": "documentation/markdown/accesories/modular_DIN_rail_case/user_guide/user_guide.md",
         "destination": "documentation/PDF/accesories/modular_DIN_rail_case/user_guide"
