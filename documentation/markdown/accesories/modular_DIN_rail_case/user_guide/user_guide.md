@@ -18,7 +18,7 @@
 
 | **Date (dd/mm/yyyy)** | **Version** | **Author** | **Description** |
 | --- | --- | --- | --- |
-| 24/05/2018 | 0.0.1 | Nicolas Tzovanis | First release |
+| 08/02/2019 | 0.0.1 | Nicolas Tzovanis | First release |
 
 </center>
 
@@ -45,6 +45,7 @@ In addition to the standard version, the Phoenix ring version has a second ring 
 
 Both versions provide DIN-rail and VESA mounting on the bottom of the case.
 
+<div class="page-break"></div>
 
 # 2. What's in the box?
 
@@ -60,6 +61,8 @@ Both versions provide DIN-rail and VESA mounting on the bottom of the case.
 5. DC-099 5.5 x 2.1mm DC Power Jack panel mount
 
 ![Fin block diagram](./pictures/standard_components.jpg)
+
+<div class="page-break"></div>
 
 ## 2.2 Phoenix ring version
 
@@ -77,6 +80,8 @@ Both versions provide DIN-rail and VESA mounting on the bottom of the case.
 8. Phoenix ring HAT board
 
 ![Fin block diagram](./pictures/phoenix_components.jpg)
+
+<div class="page-break"></div>
 
 # 3. Assembly instructions
 
@@ -100,6 +105,8 @@ Both versions provide DIN-rail and VESA mounting on the bottom of the case.
 
 Note: make sure the balenaFin is properly secure without overtighetning the screw to avoid breaking the plastic boss.
 
+<div class="page-break"></div>
+
 ## 3.2 Assembling the rings
 
 **Items needed**
@@ -115,12 +122,16 @@ Note: make sure the balenaFin is properly secure without overtighetning the scre
 
 ![Fin block diagram](./pictures/3_2_a.jpg)
 
-__Only if using phoenix ring version__
+<div class="page-break"></div>
+
+_If not using phoenix ring version, skip to 3.3_
 - Connect the Phoenix ring HAT board to the balenaFin.
 - Place the phoenix ring on top, making sure the missing boss of the ring aligns with the missing boss from the balenaFin ring.
 - Connect the 15-POS ribbon cable to the phoenix ring HAT board.
 
 ![Fin block diagram](./pictures/3_2_b.jpg)
+
+<div class="page-break"></div>
 
 ## 3.3  Final assembly
 
@@ -130,22 +141,31 @@ __Only if using phoenix ring version__
 - 3 x M3x20mm self-tapping screws
 - 3 x M3x38mm self-tapping screws (only if assembling the phoenix ring version)
 
-**Instructions**
+### 3.3.1 Instructions for standard version
 
 - Place the lid on top of the assembly from step 3.2. Make sure the light pipe from the lid aligns with the RGB LED on the balenaFin.
 
-![Fin block diagram](./pictures/3_3_a.jpg)
+![Fin block diagram](./pictures/3_3_1_a.jpg)
 
 ![Fin block diagram](./pictures/3_3_b.jpg)
 
 - Flip the whole assembly upside down to expose the bottom part of the case.
-
-__Only if using standard version__
 - Secure the assembly with the M3x20mm self-tapping screws.
 
-![Fin block diagram](./pictures/3_3_c.jpg)
+![Fin block diagram](./pictures/3_3_1_c.jpg)
 
-__Only if using phoenix ring version__
+
+<div class="page-break"></div>
+
+### 3.3.2 Instructions for phoenix version
+
+- Place the lid on top of the assembly from step 3.2. Make sure the light pipe from the lid aligns with the RGB LED on the balenaFin.
+
+![Fin block diagram](./pictures/3_3_2_a.jpg)
+
+![Fin block diagram](./pictures/3_3_b.jpg)
+
+- Flip the whole assembly upside down to expose the bottom part of the case.\
 - Secure the assembly with the M3x38mm self-tapping screws.
 
-![Fin block diagram](./pictures/3_3_d.jpg)
+![Fin block diagram](./pictures/3_3_2_c.jpg)
