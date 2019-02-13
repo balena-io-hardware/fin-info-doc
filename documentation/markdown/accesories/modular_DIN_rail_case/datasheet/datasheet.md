@@ -50,7 +50,7 @@ Standard ring for balenaFin, exposes the following ports:
 | :--------------------------------------------------------: | :--------------------------------------------------------------: |
 | ![Fin mapping top](pictures/terminal_ring_top.jpg) | ![Fin mapping bottom](pictures/terminal_ring_front.jpg) |
 | HAT | IDC cable |
-| ![Fin mapping top](pictures/terminal_ring_top.jpg) | ![Fin mapping bottom](pictures/terminal_ring_front.jpg) |
+| ![Fin mapping top](pictures/hat.jpg) | ![Fin mapping bottom](pictures/idc_cable.jpg) |
 
 The terminal block ring extends balenaFin I/O headers to the exterior of the case. Comes with a HAT and IDC cable. 
 
