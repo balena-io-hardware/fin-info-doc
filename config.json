@@ -1,12 +1,12 @@
 {
   "documents": [
     {
-        "source": "documentation/markdown/balenaFin/datasheet/datasheet.md",
-        "destination": "documentation/PDF/balenaFin/datasheet"
+        "source": "documentation/markdown/balenaFin/v1.0/datasheet/datasheet.md",
+        "destination": "documentation/PDF/balenaFin/v1.0/datasheet"
     },
     {
-        "source": "documentation/markdown/balenaFin/errata/errata.md",
-        "destination": "documentation/PDF/balenaFin/errata"
+        "source": "documentation/markdown/balenaFin/v1.0/errata/errata.md",
+        "destination": "documentation/PDF/balenaFin/v1.0/errata"
     },
     {
         "source": "documentation/markdown/balenaFin/FAQ/FAQ.md",
