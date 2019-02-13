@@ -15,6 +15,10 @@
     {
         "source": "documentation/markdown/accesories/modular_DIN_rail_case/datasheet/datasheet.md",
         "destination": "documentation/PDF/accesories/modular_DIN_rail_case/datasheet"
+    },
+    {
+        "source": "documentation/markdown/accesories/modular_DIN_rail_case/user_guide/user_guide.md",
+        "destination": "documentation/PDF/accesories/modular_DIN_rail_case/user_guide"
     }
   ],
   "css": "builder.css"
