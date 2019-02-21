@@ -61,9 +61,9 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 7 | PAN Status LED | If supported by the mPCIE (32) card connected, indicates PAN network activity |
 | 8 | LAN Status LED | If supported by the mPCIE (32) card connected, indicates LAN network activity |
 | 9 | WAN Status LED | If supported by the mPCIE (32) card connected, indicates WAN network activity |
-| 10 | DSI connector | Standard full-size Raspberry Pi Display connector |
+| 10 | DSI/CAM1 connector | Standard full-size Raspberry Pi MIPI connector that can be configured as Display or secondary Camera (cam1) connector. Selection is made via #37 |
 | 11 | HDMI | Full-size HDMI Type A with CEC support |
-| 12 | CSI connector | Standard full-size Raspberry Pi Camera connector |
+| 12 | CSI connector | Standard full-size Raspberry Pi Camera (cam0) connector |
 | 13 | HAT connector | 40-pin Raspberry Pi HAT (Hardware Attached on Top) standard connector |
 | 14 | WiFi/BT combo chip | 802.11ac/a/b/g/n 2.4 &amp; 5GHz WiFi + Bluetooth 4.2 |
 | 15 | WiFi/BT uFL antenna connector | If the RF switch is set on the external position, the antenna attached to this connector will become the main Radio antenna for the WiFi/BT combo chip (14) |
@@ -73,18 +73,22 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 19 | USB | 2 x USB Type-A |
 | 20 | USB2 ON Status LED | The green LED stays on as long as there is enough current flowing on the bottom USB port. When this LED is off, it means a fault or under-voltage is happening on the bottom USB port |
 | 21 | Ethernet | 10/100 ethernet RJ45 connector |
-| 22 | DBG - Programming port | micro-USB connector that allows to flash the eMMC from a host computer using [balenaEtcher](balena.io/etcher) or usbboot. If the device is powered on while there is a cable connected to this port, it will enter a programming mode exposing its eMMC as mass-storage to a host computer (via balenaEtcher or usbboot) |
-| 23 | Phoenix power in | 2-POS Phoenix type connector for 6-24V input power. Negative polarity is denoted by '-' symbol on PCB silkscreen. This is an Industry standard connector.|
-| 24 | Barrel Jack power in |  2.1 / 5.5 mm barrel jack type connector for 6-24V input power. Positive polarity (Positive tip, Negative sleeve) - Denoted by symbol on PCB silkscreen.|
+| 22 | PRG - Programming port | micro-USB connector that allows to flash the eMMC from a host computer using [balenaEtcher](balena.io/etcher) or usbboot. If the device is powered via a cable connected to this port, it will enter a programming mode exposing its eMMC as mass-storage to a host computer (via balenaEtcher or usbboot). __balenaFin can only be booted into flash mode via this port__ |
+| 23 | Phoenix power in | 2-POS Phoenix type connector for 6-24V input power. Polarity is denoted on PCB silkscreen. This is an Industry standard connector.|
+| 24 | Barrel Jack power in |  2.1 / 5.5 mm barrel jack type connector for 6-24V input power. Positive polarity (Positive tip, Negative sleeve) - Denoted by symbol on the bottom PCB silkscreen.|
 | 25 | Co-Processor I/O connector | 8 x GPIO / ADC, 1 x SPI, 1 x I2C, 1 x Debug UART |
 | 26 | CR122 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off. |
-| 27 | RGB LED |   |
-| 28 | RESET push-button | When pressed (and released) DS1307 reboots the CM3L (30) |
+| 27 | RGB LED | Connected to a PCA9633 controller that allows standard linux sysfs LED control |
+| 28 | USB3 ON Status LED | The green LED stays on as long as there is enough current flowing on the 4-pin header USB port. When this LED is off, it means a fault or under-voltage is happening on the 4-pin header USB port |
 | 29 | nano-SIM socket | This allows the use of a wide portfolio of cellular Modems via the mPCIE socket (32) |
 | 30 | CM3L socket | SODIMM-200 socket for the Raspberry Pi Compute Module 3 Lite |
 | 31 | eMMC | 8/16/32/64 GB class 5.1 industrial eMMC - main storage for the CM3L (30). Positioned under the CM3L (30) |
 | 32 | mPCIE | Mini PCI express socket |
-| 33 | Antenna switch | 2 position switch - when set to OFF, the WiFi/BT combo chip (14) uses the WiFi/BT embedded antenna (16). When set to ON, the WiFi/BT combo chip (14) uses the WiFi/BT uFL antenna connector (15) |
+| 33 | Antenna switch | 2 position switch - when set to OFF (labeled in silkscreen as "INT"), the WiFi/BT combo chip (14) uses the WiFi/BT embedded antenna (16). When set to ON (labeled in silkscreen as "EXT"), the WiFi/BT combo chip (14) uses the WiFi/BT uFL antenna connector (15) |
+| 34 | PoE HAT headers | exposes the incoming voltage from the RJ45 (21) port for PoE HATs that step down and flow 5V to the 5V HAT (13) pins |
+| 35 | USB 2.0 4-pin header | Exposes a USB 2.0 port via male headers. pin1 is marked in silkscreen with a triangle |
+| 36 | GND probe interface | Exposes a GND probe interface for easy debugging |
+| 37 | DSI/CAM1 switch | Switches the full-size Raspberry Pi MIPI connector (#10) between Display or secondary Camera (cam1) mode - when set to OFF (labeled in silkscreen as "DISP"), the full-size Raspberry Pi MIPI connector (#10) exposes the DSI (disp1) interface. When set to ON (labeled in silkscreen as "CAM1") the full-size Raspberry Pi MIPI connector (#10) exposes the secondary CSI (cam1) interface |
 
 ## 3.1 HAT connector pinout
 
