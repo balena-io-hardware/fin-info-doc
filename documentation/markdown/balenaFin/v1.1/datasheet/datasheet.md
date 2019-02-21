@@ -52,44 +52,44 @@ Availability of balenaFin in either the current version or a compatible later re
 
 | **#** | **Name** | **Notes/Description** |
 | --- | --- | --- |
-| 1 | 5V Status LED | Indicates 5V current flow. |
-| 2 | 3V3 Status LED | Indicates 3.3V current flow. This is the same as the red LED on the Raspberry Pi 3 Model B |
-| 3 | ACT Status LED | CM3L Activity LED. This is the same as the green LED on the Raspberry Pi 3 Model B |
-| 4 | SPD Status LED | Ethernet Speed LED. off when in 10-Mbps mode, on when in 100-Mbps mode |
+| 1 | 5V Status LED | Indicates 5V current flow |
+| 2 | 3V3 Status LED | Indicates 3.3V current flow; this is the same as the red LED on the Raspberry Pi 3 Model B |
+| 3 | ACT Status LED | CM3L Activity LED; this is the same as the green LED on the Raspberry Pi 3 Model B |
+| 4 | SPD Status LED | Ethernet Speed LED; off when in 10-Mbps mode, on when in 100-Mbps mode |
 | 5 | FDX Status LED | Ethernet Full-Duplex indicator |
-| 6 | LNK Status LED | Ethernet Link/Activity LED. |
+| 6 | LNK Status LED | Ethernet Link/Activity LED |
 | 7 | PAN Status LED | If supported by the mPCIE (32) card connected, indicates PAN network activity |
 | 8 | LAN Status LED | If supported by the mPCIE (32) card connected, indicates LAN network activity |
 | 9 | WAN Status LED | If supported by the mPCIE (32) card connected, indicates WAN network activity |
-| 10 | DSI/CAM1 connector | Standard full-size Raspberry Pi MIPI connector that can be configured as Display or secondary Camera (cam1) connector. Selection is made via #37 |
+| 10 | DSI/CAM1 connector | Standard full-size Raspberry Pi MIPI connector that can be configured as Display or secondary Camera (cam1) connector; selection is made via the DSI/CAM1 switch (37) |
 | 11 | HDMI | Full-size HDMI Type A with CEC support |
 | 12 | CSI connector | Standard full-size Raspberry Pi Camera (cam0) connector |
 | 13 | HAT connector | 40-pin Raspberry Pi HAT (Hardware Attached on Top) standard connector |
 | 14 | WiFi/BT combo chip | 802.11ac/a/b/g/n 2.4 &amp; 5GHz WiFi + Bluetooth 4.2 |
-| 15 | WiFi/BT uFL antenna connector | If the RF switch (#33) is set on the external position, the antenna attached to this connector will become the main Radio antenna for the WiFi/BT combo chip (14) |
-| 16 | WiFi/BT embedded antenna | Embedded high-performance SMD antenna covering both 2.4 and 5GHz frequencies. It is the default antenna selected for the WiFi/BT combo chip (14) |
+| 15 | WiFi/BT uFL antenna connector | If the RF switch (33) is set on the external position, the antenna attached to this connector will become the main radio antenna for the WiFi/BT combo chip (14) |
+| 16 | WiFi/BT embedded antenna | Embedded high-performance SMD antenna covering both 2.4 and 5GHz frequencies; it is the default antenna selected for the WiFi/BT combo chip (14) |
 | 17 | Co-processor | Artik020 MCU |
-| 18 | USB1 ON Status LED | The green LED stays on as long as there is enough current flowing on the top USB port. When this LED is off, it means a fault or under-voltage is happening on the top USB port |
+| 18 | USB1 ON Status LED | The green LED stays on as long as there is enough current flowing on the top USB port; when this LED is off, it means a fault or under-voltage is happening on the top USB port |
 | 19 | USB | 2 x USB Type-A |
-| 20 | USB2 ON Status LED | The green LED stays on as long as there is enough current flowing on the bottom USB port. When this LED is off, it means a fault or under-voltage is happening on the bottom USB port |
+| 20 | USB2 ON Status LED | The green LED stays on as long as there is enough current flowing on the bottom USB port; when this LED is off, it means a fault or under-voltage is happening on the bottom USB port |
 | 21 | Ethernet | 10/100 ethernet RJ45 connector |
-| 22 | PRG - Programming port | micro-USB connector that allows to flash the eMMC from a host computer using [balenaEtcher](balena.io/etcher) or usbboot. If the device is powered via a cable connected to this port, it will enter a programming mode exposing its eMMC as mass-storage to a host computer (via balenaEtcher or usbboot). __balenaFin can only be booted into flash mode via this port__ |
-| 23 | Phoenix power in | 2-POS Phoenix type connector for 6-24V input power. Polarity is denoted on PCB silkscreen. This is an Industry standard connector.|
+| 22 | PRG - Programming port | micro-USB connector that allows flashing of the eMMC from a host computer using [balenaEtcher](balena.io/etcher) or usbboot. If the device is powered via a cable connected to this port, it will enter a programming mode exposing its eMMC as mass-storage to a host computer (via balenaEtcher or usbboot). __balenaFin can only be booted into flash mode via this port__ |
+| 23 | Phoenix power in | Industry standard 2-POS Phoenix type connector for 6-24V input power; polarity is denoted on PCB silkscreen |
 | 24 | Barrel Jack power in |  2.1 / 5.5 mm barrel jack type connector for 6-24V input power. Positive polarity (Positive tip, Negative sleeve) - Denoted by symbol on the bottom PCB silkscreen.|
 | 25 | Co-Processor I/O connector | 8 x GPIO / ADC, 1 x SPI, 1 x I2C, 1 x Debug UART |
-| 26 | CR122 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off. |
+| 26 | CR122 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off |
 | 27 | RGB LED | Connected to a PCA9633 controller that allows standard linux sysfs LED control |
-| 28 | USB3 ON Status LED | The green LED stays on as long as there is enough current flowing on the 4-pin header USB port. When this LED is off, it means a fault or under-voltage is happening on the 4-pin header USB port |
-| 29 | nano-SIM socket | This allows the use of a wide portfolio of cellular Modems via the mPCIE socket (32) |
-| 30 | CM3L socket | SODIMM-200 socket for the Raspberry Pi Compute Module 3 Lite |
+| 28 | USB3 ON Status LED | The green LED stays on as long as there is enough current flowing on the 4-pin header USB port; when this LED is off, it means a fault or under-voltage is happening on the 4-pin header USB port |
+| 29 | nano-SIM socket | This allows the use of a wide portfolio of cellular modems via the mPCIe socket (32) |
+| 30 | CM3L socket | SODIMM-200 socket for the Raspberry Pi Compute Module 3/3+ Lite |
 | 31 | eMMC | 8/16/32/64 GB class 5.1 industrial eMMC - main storage for the CM3L (30). Positioned under the CM3L (30) |
-| 32 | mPCIE | Mini PCI express socket |
+| 32 | mPCIe | Mini PCI Express socket |
 | 33 | Antenna switch | 2 position switch - when set to OFF (labeled in silkscreen as "INT"), the WiFi/BT combo chip (14) uses the WiFi/BT embedded antenna (16). When set to ON (labeled in silkscreen as "EXT"), the WiFi/BT combo chip (14) uses the WiFi/BT uFL antenna connector (15) |
 | 34 | PoE HAT headers | exposes the incoming voltage from the RJ45 (21) port for PoE HATs that step down and flow 5V to the 5V HAT (13) pins |
 | 35 | USB 2.0 4-pin header | Exposes a USB 2.0 port via male headers. pin1 is marked in silkscreen with a triangle |
 | 36 | GND probe interface | Exposes a GND probe interface for easy debugging |
-| 37 | DSI/CAM1 switch | Switches the full-size Raspberry Pi MIPI connector (#10) between Display or secondary Camera (cam1) mode - when set to OFF (labeled in silkscreen as "DISP"), the full-size Raspberry Pi MIPI connector (#10) exposes the DSI (disp1) interface. When set to ON (labeled in silkscreen as "CAM1") the full-size Raspberry Pi MIPI connector (#10) exposes the secondary CSI (cam1) interface |
-| 38 | POWER IN Fuse (on #23 & #24) | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
+| 37 | DSI/CAM1 switch | Switches the full-size Raspberry Pi MIPI connector (10) between Display or secondary Camera (cam1) mode - when set to OFF (labeled in silkscreen as "DISP"), the full-size Raspberry Pi MIPI connector (#10) exposes the DSI (disp1) interface. When set to ON (labeled in silkscreen as "CAM1") the full-size Raspberry Pi MIPI connector (10) exposes the secondary CSI (cam1) interface |
+| 38 | POWER IN Fuse (on 23 & 24) | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
 | 39 | HAT 5V Fuse | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
 
 ## 3.1 HAT connector pinout
@@ -116,6 +116,8 @@ Availability of balenaFin in either the current version or a compatible later re
 | 35 | GPIO19 | Compute Module GPIO_19     | 36 | GPIO16 | Compute Module GPIO_16 |
 | 37 | GPIO26 | Compute Module GPIO_26     | 38 | GPIO20 | Compute Module GPIO_20 |
 | 39 | GND | Ground                        | 40 | GPIO21 | Compute Module GPIO_21 |  
+
+<div class="page-break"></div>
 
 ## 3.2 Artik020 connector pinout
 
