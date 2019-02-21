@@ -66,7 +66,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 12 | CSI connector | Standard full-size Raspberry Pi Camera (cam0) connector |
 | 13 | HAT connector | 40-pin Raspberry Pi HAT (Hardware Attached on Top) standard connector |
 | 14 | WiFi/BT combo chip | 802.11ac/a/b/g/n 2.4 &amp; 5GHz WiFi + Bluetooth 4.2 |
-| 15 | WiFi/BT uFL antenna connector | If the RF switch is set on the external position, the antenna attached to this connector will become the main Radio antenna for the WiFi/BT combo chip (14) |
+| 15 | WiFi/BT uFL antenna connector | If the RF switch (#33) is set on the external position, the antenna attached to this connector will become the main Radio antenna for the WiFi/BT combo chip (14) |
 | 16 | WiFi/BT embedded antenna | Embedded high-performance SMD antenna covering both 2.4 and 5GHz frequencies. It is the default antenna selected for the WiFi/BT combo chip (14) |
 | 17 | Co-processor | Artik020 MCU |
 | 18 | USB1 ON Status LED | The green LED stays on as long as there is enough current flowing on the top USB port. When this LED is off, it means a fault or under-voltage is happening on the top USB port |
