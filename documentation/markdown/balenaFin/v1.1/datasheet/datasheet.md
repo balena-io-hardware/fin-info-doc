@@ -30,7 +30,7 @@
 
 BalenaFin is a carrier board for the Raspberry Pi Compute Module 3 Lite and Compute Module 3+ Lite produced by the Raspberry Pi Foundation.
 
-For more informations about the Raspberry Pi Compute Module please refer to the following links:
+For more information about the Raspberry Pi Compute Module please refer to the following links:
 
 * Datasheet: https://www.raspberrypi.org/documentation/hardware/computemodule/datasheet.md
 * Schematics: https://www.raspberrypi.org/documentation/hardware/computemodule/schematics.md
