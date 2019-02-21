@@ -1,5 +1,5 @@
 # balenaFin repository
-Official documentation repositorry for the [balenaFin board](https://balenafin.io).  
+Official documentation repository for the [balenaFin board](https://balenafin.io).  
 Get it now from the official balenaFin [store](https://store.balena.io/).
 
 
@@ -20,7 +20,7 @@ Get it now from the official balenaFin [store](https://store.balena.io/).
 
 All files inside `documentation/CAD` and `documentation/PDF` are official balenaFin documentation. They are automatically generated from markdown files in `documentation/markdown`. 
 
-## Building pdf releases
+## Building PDF releases
 
 All PDF documentation is generated automatically frorm markdown files. To install the PDF generator, clone the repository and run `npm install`
 
