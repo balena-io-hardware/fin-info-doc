@@ -39,7 +39,7 @@ For more information about the Raspberry Pi Compute Module please refer to the f
 
 # 2. Availability and Support
 
-BalenaFin (current version or a compatible later revision) availability is guaranteed until at least to January 2024
+Availability of balenaFin in either the current version or a compatible later revision is guaranteed until at least January 2024.
 
 <div class="page-break"></div>
 
