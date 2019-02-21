@@ -89,6 +89,8 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 35 | USB 2.0 4-pin header | Exposes a USB 2.0 port via male headers. pin1 is marked in silkscreen with a triangle |
 | 36 | GND probe interface | Exposes a GND probe interface for easy debugging |
 | 37 | DSI/CAM1 switch | Switches the full-size Raspberry Pi MIPI connector (#10) between Display or secondary Camera (cam1) mode - when set to OFF (labeled in silkscreen as "DISP"), the full-size Raspberry Pi MIPI connector (#10) exposes the DSI (disp1) interface. When set to ON (labeled in silkscreen as "CAM1") the full-size Raspberry Pi MIPI connector (#10) exposes the secondary CSI (cam1) interface |
+| 38 | HAT 5V Fuse | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
+| 39 | POWER IN Fuse (on #23 & #24) | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
 
 ## 3.1 HAT connector pinout
 
