@@ -93,6 +93,8 @@ Availability of balenaFin in either the current version or a compatible later re
 | 38 | POWER IN Fuse (on 23 & 24) | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
 | 39 | HAT 5V Fuse | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
 
+<div class="page-break"></div>
+
 ## 3.1 HAT connector pinout
 
 | **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Notes/Description** |
