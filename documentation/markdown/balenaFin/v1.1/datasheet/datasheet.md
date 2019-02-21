@@ -8,9 +8,9 @@
 | **Product Name** | BalenaFin |
 | **Product Version** | 1.1.0 |
 | **Manufacturer Part Number** | FIN10001-X (where X is the storage size: 8/16/32/64) |
-| **Document Version** | 0.0.1 |
+| **Document Version** | 0.0.2 |
 | **Author** | Carlo Maria Curinga |
-| **State (Draft/Proposed/Approved)** | Draft |
+| **State (Draft/Proposed/Approved)** | Approved |
 
 </center>
 
@@ -21,6 +21,7 @@
 | **Date (dd/mm/yyyy)** | **Version** | **Author** | **Description** |
 | --- | --- | --- | --- |
 | 13/02/2019 | 0.0.1 | Carlo Maria Curinga | First draft |
+| 21/02/2019 | 0.0.2 | Carlo Maria Curinga | First release |
 
 </center>
 
@@ -68,7 +69,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | 14 | WiFi/BT combo chip | 802.11ac/a/b/g/n 2.4 &amp; 5GHz WiFi + Bluetooth 4.2 |
 | 15 | WiFi/BT uFL antenna connector | If the RF switch (33) is set on the external position, the antenna attached to this connector will become the main radio antenna for the WiFi/BT combo chip (14) |
 | 16 | WiFi/BT embedded antenna | Embedded high-performance SMD antenna covering both 2.4 and 5GHz frequencies; it is the default antenna selected for the WiFi/BT combo chip (14) |
-| 17 | Co-processor | Artik020 MCU |
+| 17 | Co-processor | Silicon Labs BGM111 MCU |
 | 18 | USB1 ON Status LED | The green LED stays on as long as there is enough current flowing on the top USB port; when this LED is off, it means a fault or under-voltage is happening on the top USB port |
 | 19 | USB | 2 x USB Type-A |
 | 20 | USB2 ON Status LED | The green LED stays on as long as there is enough current flowing on the bottom USB port; when this LED is off, it means a fault or under-voltage is happening on the bottom USB port |
@@ -121,7 +122,7 @@ Availability of balenaFin in either the current version or a compatible later re
 
 <div class="page-break"></div>
 
-## 3.2 Artik020 connector pinout
+## 3.2 Silicon Labs BGM111 connector pinout
 
 | **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Description** |
 | --- | --- | --- | --- | --- | --- |
