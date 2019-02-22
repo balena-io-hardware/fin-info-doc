@@ -22,7 +22,7 @@
 | --- | --- | --- | --- |
 | 13/02/2019 | 0.0.1 | Carlo Maria Curinga | First draft |
 | 21/02/2019 | 0.0.2 | Carlo Maria Curinga | First release |
-
+| 22/02/2019 | 0.0.3 | Carlo Maria Curinga | Update temperature range Minimum value |
 </center>
 
 <div class="page-break"></div>
