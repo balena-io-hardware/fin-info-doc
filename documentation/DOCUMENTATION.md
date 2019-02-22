@@ -20,8 +20,8 @@
 
 | **Product** |  Document
 | --- | --- |
-| balenaFin v1.0 | [STEP file](https://github.com/balena-io/balena-fin/raw/master/documentation/CAD/balenaFin/20173009_V8_CAD.stp) |
-| balenaFin v1.1 | *coming soon* |
+| balenaFin v1.0 | [STEP file](https://github.com/balena-io/balena-fin/raw/master/documentation/CAD/balenaFin/v1.0/20173009_BALENA-FIN_V1.0_LIGHT.stp) |
+| balenaFin v1.1 | [STEP file](https://github.com/balena-io/balena-fin/raw/master/documentation/CAD/balenaFin/v1.1/20173009_BALENA-FIN_V1.1_LIGHT.stp) |
 | modular DIN rail case | [STL files collection](https://github.com/balena-io/balena-fin/raw/master/documentation/CAD/accesories/modular_DIN_rail_case/v2.zip) |
 
 ## User guides
