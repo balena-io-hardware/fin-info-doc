@@ -158,7 +158,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | --- | --- | --- | --- | --- |
 | Power input via power connectors | 6V | - | 24V | 12.5W |
 | Power input via HAT connector | 5V | 5V | 5V | 12.5W |
-| Operation temperature | 0 celsius | - | 70 celsius |   |
+| Operation temperature | -25 celsius | - | 70 celsius |   |
 
 <div class="page-break"></div>
 
