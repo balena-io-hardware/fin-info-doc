@@ -8,7 +8,7 @@
 | **Product Name** | BalenaFin |
 | **Product Version** | 1.1.0 |
 | **Manufacturer Part Number** | FIN10001-X (where X is the storage size: 8/16/32/64) |
-| **Document Version** | 0.0.2 |
+| **Document Version** | 0.0.3 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Approved |
 
