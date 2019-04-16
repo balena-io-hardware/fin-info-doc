@@ -31,3 +31,10 @@
 | balenaFin v1.0 | [Website](https://www.balena.io/fin/1.0/docs/) |
 | balenaFin v1.1 | [Website](https://www.balena.io/fin/1.1/docs/) |
 | modular DIN rail case | [PDF document](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/accesories/modular_DIN_rail_case/user_guide/user_guide.pdf) |
+
+## Compliance
+
+| **Product** |  Document
+| --- | --- |
+| balenaFin v1.x | [Website](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/conformity/CONFORMITY.md) |
+
