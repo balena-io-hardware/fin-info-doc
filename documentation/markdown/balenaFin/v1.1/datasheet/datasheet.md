@@ -8,7 +8,7 @@
 | **Product Name** | BalenaFin |
 | **Product Version** | 1.1.0 |
 | **Manufacturer Part Number** | FIN10001-X (where X is the storage size: 8/16/32/64) |
-| **Document Version** | 0.0.3 |
+| **Document Version** | 0.0.4 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Approved |
 
@@ -23,6 +23,7 @@
 | 13/02/2019 | 0.0.1 | Carlo Maria Curinga | First draft |
 | 21/02/2019 | 0.0.2 | Carlo Maria Curinga | First release |
 | 22/02/2019 | 0.0.3 | Carlo Maria Curinga | Update temperature range Minimum value |
+| 06/06/2019 | 0.0.4 | Nicolas Tzovanis | Fixed HAT Header pinout for pin 13 |
 </center>
 
 <div class="page-break"></div>
@@ -105,7 +106,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | 7 | GPIO4 |  Compute Module GPIO_4       | 8 | GPIO14 | Compute Module GPIO_14 |
 | 9 | GND | Ground                         | 10 | GPIO15 | Compute Module GPIO_15 |
 | 11 | GPIO17 | Compute Module GPIO_17     | 12 | GPIO18 | Compute Module GPIO_18 |
-| 13 | GPIO27 | Compute Module GPIO_13     | 14 | GND | Ground |
+| 13 | GPIO27 | Compute Module GPIO_27     | 14 | GND | Ground |
 | 15 | GPIO22 | Compute Module GPIO_22     | 16 | GPIO23 | Compute Module GPIO_23 |
 | 17 | 3V3 | 3.3V rail, shared with CM     | 18 | GPIO24 | Compute Module GPIO_24 |
 | 19 | GPIO10 | Compute Module GPIO_10     | 20 | GND | Ground |

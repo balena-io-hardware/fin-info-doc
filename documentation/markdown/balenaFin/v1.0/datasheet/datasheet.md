@@ -7,9 +7,9 @@
 | **Product ID:** | BLNFN100001 (20173009) |
 | **Product Name** | BalenaFin |
 | **Product Version** | 1.0.0 |
-| **Document Version** | 1.0.0 |
+| **Document Version** | 1.0.1 |
 | **Author** | Carlo Maria Curinga |
-| **State (Draft/Proposed/Approved)** | Proposed |
+| **State (Draft/Proposed/Approved)** | Approved |
 
 </center>
 
@@ -25,6 +25,7 @@
 | 31/07/2018 | 0.0.4 | Carlo Maria Curinga | Updated device mapping images |
 | 16/12/2018 | 0.0.5 | Nicolas Tzovanis | Updated operating temperature range |
 | 16/12/2018 | 1.0.0 | Nicolas Tzovanis | Public release |
+| 06/06/2019 | 1.0.1 | Nicolas Tzovanis | Fixed HAT Header pinout for pin 13 |
 
 </center>
 
@@ -103,7 +104,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 7 | GPIO4 |  Compute Module GPIO_4       | 8 | GPIO14 | Compute Module GPIO_14 |
 | 9 | GND | Ground                         | 10 | GPIO15 | Compute Module GPIO_15 |
 | 11 | GPIO17 | Compute Module GPIO_17     | 12 | GPIO18 | Compute Module GPIO_18 |
-| 13 | GPIO27 | Compute Module GPIO_13     | 14 | GND | Ground |
+| 13 | GPIO27 | Compute Module GPIO_27     | 14 | GND | Ground |
 | 15 | GPIO22 | Compute Module GPIO_22     | 16 | GPIO23 | Compute Module GPIO_23 |
 | 17 | 3V3 | 3.3V rail, shared with CM     | 18 | GPIO24 | Compute Module GPIO_24 |
 | 19 | GPIO10 | Compute Module GPIO_10     | 20 | GND | Ground |
