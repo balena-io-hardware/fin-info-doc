@@ -8,7 +8,7 @@
 | **Product Name** | BalenaFin |
 | **Product Version** | 1.1.0 |
 | **Manufacturer Part Number** | FIN10001-X (where X is the storage size: 8/16/32/64) |
-| **Document Version** | 0.0.4 |
+| **Document Version** | 0.0.5 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Approved |
 
@@ -24,6 +24,7 @@
 | 21/02/2019 | 0.0.2 | Carlo Maria Curinga | First release |
 | 22/02/2019 | 0.0.3 | Carlo Maria Curinga | Update temperature range Minimum value |
 | 06/06/2019 | 0.0.4 | Nicolas Tzovanis | Fixed HAT Header pinout for pin 13 |
+| 24/06/2019 | 0.0.5 | Nicolas Tzovanis | Improved description of USB header |
 </center>
 
 <div class="page-break"></div>
@@ -88,7 +89,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | 32 | mPCIe | Mini PCI Express socket |
 | 33 | Antenna switch | 2 position switch - when set to OFF (labeled in silkscreen as "INT"), the WiFi/BT combo chip (14) uses the WiFi/BT embedded antenna (16). When set to ON (labeled in silkscreen as "EXT"), the WiFi/BT combo chip (14) uses the WiFi/BT uFL antenna connector (15) |
 | 34 | PoE HAT headers | exposes the incoming voltage from the RJ45 (21) port for PoE HATs that step down and flow 5V to the 5V HAT (13) pins |
-| 35 | USB 2.0 4-pin header | Exposes a USB 2.0 port via male headers. pin1 is marked in silkscreen with a triangle |
+| 35 | USB 2.0 4-pin header | Exposes a USB 2.0 port via male headers. Pin 1 is the one closest to the coprocessor. Pinout: 1->VCC; 2->D-; 3->D+; 4->GND |
 | 36 | GND probe interface | Exposes a GND probe interface for easy debugging |
 | 37 | DSI/CAM1 switch | Switches the full-size Raspberry Pi MIPI connector (10) between Display or secondary Camera (cam1) mode - when set to OFF (labeled in silkscreen as "DISP"), the full-size Raspberry Pi MIPI connector (#10) exposes the DSI (disp1) interface. When set to ON (labeled in silkscreen as "CAM1") the full-size Raspberry Pi MIPI connector (10) exposes the secondary CSI (cam1) interface |
 | 38 | POWER IN Fuse (on 23 & 24) | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
