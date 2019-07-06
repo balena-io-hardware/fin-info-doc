@@ -6,9 +6,9 @@
 | --- | --- |
 | **Product ID:** | FIN00028 (v2) |
 | **Product Name** | Modular DIN-rail Case |
-| **Document Version** | 0.0.1 |
+| **Document Version** | 0.0.2 |
 | **Author** | Nicolas Tzovanis |
-| **State (Draft/Proposed/Approved)** | Proposed |
+| **State (Draft/Proposed/Approved)** | Approved |
 
 </center>
 
@@ -19,6 +19,7 @@
 | **Date (dd/mm/yyyy)** | **Version** | **Author** | **Description** |
 | --- | --- | --- | --- |
 | 24/05/2018 | 0.0.1 | Nicolas Tzovanis | First release |
+| 24/05/2018 | 0.0.2 | Nicolas Tzovanis | Update phoenix ring pinout |
 
 </center>
 
@@ -61,20 +62,20 @@ The terminal block ring extends balenaFin I/O headers to the exterior of the cas
 | **Fin header pin #** | **Co-processor header pin #** | **Case terminal pin #** | **Pin name** |
 | --- | --- | --- | --- |
 | 2  | NC | 1  | 5V |
-| 6  | NC | 2  | GND | 
-| 8  | NC | 3  | BCM14 (TXD) |
-| 10 | NC | 4  | BCM15 (RXD) |
-| 3  | NC | 5  | BCM2 (SDA) |
-| 5  | NC | 6  | BCM3 (SCL) |
-| 12 | NC | 7  | BCM18 (PWM0) |
-| 16 | NC | 8  | BCM23 |
-| 19 | NC | 9  | BCM10 (MOSI) |
-| 21 | NC | 10 | BCM9 (MISO) |
-| 23 | NC | 11 | BCM11 (SCLK) |
-| NC | 1  | 12 | PD14 |
-| NC | 3  | 13 | PA2 |
-| NC | 5  | 14 | PA3 |
-| NC | 13 | 15 | PF6 |
+| 6  | NC | 2  | BCM10 (MOSI) |
+| 8  | NC | 3  | GND | 
+| 10 | NC | 4  | BCM9 (MISO) |
+| 3  | NC | 5  | BCM14 (TXD) |
+| 5  | NC | 6  | BCM11 (SCLK) |
+| 12 | NC | 7  | BCM15 (RXD) |
+| 16 | NC | 8  | PD14 |
+| 19 | NC | 9  | BCM2 (SDA) |
+| 21 | NC | 10 | PA2 |
+| 23 | NC | 11 | BCM3 (SCL) |
+| NC | 1  | 12 | PA3 |
+| NC | 3  | 13 | BCM18 (PWM0) |
+| NC | 5  | 14 | PF6 |
+| NC | 13 | 15 | BCM23 |
 
 <div class="page-break"></div>
 
