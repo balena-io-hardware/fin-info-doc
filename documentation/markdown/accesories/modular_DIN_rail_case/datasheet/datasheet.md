@@ -6,7 +6,7 @@
 | --- | --- |
 | **Product ID:** | FIN00028 (v2) |
 | **Product Name** | Modular DIN-rail Case |
-| **Document Version** | 0.0.2 |
+| **Document Version** | 1.0.0 |
 | **Author** | Nicolas Tzovanis |
 | **State (Draft/Proposed/Approved)** | Approved |
 
@@ -19,7 +19,8 @@
 | **Date (dd/mm/yyyy)** | **Version** | **Author** | **Description** |
 | --- | --- | --- | --- |
 | 24/05/2018 | 0.0.1 | Nicolas Tzovanis | First release |
-| 24/05/2018 | 0.0.2 | Nicolas Tzovanis | Update phoenix ring pinout |
+| 06/07/2019 | 0.0.2 | Nicolas Tzovanis | Update phoenix ring pinout |
+| 11/07/2019 | 1.0.0 | Nicolas Tzovanis | Fix balenaFin HAT pinout |
 
 </center>
 
@@ -27,7 +28,7 @@
 
 # 1. Introduction
 
-The modular DIN-rail case is the official protective enclosure for the balenaFin. It is compatible with all v1 balenaFins (v1.x.x). The modular ring design allows standard or custom HATs to be included inside the case. 
+The modular DIN-rail case is the official protective enclosure for the balenaFin. It is compatible with all v1 balenaFins (v1.x.x). The modular ring design allows standard or custom HATs to be included inside the case.  
 
 ## 1.1 Standard balenaFin ring
 
@@ -53,7 +54,7 @@ Standard ring for balenaFin, exposes the following ports:
 | HAT | IDC cable |
 | ![Fin mapping top](pictures/hat.jpg) | ![Fin mapping bottom](pictures/idc_cable.jpg) |
 
-The terminal block ring extends balenaFin I/O headers to the exterior of the case. Comes with a HAT and IDC cable. 
+The terminal block ring extends balenaFin I/O headers to the exterior of the case. Comes with a HAT and IDC cable.  
 
 <div class="page-break"></div>
 
@@ -61,21 +62,21 @@ The terminal block ring extends balenaFin I/O headers to the exterior of the cas
 
 | **Fin header pin #** | **Co-processor header pin #** | **Case terminal pin #** | **Pin name** |
 | --- | --- | --- | --- |
-| 2  | NC | 1  | 5V |
-| 6  | NC | 2  | BCM10 (MOSI) |
-| 8  | NC | 3  | GND | 
-| 10 | NC | 4  | BCM9 (MISO) |
-| 3  | NC | 5  | BCM14 (TXD) |
-| 5  | NC | 6  | BCM11 (SCLK) |
-| 12 | NC | 7  | BCM15 (RXD) |
-| 16 | NC | 8  | PD14 |
-| 19 | NC | 9  | BCM2 (SDA) |
-| 21 | NC | 10 | PA2 |
-| 23 | NC | 11 | BCM3 (SCL) |
-| NC | 1  | 12 | PA3 |
-| NC | 3  | 13 | BCM18 (PWM0) |
-| NC | 5  | 14 | PF6 |
-| NC | 13 | 15 | BCM23 |
+| 2  | NC | 1  | 5V             |
+| 19 | NC | 2  | BCM10 (MOSI)   |
+| 6  | NC | 3  | GND            |
+| 21 | NC | 4  | BCM9 (MISO)    |
+| 8  | NC | 5  | BCM14 (TXD)    |
+| 23 | NC | 6  | BCM11 (SCLK)   |
+| 10 | NC | 7  | BCM15 (RXD)    |
+| NC | 1  | 8  | PD14           |
+| 3  | NC | 9  | BCM2 (SDA)     |
+| NC | 3  | 10 | PA2            |
+| 5  | NC | 11 | BCM3 (SCL)     |
+| NC | 5  | 12 | PA3            |
+| 12 | NC | 13 | BCM18 (PWM0)   |
+| NC | 13 | 14 | PF6            |
+| 16 | NC | 15 | BCM23          |
 
 <div class="page-break"></div>
 
