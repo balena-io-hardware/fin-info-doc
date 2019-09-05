@@ -6,7 +6,7 @@
 | --- | --- |
 | EU | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/conformity/CE/Lab/) |  
 | EU | [DoC](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/conformity/CE/CE_DoC.pdf) |  
-| EU | [RE Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/conformity/CE_RE_Directive_Examination_Certificate.pdf) |  
+| EU | [NB Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/conformity/CE/CE_NB_Certificate.pdf) |  
 | USA | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/conformity/FCC/Lab/) |  
 | USA | [FCC ID](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/conformity/FCC/FCC_ID/) |  
 | Canada | [IC Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/conformity/CAN/IC_Certification_Letter.pdf) |  
