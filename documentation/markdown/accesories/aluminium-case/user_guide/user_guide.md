@@ -96,8 +96,9 @@ The Aluminium case is the official "heavy duty" case for the balenaFin. It expos
 - Case bottom
 - 4 x M3 screws
 
+**Instructions**
 - Place the bottom on top of the assembly from step 3.2
-- Secure the assmebly with the 4 M3 screws
+- Secure the assembly with the 4 M3 screws
 
 ![Fin bottom assembly](./pictures/3_6.jpg)
 
