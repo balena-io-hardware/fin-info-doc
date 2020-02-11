@@ -64,10 +64,10 @@ The Aluminium case is the official "heavy duty" case for the balenaFin. It expos
 - 10mm x 10mm thermal pad
 
 **Instructions**
-- Place the bottom part of the case on the table with the inside facing upwards.
+- Place the bottom part (1.1) of the case on the table with the inside facing upwards.
 - Locate the Compute Module thermal dissipation point of contact. It's a small square protruding.
 - Remove the protective layer from the 10mm x 10mm thermal pad (4) and apply it to the Compute Module thermal disipation point of contact, then remove the other protective layer from it
-- position the balenaFin so that the 2-POS phoenix input faces the side with more area
+- Position the balenaFin so that the side with the 2 black plastic power connectors faces the side of the case with more area
 - If your balenaFin has a cellular or radio modem mounted on the mPCIe socket, connect to it one of the antenna connectors uFL from the rear side (1.6) before proceeding to the next step
 - screw in the 4 standoffs. (If you plan to add a HAT, only screw in 3 leaving the closes hole to the HAT header free)
 
