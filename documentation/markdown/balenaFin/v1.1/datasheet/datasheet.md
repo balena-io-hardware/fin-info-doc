@@ -7,7 +7,7 @@
 | **Product ID:** | BLNFN100001 (20173009) |
 | **Product Name** | BalenaFin |
 | **Product Version** | 1.1.0 |
-| **Manufacturer Part Number** | FIN10001-X (where X is the storage size: 8/16/32/64) |
+| **Manufacturer Part Number** | FIN0110-SX (where X is the storage size: 8/16/32/64) |
 | **Document Version** | 0.0.5 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Approved |
@@ -40,9 +40,9 @@ For more information about the Raspberry Pi Compute Module please refer to the f
 
 <div class="page-break"></div>
 
-# 2. Availability and Support
+# 2. Continuity of supply
 
-Availability of balenaFin in either the current version or a compatible later revision is guaranteed until at least January 2024.
+Availability of balenaFin in either the current version or a compatible later revision is guaranteed, on commercially reasonable basis, until January 2024. 
 
 <div class="page-break"></div>
 
@@ -199,27 +199,26 @@ Availability of balenaFin in either the current version or a compatible later re
 
 | **Certification** | **Country / Region** | **Identifier(s)** |
 | --- | --- | --- |
+| RoHS | N/A | N/A |
 | CE | Europe | RE-18071303 |
-| FCC | USA | 2APW6BLN-FN-1-00001 |
+| FCC | USA | 2APW6-FIN0110-CM2 |
 | IC | Canada | 24038-BLNFN100001 |
 | MIC | Japan | R-208-180131 |
-| RCM | Australia | _ongoing_ |
-| OFCA | Hong Kong | _ongoing_ |
 
 <div class="page-break"></div>
 
-# 9. Labelling
+## 8.1 Labelling
 
 The end product must be labeled, in a visible area, with the following:
 
-- _Contains FCC ID: 2APW6BLN-FN-1-00001 IC: 24038-BLNFN100001_
+- _Contains FCC ID: 2APW6-FIN0110-CM2 IC: 24038-BLNFN100001_
 - _Contains FCC ID: QOQBGM111 IC: 5123A-BGM111_
 
 <div class="page-break"></div>
 
-# 10. Regulatory Insert
+## 8.2 Regulatory Insert
 
-# FCC Compliance Statement (USA)
+### 8.1.1 FCC Compliance Statement (USA)
 
 This device complies with Part 15 rules. Operation is subject to the following two conditions:
 
@@ -227,19 +226,19 @@ This device complies with Part 15 rules. Operation is subject to the following t
 
 **2.** This device must accept any interference received, including interference that may cause undesired operation.
 
-**NOTE:** This equipment has been tested and found to comply with the limits for a Class A digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference when the equipment is operated in a commercial environment. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instruction manual, may cause harmful interference to radio communications. Operation of this equipment in a residential area is likely to cause harmful interference in which case the user will be required to correct the interference at his own expense.
+**NOTE:** This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference when the equipment is operated in a commercial environment. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instruction manual, may cause harmful interference to radio communications. Operation of this equipment in a residential area is likely to cause harmful interference in which case the user will be required to correct the interference at his own expense.
 
-## Non-modification Warning
+#### Non-modification Warning
 
 Any changes or modifications to this device not expressly approved by the party responsible for compliance could void the user's authority to operate this equipment.
 
-## RF Exposure Statement
+#### RF Exposure Statement
 
 This equipment complies with FCC/IC radiation exposure limits set forth for an uncontrolled environment and meets the FCC radio frequency (RF) Exposure Guidelines and RSS-102 of the IC radiofrequency (RF) Exposure rules. This equipment should be installed and operated keeping the radiator at least 20cm or more away from person's body.
 
 Cet équipement est conforme aux limites d'exposition aux rayonnements énoncées pour un environnement non contrôlé et respecte les règles les radioélectriques (RF) de la FCC lignes directrices d'exposition dans et d'exposition aux fréquences radioélectriques (RF) CNR-102 de l'IC. Cet équipement doitêtre installé et utilisé en gardant une distance de 20 cm ou plus entre le dispositif rayonnant et le corps
 
-**NOTE:** : This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:
+**NOTE:** This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:
 
 - Reorient or relocate the receiving antenna.
 - Increase the separation between the equipment and receiver.
@@ -248,11 +247,11 @@ Cet équipement est conforme aux limites d'exposition aux rayonnements énonce
 
 <div class="page-break"></div>
 
-# Canadian DOC Compliance Statement
+### 8.1.2 Canadian DOC Compliance Statement
 
 Cet appareil numerique de la classe B est conforme a la norme NMB-003 du Canada. This Class B digital apparatus complies with Canadian ICES-003.
 
-## Industry Canada (IC) Warning
+#### Industry Canada (IC) Warning
 
 Le present appareil est conforme aux CNR d Industrie Canada applicables aux appareils radio exempts de licence. L exploitation est autorisee aux deux conditions suivantes : (1) appareil ne doit pas produire de brouillage, et (2) l utilisateur de l appareil doit accepter tout brouillage radioelectrique subi, meme si le brouillage est susceptible n compromettre le fonctionnement.
 
