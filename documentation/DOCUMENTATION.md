@@ -36,4 +36,4 @@
 
 | **Product** |  Document
 | --- | --- |
-| balenaFin v1.x | [Website](https://github.com/balena-io/balena-fin/blob/master/documentation/PDF/balenaFin/conformity/CONFORMITY.md) |
+| balenaFin v1.x | [Website](https://github.com/balena-io/balena-fin/blob/master/documentation/PDF/balenaFin/CONFORMITY.md) |
