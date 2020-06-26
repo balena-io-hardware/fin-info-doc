@@ -25,6 +25,8 @@
 | 22/02/2019 | 0.0.3 | Carlo Maria Curinga | Update temperature range Minimum value |
 | 06/06/2019 | 0.0.4 | Nicolas Tzovanis | Fixed HAT Header pinout for pin 13 |
 | 24/06/2019 | 0.0.5 | Nicolas Tzovanis | Improved description of USB header |
+| 26/06/2020 | 0.0.6 | Alex Bucknall | Added BGM111 Port Reference |
+
 </center>
 
 <div class="page-break"></div>
@@ -126,26 +128,41 @@ Availability of balenaFin in either the current version or a compatible later re
 
 ## 3.2 Silicon Labs BGM111 connector pinout
 
-| **Pin #** | **Name** | **BGM111**|  **Notes/Description** | **Pin #** | **Name** |  **BGM111** | **Description** |
-| -- | --------- | ---- | -------------------------- | -- | -------------------- | ---- | ------------------------- |
-| 1  | MCU_GPIO0 | PD14 | Co-processor GPIO_0        | 2  | 3V3                  | 3V3  | 3.3V rail, from regulator |
-| 3  | MCU_GPIO1 | PA2  | Co-processor GPIO_1        | 4  | SPI_MCU_CS-CON_EXT   | PB13 |                           |
-| 5  | MCU_GPIO2 | PA3  | Co-processor GPIO_2        | 6  | SPI_MCU_CS-SCLK_EXT  | PC8  |                           |
-| 7  | MCU_GPIO3 | PA4  | Co-processor GPIO_3        | 8  | SPI_MCU_CS-MOSI_EXT  | PC6  |                           |
-| 9  | MCU_GPIO4 | PA5  | Co-processor GPIO_4        | 10 | SPI_MCU_CS-MISO_EXT  | PC7  |                           |
-| 11 | MCU_GPIO5 | PB11 | Co-processor GPIO_5        | 12 | DBG_uP-RX_DEV-TX_EXT | PA1  |                           |
-| 13 | MCU_GPIO6 | PF6  | Co-processor GPIO_6        | 14 | DBG_uP-TX_DEV-RX_EXT | PA0  |                           |
-| 15 | MCU_GPIO7 | PF7  | Co-processor GPIO_7        | 16 | MCU_GPIO8            | PD15 | Co-processor GPIO_8       |
-| 17 | GND       | GND  | Ground                     | 18 | MCU_GPIO9            | PD13 | Co-processor GPIO_9       |
+| **Pin #** | **Name** | **BGM111**|  **Notes** |
+| -- | --------- | ---- | -------------------------- |
+| 1  | MCU_GPIO0 | PD14 | Co-processor GPIO_0        |
+| 2  | 3V3       | 3V3  | 3.3V rail, from regulator |
+| 3  | MCU_GPIO1 | PA2  | Co-processor GPIO_1        |
+| 4  | SPI_MCU_CS-CON_EXT   | PB13 |                           |
+| 5  | MCU_GPIO2 | PA3  | Co-processor GPIO_2        |
+| 6  | SPI_MCU_CS-SCLK_EXT  | PC8  |                           |
+| 7  | MCU_GPIO3 | PA4  | Co-processor GPIO_3        |
+| 8  | SPI_MCU_CS-MOSI_EXT  | PC6  |                           |
+| 9  | MCU_GPIO4 | PA5  | Co-processor GPIO_4        |
+| 10 | SPI_MCU_CS-MISO_EXT  | PC7  |                           |
+| 11 | MCU_GPIO5 | PB11 | Co-processor GPIO_5        |
+| 12 | DBG_uP-RX_DEV-TX_EXT | PA1  |                           |
+| 13 | MCU_GPIO6 | PF6  | Co-processor GPIO_6        |
+| 14 | DBG_uP-TX_DEV-RX_EXT | PA0  |                           |
+| 15 | MCU_GPIO7 | PF7  | Co-processor GPIO_7        |
+| 16 | MCU_GPIO8            | PD15 | Co-processor GPIO_8       |
+| 17 | GND       | GND  | Ground                     |
+| 18 | MCU_GPIO9            | PD13 | Co-processor GPIO_9       |
+
+<div class="page-break"></div>
 
 ### 3.2.1 Silicon Labs BGM111 internal pinout
 
-| **Name**  | **BGM111**|  **Notes/Description** | **Name** |  **BGM111** | **Description** |
-| ---------------- | ---- | --------------------------------------------- | --------------- | ----- | --------------------------------------------- |
-| PW_ON_5V         | PC9  | 5V Power Rail for the Compute Module          | PW_ON_3V3       | PF5   | 3V3 Power Rail for the Compute Module         |
-| SW_I2C_SDA_ON    | PC10 | Internal I2C SDA (shared with Compute Module) | SW_I2C_SCL_ON   | PC11  | Internal I2C SCL (shared with Compute Module) |
-| ARTIK-TX_CM3-RX  | PF3  | BGM11 TX to Compute Module RX (UART)          | ARTIK-RX_CM3-TX | PF2   | BGM11 RX to Compute Module TX (UART)          |
-| SWDIO_MCU        | PF1  | BGM111 Serial Wire Debug (IO)                 | SWCLK_MCU       | PF0   | BGM111 Serial Wire Debug (Clock)              |
+| **Name**  | **BGM111**|  **Notes** |
+| ---------------- | ---- | --------------------------------------------- |
+| PW_ON_5V         | PC9  | 5V Power Rail for the Compute Module          |
+| PW_ON_3V3       | PF5   | 3V3 Power Rail for the Compute Module         |
+| SW_I2C_SDA_ON    | PC10 | Internal I2C1 SDA (shared with Compute Module) |
+| SW_I2C_SCL_ON   | PC11  | Internal I2C1 SCL (shared with Compute Module) |
+| ARTIK-TX_CM3-RX  | PF3  | BGM111 TX to Compute Module RX (UART)          |
+| ARTIK-RX_CM3-TX | PF2   | BGM111 RX to Compute Module TX (UART)          |
+| SWDIO_MCU        | PF1  | BGM111 Serial Wire Debug (IO)                 |
+| SWCLK_MCU       | PF0   | BGM111 Serial Wire Debug (Clock)              |
 
 <div class="page-break"></div>
 
