@@ -20,7 +20,6 @@
 | **Region** |  Document |
 | --- | --- |
 | EU | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/CE/Lab/) |  
-| EU | [DoC](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/CE/CE_DoC.pdf) |  
 | EU | [NB Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/CE/CE_NB_Certificate.pdf) |  
 | USA | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/FCC/Lab/) |  
 | USA | [FCC ID](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/FCC/FCC_ID/) |  
