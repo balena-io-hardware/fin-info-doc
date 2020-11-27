@@ -1,5 +1,10 @@
 # Conformity documents
 
+## RoHS
+| **Version** |  Document |
+| --- | --- |
+| v1.x.x | [RoHS conformity declaration](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/RoHS/RoHS.pdf) |  
+
 ## balenaFin 1.0
 
 | **Region** |  Document |
