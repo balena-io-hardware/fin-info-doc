@@ -20,7 +20,7 @@
 | **Product** |  Document
 | --- | --- |
 | balenaFin v1.0 | [STEP file](https://github.com/balena-io/balena-fin/raw/master/documentation/CAD/balenaFin/v1.0/20173009_BALENA-FIN_V1.0_LIGHT.stp) |
-| balenaFin v1.1 Simplified| [STEP file]https://github.com/balena-io/balena-fin/tree/Add-.dxf-files/documentation/CAD/balenaFin/v1.1/3D/20173009_balenaFin_V1.1_simplified.stp) |
+| balenaFin v1.1 Simplified| [STEP file](https://github.com/balena-io/balena-fin/tree/Add-.dxf-files/documentation/CAD/balenaFin/v1.1/3D/20173009_balenaFin_V1.1_simplified.stp) |
 | balenaFin v1.1 Simplified - Light| [STEP file](https://github.com/balena-io/balena-fin/tree/Add-.dxf-files/documentation/CAD/balenaFin/v1.1/3D/20173009_balenaFin_V1.1_simplified_light.stp) |
 | modular DIN rail case | [STL files collection](https://github.com/balena-io/balena-fin/raw/master/documentation/CAD/accesories/modular_DIN_rail_case/v2.zip) |
 | modular DIN rail case blind ring | [STL files collection](https://github.com/balena-io/balena-fin/raw/master/documentation/CAD/accesories/modular_DIN_rail_case/blind-ring.zip) |
