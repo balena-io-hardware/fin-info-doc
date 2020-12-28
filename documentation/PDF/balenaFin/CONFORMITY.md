@@ -1,5 +1,11 @@
 # Conformity documents
 
+## Manufacturing
+| **Version** |  Document |
+| --- | --- |
+| v1.x.x | [RoHS conformity declaration](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/Manufacturing/RoHS.pdf) |  
+| v1.x.x | [REACH conformity declaration](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/Manufacturing/REACH.pdf) |  
+
 ## balenaFin 1.0
 
 | **Region** |  Document |
