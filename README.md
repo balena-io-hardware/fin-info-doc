@@ -7,7 +7,7 @@ Get it now from the official balenaFin [store](https://store.balena.io/).
 
     .
     ├── documentation
-    │   ├── CAD                          # 3D files for balenaFin and accesories
+    │   ├── CAD                          # 2d & 3D files for balenaFin and accesories
     │   ├── PDF                          # PDF files generated from markdown source using the builder
     │   └── markdown                     # balenaFin and accesories documentation source files
     └── software                         # Linux config files for accessing balenaFin HW

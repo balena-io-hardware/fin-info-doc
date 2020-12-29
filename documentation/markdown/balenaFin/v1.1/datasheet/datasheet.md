@@ -7,8 +7,8 @@
 | **Product ID:** | BLNFN100001 (20173009) |
 | **Product Name** | BalenaFin |
 | **Product Version** | 1.1.0 |
-| **Manufacturer Part Number** | FIN10001-X (where X is the storage size: 8/16/32/64) |
-| **Document Version** | 0.0.2 |
+| **Manufacturer Part Number** | FIN0110-SX (where X is the storage size: 8/16/32/64) |
+| **Document Version** | 0.0.5 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Approved |
 
@@ -23,6 +23,10 @@
 | 13/02/2019 | 0.0.1 | Carlo Maria Curinga | First draft |
 | 21/02/2019 | 0.0.2 | Carlo Maria Curinga | First release |
 | 22/02/2019 | 0.0.3 | Carlo Maria Curinga | Update temperature range Minimum value |
+| 06/06/2019 | 0.0.4 | Nicolas Tzovanis | Fixed HAT Header pinout for pin 13 |
+| 24/06/2019 | 0.0.5 | Nicolas Tzovanis | Improved description of USB header |
+| 26/06/2020 | 0.0.6 | Alex Bucknall | Added BGM111 Port Reference |
+
 </center>
 
 <div class="page-break"></div>
@@ -38,9 +42,9 @@ For more information about the Raspberry Pi Compute Module please refer to the f
 
 <div class="page-break"></div>
 
-# 2. Availability and Support
+# 2. Continuity of supply
 
-Availability of balenaFin in either the current version or a compatible later revision is guaranteed until at least January 2024.
+Availability of balenaFin in either the current version or a compatible later revision is guaranteed, on commercially reasonable basis, until January 2024. 
 
 <div class="page-break"></div>
 
@@ -87,7 +91,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | 32 | mPCIe | Mini PCI Express socket |
 | 33 | Antenna switch | 2 position switch - when set to OFF (labeled in silkscreen as "INT"), the WiFi/BT combo chip (14) uses the WiFi/BT embedded antenna (16). When set to ON (labeled in silkscreen as "EXT"), the WiFi/BT combo chip (14) uses the WiFi/BT uFL antenna connector (15) |
 | 34 | PoE HAT headers | exposes the incoming voltage from the RJ45 (21) port for PoE HATs that step down and flow 5V to the 5V HAT (13) pins |
-| 35 | USB 2.0 4-pin header | Exposes a USB 2.0 port via male headers. pin1 is marked in silkscreen with a triangle |
+| 35 | USB 2.0 4-pin header | Exposes a USB 2.0 port via male headers. Pin 1 is the one closest to the coprocessor. Pinout: 1->VCC; 2->D-; 3->D+; 4->GND |
 | 36 | GND probe interface | Exposes a GND probe interface for easy debugging |
 | 37 | DSI/CAM1 switch | Switches the full-size Raspberry Pi MIPI connector (10) between Display or secondary Camera (cam1) mode - when set to OFF (labeled in silkscreen as "DISP"), the full-size Raspberry Pi MIPI connector (#10) exposes the DSI (disp1) interface. When set to ON (labeled in silkscreen as "CAM1") the full-size Raspberry Pi MIPI connector (10) exposes the secondary CSI (cam1) interface |
 | 38 | POWER IN Fuse (on 23 & 24) | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
@@ -105,7 +109,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | 7 | GPIO4 |  Compute Module GPIO_4       | 8 | GPIO14 | Compute Module GPIO_14 |
 | 9 | GND | Ground                         | 10 | GPIO15 | Compute Module GPIO_15 |
 | 11 | GPIO17 | Compute Module GPIO_17     | 12 | GPIO18 | Compute Module GPIO_18 |
-| 13 | GPIO27 | Compute Module GPIO_13     | 14 | GND | Ground |
+| 13 | GPIO27 | Compute Module GPIO_27     | 14 | GND | Ground |
 | 15 | GPIO22 | Compute Module GPIO_22     | 16 | GPIO23 | Compute Module GPIO_23 |
 | 17 | 3V3 | 3.3V rail, shared with CM     | 18 | GPIO24 | Compute Module GPIO_24 |
 | 19 | GPIO10 | Compute Module GPIO_10     | 20 | GND | Ground |
@@ -124,17 +128,41 @@ Availability of balenaFin in either the current version or a compatible later re
 
 ## 3.2 Silicon Labs BGM111 connector pinout
 
-| **Pin #** | **Name** | **Notes/Description** | **Pin #** | **Name** | **Description** |
-| --- | --- | --- | --- | --- | --- |
-| 1 | MCU_GPIO0 | Co-processor GPIO_0        | 2 | 3V3 | 3.3V rail, from regulator |
-| 3 | MCU_GPIO1 | Co-processor GPIO_1        | 4 | SPI_MCU_CS-CON_EXT |  |
-| 5 | MCU_GPIO2 | Co-processor GPIO_2        | 6 | SPI_MCU_CS-SCLK_EXT |  |
-| 7 | MCU_GPIO3 | Co-processor GPIO_3        | 8 | SPI_MCU_CS-MOSI_EXT |  |
-| 9 | MCU_GPIO4 | Co-processor GPIO_4        | 10 | SPI_MCU_CS-MISO_EXT |  |
-| 11 | MCU_GPIO5 | Co-processor GPIO_5       | 12 | DBG_uP-RX_DEV-TX_EXT |  |
-| 13 | MCU_GPIO6 | Co-processor GPIO_6       | 14 | DBG_uP-TX_DEV-RX_EXT |  |
-| 15 | MCU_GPIO7 | Co-processor GPIO_7       | 16 | MCU_GPIO8 | Co-processor GPIO_8  |
-| 17 | GND | Ground                          | 18 | MCU_GPIO9 | Co-processor GPIO_9  |
+| **Pin #** | **Name** | **BGM111**|  **Notes** |
+| -- | --------- | ---- | -------------------------- |
+| 1  | MCU_GPIO0 | PD14 | Co-processor GPIO_0        |
+| 2  | 3V3       | 3V3  | 3.3V rail, from regulator |
+| 3  | MCU_GPIO1 | PA2  | Co-processor GPIO_1        |
+| 4  | SPI_MCU_CS-CON_EXT   | PB13 |                           |
+| 5  | MCU_GPIO2 | PA3  | Co-processor GPIO_2        |
+| 6  | SPI_MCU_CS-SCLK_EXT  | PC8  |                           |
+| 7  | MCU_GPIO3 | PA4  | Co-processor GPIO_3        |
+| 8  | SPI_MCU_CS-MOSI_EXT  | PC6  |                           |
+| 9  | MCU_GPIO4 | PA5  | Co-processor GPIO_4        |
+| 10 | SPI_MCU_CS-MISO_EXT  | PC7  |                           |
+| 11 | MCU_GPIO5 | PB11 | Co-processor GPIO_5        |
+| 12 | DBG_uP-RX_DEV-TX_EXT | PA1  |                           |
+| 13 | MCU_GPIO6 | PF6  | Co-processor GPIO_6        |
+| 14 | DBG_uP-TX_DEV-RX_EXT | PA0  |                           |
+| 15 | MCU_GPIO7 | PF7  | Co-processor GPIO_7        |
+| 16 | MCU_GPIO8            | PD15 | Co-processor GPIO_8       |
+| 17 | GND       | GND  | Ground                     |
+| 18 | MCU_GPIO9            | PD13 | Co-processor GPIO_9       |
+
+<div class="page-break"></div>
+
+### 3.2.1 Silicon Labs BGM111 internal pinout
+
+| **Name**  | **BGM111**|  **Notes** |
+| ---------------- | ---- | --------------------------------------------- |
+| PW_ON_5V         | PC9  | 5V Power Rail for the Compute Module          |
+| PW_ON_3V3       | PF5   | 3V3 Power Rail for the Compute Module         |
+| SW_I2C_SDA_ON    | PC10 | Internal I2C1 SDA (shared with Compute Module) |
+| SW_I2C_SCL_ON   | PC11  | Internal I2C1 SCL (shared with Compute Module) |
+| ARTIK-TX_CM3-RX  | PF3  | BGM111 TX to Compute Module RX (UART)          |
+| ARTIK-RX_CM3-TX | PF2   | BGM111 RX to Compute Module TX (UART)          |
+| SWDIO_MCU        | PF1  | BGM111 Serial Wire Debug (IO)                 |
+| SWCLK_MCU       | PF0   | BGM111 Serial Wire Debug (Clock)              |
 
 <div class="page-break"></div>
 
@@ -197,27 +225,26 @@ Availability of balenaFin in either the current version or a compatible later re
 
 | **Certification** | **Country / Region** | **Identifier(s)** |
 | --- | --- | --- |
+| RoHS | N/A | N/A |
 | CE | Europe | RE-18071303 |
-| FCC | USA | 2APW6BLN-FN-1-00001 |
+| FCC | USA | 2APW6-FIN0110-CM2 |
 | IC | Canada | 24038-BLNFN100001 |
 | MIC | Japan | R-208-180131 |
-| RCM | Australia | _ongoing_ |
-| OFCA | Hong Kong | _ongoing_ |
 
 <div class="page-break"></div>
 
-# 9. Labelling
+## 8.1 Labelling
 
 The end product must be labeled, in a visible area, with the following:
 
-- _Contains FCC ID: 2APW6BLN-FN-1-00001 IC: 24038-BLNFN100001_
+- _Contains FCC ID: 2APW6-FIN0110-CM2 IC: 24038-BLNFN100001_
 - _Contains FCC ID: QOQBGM111 IC: 5123A-BGM111_
 
 <div class="page-break"></div>
 
-# 10. Regulatory Insert
+## 8.2 Regulatory Insert
 
-# FCC Compliance Statement (USA)
+### 8.1.1 FCC Compliance Statement (USA)
 
 This device complies with Part 15 rules. Operation is subject to the following two conditions:
 
@@ -225,19 +252,19 @@ This device complies with Part 15 rules. Operation is subject to the following t
 
 **2.** This device must accept any interference received, including interference that may cause undesired operation.
 
-**NOTE:** This equipment has been tested and found to comply with the limits for a Class A digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference when the equipment is operated in a commercial environment. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instruction manual, may cause harmful interference to radio communications. Operation of this equipment in a residential area is likely to cause harmful interference in which case the user will be required to correct the interference at his own expense.
+**NOTE:** This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference when the equipment is operated in a commercial environment. This equipment generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the instruction manual, may cause harmful interference to radio communications. Operation of this equipment in a residential area is likely to cause harmful interference in which case the user will be required to correct the interference at his own expense.
 
-## Non-modification Warning
+#### Non-modification Warning
 
 Any changes or modifications to this device not expressly approved by the party responsible for compliance could void the user's authority to operate this equipment.
 
-## RF Exposure Statement
+#### RF Exposure Statement
 
 This equipment complies with FCC/IC radiation exposure limits set forth for an uncontrolled environment and meets the FCC radio frequency (RF) Exposure Guidelines and RSS-102 of the IC radiofrequency (RF) Exposure rules. This equipment should be installed and operated keeping the radiator at least 20cm or more away from person's body.
 
 Cet équipement est conforme aux limites d'exposition aux rayonnements énoncées pour un environnement non contrôlé et respecte les règles les radioélectriques (RF) de la FCC lignes directrices d'exposition dans et d'exposition aux fréquences radioélectriques (RF) CNR-102 de l'IC. Cet équipement doitêtre installé et utilisé en gardant une distance de 20 cm ou plus entre le dispositif rayonnant et le corps
 
-**NOTE:** : This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:
+**NOTE:** This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:
 
 - Reorient or relocate the receiving antenna.
 - Increase the separation between the equipment and receiver.
@@ -246,11 +273,11 @@ Cet équipement est conforme aux limites d'exposition aux rayonnements énonce
 
 <div class="page-break"></div>
 
-# Canadian DOC Compliance Statement
+### 8.1.2 Canadian DOC Compliance Statement
 
 Cet appareil numerique de la classe B est conforme a la norme NMB-003 du Canada. This Class B digital apparatus complies with Canadian ICES-003.
 
-## Industry Canada (IC) Warning
+#### Industry Canada (IC) Warning
 
 Le present appareil est conforme aux CNR d Industrie Canada applicables aux appareils radio exempts de licence. L exploitation est autorisee aux deux conditions suivantes : (1) appareil ne doit pas produire de brouillage, et (2) l utilisateur de l appareil doit accepter tout brouillage radioelectrique subi, meme si le brouillage est susceptible n compromettre le fonctionnement.
 
