@@ -15,7 +15,7 @@
 | EU | [NB Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/conformity/CE/CE_NB_Certificate.pdf) |  
 | USA | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/conformity/FCC/Lab/) |  
 | USA | [FCC ID](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/conformity/FCC/FCC_ID/) |  
-| Canada | [IC Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/conformity/CAN/Certificate.pdf) |  
+| Canada | [IC Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/conformity/CAN/IC_Certification_Letter.pdf) |  
 | Australia | [DoC](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/conformity/AUS/AUS_RCM_DoC.pdf) |  
 | Hong Kong | [OFCA Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/conformity/HK/HK_OFCA_Radio_Certificate.pdf) |  
 | Japan | [JR Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/conformity/JP/JP_RadioCertificate.pdf) |  
@@ -29,7 +29,7 @@
 | EU | [NB Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/CE/CE_NB_Certificate.pdf) |  
 | USA | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/FCC/Lab/) |  
 | USA | [FCC ID](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/FCC/FCC_ID/) |  
-| Canada | [IC Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/CAN/IC_Certification_Letter.pdf) |  
+| Canada | [IC Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/CAN/Certificate.pdf) |  
 | Australia | [DoC](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/AUS/AUS_RCM_DoC.pdf) |  
 | Japan | [JR Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/JP/JP_RadioCertificate.pdf) |  
 | Japan | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/JP/Lab) |  
