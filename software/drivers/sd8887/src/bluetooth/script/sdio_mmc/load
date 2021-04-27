@@ -1,0 +1,11 @@
+#cardctl resume
+insmod $1.ko "$2 $3 $4"
+for (( i = 1; i <= 10; i++ ))
+do
+    hciconfig | grep hci0 > /dev/null
+    if [ $? -eq 0 ]
+    then
+        exit
+    fi
+    sleep 1
+done
