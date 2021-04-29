@@ -14,6 +14,7 @@
 | --- | --- |
 | balenaFin v1.0 | [PDF schematics](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.0/schematics/20173009_V8_schematics.pdf) |
 | balenaFin v1.1 | [PDF schematics](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/schematics/20173009_balena-fin_v10.pdf) |
+| balenaFin v1.1.1 | [PDF schematics](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1.1/schematics/20200408_balena-fin_v11.pdf)|
 
 ## CAD files
 
