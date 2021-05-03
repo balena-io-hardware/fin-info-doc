@@ -3614,7 +3614,7 @@ t_u8
 woal_is_scan_result_expired(moal_private *priv)
 {
 	mlan_scan_resp scan_resp;
-	struct timeval t;
+	wifi_timeval t;
 	ENTER();
 	if (!woal_is_any_interface_active(priv->phandle)) {
 		LEAVE();
@@ -3629,7 +3629,7 @@ woal_is_scan_result_expired(moal_private *priv)
 	woal_get_monotonic_time(&t);
 /** scan result expired value */
 #define SCAN_RESULT_EXPIRTED      1
-	if (t.tv_sec > (scan_resp.age_in_secs + SCAN_RESULT_EXPIRTED)) {
+	if (t.time_sec > (scan_resp.age_in_secs + SCAN_RESULT_EXPIRTED)) {
 		LEAVE();
 		return MTRUE;
 	}

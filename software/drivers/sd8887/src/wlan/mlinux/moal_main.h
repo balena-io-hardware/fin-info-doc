@@ -1401,7 +1401,7 @@ struct _moal_handle {
 	/** Firmware */
 	const struct firmware *firmware;
 	/** Firmware request start time */
-	struct timeval req_fw_time;
+	wifi_timeval req_fw_time;
 	/** Init config file */
 	const struct firmware *init_cfg_data;
 	/** Init config file */
@@ -2006,15 +2006,22 @@ woal_get_priv_bss_type(moal_handle *handle, mlan_bss_type bss_type)
 	return NULL;
 }
 
-static inline void
-woal_get_monotonic_time(struct timeval *tv)
+static inline void woal_get_monotonic_time(wifi_timeval *tv)
 {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+	struct timespec64 ts;
+#else
 	struct timespec ts;
+#endif
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+	ktime_get_raw_ts64(&ts);
+#else
 	getrawmonotonic(&ts);
+#endif
 	if (tv) {
-		tv->tv_sec = ts.tv_sec;
-		tv->tv_usec = ts.tv_nsec / 1000;
+		tv->time_sec = (t_u32)ts.tv_sec;
+		tv->time_usec = (t_u32)ts.tv_nsec / 1000;
 	}
 }
 
