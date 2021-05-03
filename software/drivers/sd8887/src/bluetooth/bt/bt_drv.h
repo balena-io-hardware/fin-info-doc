@@ -565,8 +565,13 @@ struct proc_private_data {
 	struct item_data *pdata;
 	/** Private structure */
 	struct _bt_private *pbt;
+
 	/** File operations */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+	const struct proc_ops *fops;
+#else
 	const struct file_operations *fops;
+#endif
 };
 
 /** Device proc structure */

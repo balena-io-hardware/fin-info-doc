@@ -481,19 +481,36 @@ proc_open(struct inode *inode, struct file *file)
 }
 
 /** Proc read ops */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+static const struct proc_ops proc_read_ops = {
+	.proc_read = proc_read,
+	.proc_open = proc_open,
+	.proc_release = proc_close
+};
+#else
 static const struct file_operations proc_read_ops = {
 	.read = proc_read,
 	.open = proc_open,
 	.release = proc_close
 };
+#endif
 
 /** Proc Read-Write ops */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+static const struct proc_ops proc_rw_ops = {
+	.proc_read = proc_read,
+	.proc_write = proc_write,
+	.proc_open = proc_open,
+	.proc_release = proc_close
+};
+#else
 static const struct file_operations proc_rw_ops = {
 	.read = proc_read,
 	.write = proc_write,
 	.open = proc_open,
 	.release = proc_close
 };
+#endif
 
 static struct proc_private_data proc_files[] = {
 	{"status", S_IRUGO, 1024,
@@ -631,6 +648,14 @@ bt_histogram_proc_open(struct inode *inode, struct file *file)
 }
 
 /** Histogram proc fops */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+static const struct proc_ops histogram_proc_fops = {
+	.proc_open = bt_histogram_proc_open,
+	.proc_read = seq_read,
+	.proc_lseek = seq_lseek,
+	.proc_release = single_release,
+};
+#else
 static const struct file_operations histogram_proc_fops = {
 	.owner = THIS_MODULE,
 	.open = bt_histogram_proc_open,
@@ -638,6 +663,7 @@ static const struct file_operations histogram_proc_fops = {
 	.llseek = seq_lseek,
 	.release = single_release,
 };
+#endif
 
 /**
  *  @brief This function initializes proc entry
