@@ -1105,6 +1105,15 @@ woal_debug_proc_open(struct inode *inode, struct file *file)
 #endif
 }
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+static const struct proc_ops debug_proc_fops = {
+	.proc_open = woal_debug_proc_open,
+	.proc_read = seq_read,
+	.proc_lseek = seq_lseek,
+	.proc_release = single_release,
+	.proc_write = woal_debug_write,
+};
+#else
 static const struct file_operations debug_proc_fops = {
 	.owner = THIS_MODULE,
 	.open = woal_debug_proc_open,
@@ -1113,7 +1122,17 @@ static const struct file_operations debug_proc_fops = {
 	.release = single_release,
 	.write = woal_debug_write,
 };
+#endif
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+static const struct proc_ops histogram_proc_fops = {
+	.proc_open = woal_histogram_proc_open,
+	.proc_read = seq_read,
+	.proc_lseek = seq_lseek,
+	.proc_release = single_release,
+	.proc_write = woal_histogram_write,
+};
+#else
 static const struct file_operations histogram_proc_fops = {
 	.owner = THIS_MODULE,
 	.open = woal_histogram_proc_open,
@@ -1122,7 +1141,16 @@ static const struct file_operations histogram_proc_fops = {
 	.release = single_release,
 	.write = woal_histogram_write,
 };
+#endif
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+static const struct proc_ops log_proc_fops = {
+	.proc_open = woal_log_proc_open,
+	.proc_read = seq_read,
+	.proc_lseek = seq_lseek,
+	.proc_release = single_release,
+};
+#else
 static const struct file_operations log_proc_fops = {
 	.owner = THIS_MODULE,
 	.open = woal_log_proc_open,
@@ -1130,6 +1158,7 @@ static const struct file_operations log_proc_fops = {
 	.llseek = seq_lseek,
 	.release = single_release,
 };
+#endif
 
 /********************************************************
 		Global Functions
