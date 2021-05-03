@@ -699,7 +699,7 @@ sd_request_fw_dpc(const struct firmware *fw_firmware, void *context)
 	bt_private *priv = (bt_private *)context;
 	struct sdio_mmc_card *card = NULL;
 	struct m_dev *m_dev_bt = NULL;
-	struct timeval tstamp;
+	bt_timeval tstamp;
 	int index;
 
 	ENTER();
@@ -717,8 +717,8 @@ sd_request_fw_dpc(const struct firmware *fw_firmware, void *context)
 
 	if (!fw_firmware) {
 		get_monotonic_time(&tstamp);
-		if (tstamp.tv_sec >
-		    (priv->req_fw_time.tv_sec + REQUEST_FW_TIMEOUT)) {
+		if (tstamp.time_sec >
+		    (priv->req_fw_time.time_sec + REQUEST_FW_TIMEOUT)) {
 			PRINTM(ERROR,
 			       "BT: No firmware image found. Skipping download\n");
 			ret = BT_STATUS_FAILURE;
