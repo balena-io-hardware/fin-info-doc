@@ -2253,7 +2253,7 @@ woal_mgmt_frame_register(moal_private *priv, u16 frame_type, bool reg)
 	LEAVE();
 }
 
-#if CFG80211_VERSION_CODE < KERNEL_VERSION(3, 6, 0)
+#if KERNEL_VERSION(3, 6, 0) > CFG80211_VERSION_CODE
 /**
  * @brief register/unregister mgmt frame forwarding
  *
@@ -2264,10 +2264,14 @@ woal_mgmt_frame_register(moal_private *priv, u16 frame_type, bool reg)
  *
  * @return                0 -- success, otherwise fail
  */
-void
-woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
-				  struct net_device *dev, u16 frame_type,
-				  bool reg)
+void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
+				       struct net_device *dev, u16 frame_type,
+				       bool reg)
+#else
+#if KERNEL_VERSION(5, 8, 0) <= CFG80211_VERSION_CODE
+void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
+				       struct wireless_dev *wdev,
+				       struct mgmt_frame_regs *upd)
 #else
 /**
  * @brief register/unregister mgmt frame forwarding
@@ -2279,30 +2283,42 @@ woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
  *
  * @return                0 -- success, otherwise fail
  */
-void
-woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
-				  struct wireless_dev *wdev, u16 frame_type,
-				  bool reg)
+void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
+				       struct wireless_dev *wdev,
+				       u16 frame_type, bool reg)
+#endif
 #endif
 {
-#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 6, 0)
+#if KERNEL_VERSION(3, 6, 0) <= CFG80211_VERSION_CODE
 	struct net_device *dev = wdev->netdev;
 #endif
 	moal_private *priv = (moal_private *)woal_get_netdev_priv(dev);
 
 	ENTER();
 
+#if KERNEL_VERSION(5, 8, 0) <= CFG80211_VERSION_CODE
+	if ((upd->interface_stypes & BIT(IEEE80211_STYPE_AUTH >> 4))
+	    /** Supplicant 2.8 always register auth, FW will handle auth when
+	     *  host_mlme=0
+	     */
+	    && !host_mlme)
+		upd->interface_stypes &= ~BIT(IEEE80211_STYPE_AUTH >> 4);
+	woal_reg_rx_mgmt_ind(priv, MLAN_ACT_SET, &upd->interface_stypes,
+			     MOAL_NO_WAIT);
+#else
 	if (frame_type == IEEE80211_STYPE_AUTH
-#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
-	    /** Supplicant 2.8 always register auth, FW will handle auth when host_mlme=0 */
+#if KERNEL_VERSION(3, 8, 0) <= CFG80211_VERSION_CODE
+	    /** Supplicant 2.8 always register auth, FW will handle auth when
+	     *  host_mlme=0
+	     */
 	    && !host_mlme
 #endif
-		) {
+	) {
 		LEAVE();
 		return;
 	}
 	woal_mgmt_frame_register(priv, frame_type, reg);
-
+#endif
 	LEAVE();
 }
 

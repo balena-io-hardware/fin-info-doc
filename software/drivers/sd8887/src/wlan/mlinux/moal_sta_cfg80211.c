@@ -372,9 +372,12 @@ static struct cfg80211_ops woal_cfg80211_ops = {
 		woal_cfg80211_channel_switch,
 #endif
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(2, 6, 37)
-		.mgmt_frame_register =
-		woal_cfg80211_mgmt_frame_register,.mgmt_tx =
-		woal_cfg80211_mgmt_tx,
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(5, 8, 0)
+	.update_mgmt_frame_registrations = woal_cfg80211_mgmt_frame_register,
+#else
+	.mgmt_frame_register = woal_cfg80211_mgmt_frame_register,
+#endif
+	.mgmt_tx = woal_cfg80211_mgmt_tx,
 #endif
 #endif
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(2, 6, 39)

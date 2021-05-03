@@ -201,12 +201,17 @@ int woal_cfg80211_set_rekey_data(struct wiphy *wiphy, struct net_device *dev,
 
 void woal_mgmt_frame_register(moal_private *priv, u16 frame_type, bool reg);
 void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
-#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 6, 0)
+#if KERNEL_VERSION(3, 6, 0) <= CFG80211_VERSION_CODE
 				       struct wireless_dev *wdev,
 #else
 				       struct net_device *dev,
 #endif
-				       t_u16 frame_type, bool reg);
+#if KERNEL_VERSION(5, 8, 0) <= CFG80211_VERSION_CODE
+				       struct mgmt_frame_regs *upd
+#else
+				       t_u16 frame_type, bool reg
+#endif
+);
 
 int woal_cfg80211_mgmt_tx(struct wiphy *wiphy,
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 6, 0)
