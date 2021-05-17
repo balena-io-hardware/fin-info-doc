@@ -115,7 +115,7 @@ module.exports = {
     );
   },
   tests: [
-      "./tests/modem",
+      "./tests/led",
       // Add additional tests here
   ],
 };
