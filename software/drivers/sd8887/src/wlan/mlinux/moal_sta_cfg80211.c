@@ -372,9 +372,12 @@ static struct cfg80211_ops woal_cfg80211_ops = {
 		woal_cfg80211_channel_switch,
 #endif
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(2, 6, 37)
-		.mgmt_frame_register =
-		woal_cfg80211_mgmt_frame_register,.mgmt_tx =
-		woal_cfg80211_mgmt_tx,
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(5, 8, 0)
+	.update_mgmt_frame_registrations = woal_cfg80211_mgmt_frame_register,
+#else
+	.mgmt_frame_register = woal_cfg80211_mgmt_frame_register,
+#endif
+	.mgmt_tx = woal_cfg80211_mgmt_tx,
 #endif
 #endif
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(2, 6, 39)
@@ -3614,7 +3617,7 @@ t_u8
 woal_is_scan_result_expired(moal_private *priv)
 {
 	mlan_scan_resp scan_resp;
-	struct timeval t;
+	wifi_timeval t;
 	ENTER();
 	if (!woal_is_any_interface_active(priv->phandle)) {
 		LEAVE();
@@ -3629,7 +3632,7 @@ woal_is_scan_result_expired(moal_private *priv)
 	woal_get_monotonic_time(&t);
 /** scan result expired value */
 #define SCAN_RESULT_EXPIRTED      1
-	if (t.tv_sec > (scan_resp.age_in_secs + SCAN_RESULT_EXPIRTED)) {
+	if (t.time_sec > (scan_resp.age_in_secs + SCAN_RESULT_EXPIRTED)) {
 		LEAVE();
 		return MTRUE;
 	}

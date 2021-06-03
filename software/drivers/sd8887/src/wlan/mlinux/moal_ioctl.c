@@ -5092,7 +5092,7 @@ woal_find_essid(moal_private *priv, mlan_ssid_bssid *ssid_bssid,
 {
 	int ret = 0;
 	mlan_scan_resp scan_resp;
-	struct timeval t;
+	wifi_timeval t;
 	ENTER();
 
 	if (MLAN_STATUS_SUCCESS !=
@@ -5111,7 +5111,7 @@ woal_find_essid(moal_private *priv, mlan_ssid_bssid *ssid_bssid,
 	woal_get_monotonic_time(&t);
 /** scan result timeout value */
 #define SCAN_RESULT_AGEOUT      10
-	if (t.tv_sec > (scan_resp.age_in_secs + SCAN_RESULT_AGEOUT)) {
+	if (t.time_sec > (scan_resp.age_in_secs + SCAN_RESULT_AGEOUT)) {
 		LEAVE();
 		return MLAN_STATUS_FAILURE;
 	}

@@ -362,7 +362,7 @@ bt_store_firmware_dump(bt_private *priv, u8 *buf, u32 len)
 	struct file *pfile_fwdump = NULL;
 	loff_t pos = 0;
 	u16 seqnum = 0;
-	struct timeval t;
+	bt_timeval t;
 	u32 sec;
 
 	ENTER();
@@ -388,7 +388,7 @@ bt_store_firmware_dump(bt_private *priv, u8 *buf, u32 len)
 			memset(priv->adapter->fwdump_fname, 0, 64);
 
 		get_monotonic_time(&t);
-		sec = (u32)t.tv_sec;
+		sec = (u32)t.time_sec;
 		sprintf(priv->adapter->fwdump_fname, "%s%u",
 			"/var/log/bt_fwdump_", sec);
 		pfile_fwdump =

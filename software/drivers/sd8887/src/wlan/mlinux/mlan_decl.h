@@ -918,6 +918,14 @@ typedef MLAN_PACK_START struct _tlvbuf_custom_ie {
 	tlvbuf_max_mgmt_ie max_mgmt_ie;
 } MLAN_PACK_END mlan_ds_misc_custom_ie;
 
+/** timeval */
+typedef struct {
+	/** Time (seconds) */
+	t_u32 time_sec;
+	/** Time (micro seconds) */
+	t_u32 time_usec;
+} wifi_timeval;
+
 /** Max TDLS config data length */
 #define MAX_TDLS_DATA_LEN  1024
 

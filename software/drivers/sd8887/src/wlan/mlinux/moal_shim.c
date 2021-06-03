@@ -287,11 +287,11 @@ moal_udelay(IN t_void *pmoal_handle, IN t_u32 delay)
 mlan_status
 moal_get_system_time(IN t_void *pmoal_handle, OUT t_u32 *psec, OUT t_u32 *pusec)
 {
-	struct timeval t;
+	wifi_timeval t;
 
 	woal_get_monotonic_time(&t);
-	*psec = (t_u32)t.tv_sec;
-	*pusec = (t_u32)t.tv_usec;
+	*psec = t.time_sec;
+	*pusec = t.time_usec;
 
 	return MLAN_STATUS_SUCCESS;
 }

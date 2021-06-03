@@ -339,7 +339,12 @@ t_u32 drvdbg = DEFAULT_DEBUG_MASK;
 int woal_open(struct net_device *dev);
 int woal_close(struct net_device *dev);
 int woal_set_mac_address(struct net_device *dev, void *addr);
-void woal_tx_timeout(struct net_device *dev);
+void woal_tx_timeout(struct net_device *dev
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+		     ,
+		     unsigned int txqueue
+#endif
+);
 struct net_device_stats *woal_get_stats(struct net_device *dev);
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 29)
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0)
@@ -2831,14 +2836,14 @@ static mlan_status
 woal_request_fw_dpc(moal_handle *handle, const struct firmware *firmware)
 {
 	mlan_status ret = MLAN_STATUS_SUCCESS;
-	struct timeval tstamp;
+	wifi_timeval tstamp;
 
 	ENTER();
 
 	if (!firmware) {
 		woal_get_monotonic_time(&tstamp);
-		if (tstamp.tv_sec >
-		    (handle->req_fw_time.tv_sec + REQUEST_FW_TIMEOUT)) {
+		if (tstamp.time_sec >
+		    (handle->req_fw_time.time_sec + REQUEST_FW_TIMEOUT)) {
 			PRINTM(MERROR,
 			       "No firmware image found. Skipping download\n");
 			ret = MLAN_STATUS_FAILURE;
@@ -3026,7 +3031,7 @@ static void
 woal_fill_mlan_buffer(moal_private *priv,
 		      mlan_buffer *pmbuf, struct sk_buff *skb)
 {
-	struct timeval tstamp;
+	wifi_timeval tstamp;
 	struct ethhdr *eth;
 	t_u8 tid;
 	ENTER();
@@ -3079,7 +3084,11 @@ woal_fill_mlan_buffer(moal_private *priv,
 	 */
 	woal_get_monotonic_time(&tstamp);
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 22)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 17, 0)
+	skb->tstamp = ktime_get_raw();
+#else
 	skb->tstamp = timeval_to_ktime(tstamp);
+#endif
 #elif LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 14)
 	skb_set_timestamp(skb, &tstamp);
 #else
@@ -3092,8 +3101,8 @@ woal_fill_mlan_buffer(moal_private *priv,
 	pmbuf->data_len = skb->len;
 	pmbuf->priority = skb->priority;
 	pmbuf->buf_type = 0;
-	pmbuf->in_ts_sec = (t_u32)tstamp.tv_sec;
-	pmbuf->in_ts_usec = (t_u32)tstamp.tv_usec;
+	pmbuf->in_ts_sec = tstamp.time_sec;
+	pmbuf->in_ts_usec = tstamp.time_usec;
 
 	LEAVE();
 	return;
@@ -4104,7 +4113,7 @@ t_u8
 woal_check_driver_status(moal_handle *handle)
 {
 	moal_private *priv = NULL;
-	struct timeval t;
+	wifi_timeval t;
 	int i = 0;
 	ENTER();
 
@@ -4119,15 +4128,15 @@ woal_check_driver_status(moal_handle *handle)
 #define MOAL_CMD_TIMEOUT                20
 	woal_get_monotonic_time(&t);
 	if (info.dnld_cmd_in_secs && info.pending_cmd &&
-	    (t.tv_sec > (info.dnld_cmd_in_secs + MOAL_CMD_TIMEOUT_MAX))) {
-		if (t.tv_sec > (info.dnld_cmd_in_secs + MOAL_CMD_TIMEOUT) &&
+	    (t.time_sec > (info.dnld_cmd_in_secs + MOAL_CMD_TIMEOUT_MAX))) {
+		if (t.time_sec > (info.dnld_cmd_in_secs + MOAL_CMD_TIMEOUT) &&
 		    !info.num_cmd_timeout) {
 			PRINTM(MERROR, "Ignore invalid time, wait=%d\n",
-			       (int)(t.tv_sec - info.dnld_cmd_in_secs));
+			       (int)(t.time_sec - info.dnld_cmd_in_secs));
 		} else {
 			PRINTM(MERROR, "Timeout cmd id = 0x%x wait=%d\n",
 			       info.pending_cmd,
-			       (int)(t.tv_sec - info.dnld_cmd_in_secs));
+			       (int)(t.time_sec - info.dnld_cmd_in_secs));
 			LEAVE();
 			return MTRUE;
 		}
@@ -4163,11 +4172,11 @@ woal_check_driver_status(moal_handle *handle)
 	}
 	if (info.pm_wakeup_card_req && info.pm_wakeup_fw_try) {
 #define MAX_WAIT_TIME     3
-		if (t.tv_sec > (info.pm_wakeup_in_secs + MAX_WAIT_TIME)) {
+		if (t.time_sec > (info.pm_wakeup_in_secs + MAX_WAIT_TIME)) {
 			PRINTM(MERROR,
 			       "wakeup_dev_req=%d wakeup_tries=%d wait=%d\n",
 			       info.pm_wakeup_card_req, info.pm_wakeup_fw_try,
-			       (int)(t.tv_sec - info.pm_wakeup_in_secs));
+			       (int)(t.time_sec - info.pm_wakeup_in_secs));
 			LEAVE();
 			return MTRUE;
 		}
@@ -4356,8 +4365,12 @@ woal_ioctl_timeout(moal_handle *handle)
  *
  *  @return        N/A
  */
-void
-woal_tx_timeout(struct net_device *dev)
+void woal_tx_timeout(struct net_device *dev
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
+		     ,
+		     unsigned int txqueue
+#endif
+)
 {
 	moal_private *priv = (moal_private *)netdev_priv(dev);
 
