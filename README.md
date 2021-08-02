@@ -1,45 +1,41 @@
-# balenaFin repository
-Official documentation repository for the [balenaFin board](https://balenafin.io).  
-Get it now from the official balenaFin [store](https://store.balena.io/).
+![logo](https://raw.githubusercontent.com/balena-io-projects/balena-sound/master/docs/images/balenaSound-logo.png)
 
+**Starter project enabling you to add multi-room audio streaming via Bluetooth, Airplay, Spotify Connect and others to any old speakers or Hi-Fi using just a Raspberry Pi.**
 
-## Directory structure
+## Highlights
 
-    .
-    ├── documentation
-    │   ├── CAD                          # 2d & 3D files for balenaFin and accesories
-    │   ├── PDF                          # PDF files generated from markdown source using the builder
-    │   └── markdown                     # balenaFin and accesories documentation source files
-    ├── software                         # Linux config files for accessing balenaFin HW
-    │   ├── dt-blob
-    │   ├── overlay                      # Device tree overlay for Linux kernel
-    │   └── drivers                      # Device drivers for radio, etc.
-    ├── builder.css                      # PDF generator files
-    ├── config.json                      # PDF generator files
-    ├── index.js                         # PDF generator files
-    └── package.json                     # PDF generator files
+- **Audio source plugins**: Stream audio from your favourite music services: Bluetooth, Airplay, Spotify Connect, UPnP and more!
+- **Multi-room synchronous playing**: Play perfectly synchronized audio on multiple devices all over your place.
+- **Extended DAC support**: Upgrade your audio quality with one of our supported DACs
 
-## Generated documentation
+## Setup and configuration
 
-All files inside `documentation/CAD` and `documentation/PDF` are official balenaFin documentation. They are automatically generated from markdown files in `documentation/markdown`. 
+Running this project is as simple as deploying it to a balenaCloud application. You can do it in just one click by using the button below:
 
-## Building PDF releases
+[![deploy button](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/balenalabs/balena-sound&defaultDeviceType=raspberry-pi)
 
-All PDF documentation is generated automatically frorm markdown files. To install the PDF generator, clone the repository and run `npm install`
+## Documentation
 
-`config.json` allows to define the document sources and their destination folder, along with custom overall styling
+Head over to our [docs](https://sound.balenalabs.io/docs/) for detailed installation and usage instructions, customization options and more!
 
-Once `config.json` is configured, run `npm start` to generate the PDF
+## Motivation
 
+![concept](https://raw.githubusercontent.com/balenalabs/balena-sound/master/docs/images/sound.png)
 
-### Project specific syntax
+There are many commercial solutions out there that provide functionality similar to balenaSound. Most of them though come with a premium price tag and are riddled with privacy concerns.
 
-#### Page breaks
+balenaSound is an open source project that allows you to build your own DIY audio streaming platform without compromises. Why spend big money on hardware that might be deemed obsolete by the vendor as they see fit? With balenaSound you are in control, bring your old speakers back to life!
 
-Creating a pagebreak on the destination PDF. It's important to leave a blank line above and below. 
+This project is in active development so if you have any feature requests or issues please submit them here on GitHub. PRs are welcome, too.
 
-```html
+## Getting Help
 
-<div class="page-break"></div>
+If you're having any problem, please [raise an issue](https://github.com/balenalabs/balena-sound/issues/new) on GitHub and we will be happy to help.
 
-```
+## Contributing
+
+Do you want to help make balenaSound better? Take a look at our [Contributing Guide](https://sound.balenalabs.io/contributing). Hope to see you around!
+
+## License
+
+balenaSound is free software, and may be redistributed under the terms specified in the [license](https://github.com/balenalabs/balena-sound/blob/master/LICENSE).
