@@ -6,9 +6,9 @@
 | --- | --- |
 | **Product ID:** | BLNFN100001 (20173009) |
 | **Product Name** | BalenaFin |
-| **Product Version** | 1.1.0 |
-| **Manufacturer Part Number** | FIN0110-SX (where X is the storage size: 8/16/32/64) |
-| **Document Version** | 0.0.5 |
+| **Product Version** | 1.1.1 |
+| **Manufacturer Part Number** | FIN0111-SX (where X is the storage size: 8/16/32/64) |
+| **Document Version** | 0.0.7 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Approved |
 
@@ -26,6 +26,7 @@
 | 06/06/2019 | 0.0.4 | Nicolas Tzovanis | Fixed HAT Header pinout for pin 13 |
 | 24/06/2019 | 0.0.5 | Nicolas Tzovanis | Improved description of USB header |
 | 26/06/2020 | 0.0.6 | Alex Bucknall | Added BGM111 Port Reference |
+| 24/08/2021 | 0.0.7 | Alex Bucknall | Added manufacturing note for v1.1.1 |
 
 </center>
 
@@ -172,7 +173,17 @@ Availability of balenaFin in either the current version or a compatible later re
 
 <div class="page-break"></div>
 
-# 5. Mechanical specifications (mm)
+# 5. Manufacturing Notes
+
+### 5.1 USB Hub Thermal Issue Fix (v1.1.1)
+
+The v1.1.1 fix addresses a thermal issues regarding the USB Hub powering down after exceeding a lower than expected thermal power off temperature.
+
+See the [balena-fin/documentation/PDF/balenaFin/Manufacturing/v11_fix](balena-fin/documentation/PDF/balenaFin/Manufacturing/v11_fix.pdf) for manufacturing and QA information.
+
+<div class="page-break"></div>
+
+# 6. Mechanical specifications (mm)
 
 | Top | Bottom |
 | :--------------------------------------------------------: | :--------------------------------------------------------------: |
@@ -180,7 +191,7 @@ Availability of balenaFin in either the current version or a compatible later re
 
 <div class="page-break"></div>
 
-# 6. General specifications
+# 7. General specifications
 
 | **Parameter** | **Minimum** | **Typical** | **Maximum** | **Conditions** |
 | --- | --- | --- | --- | --- |
@@ -190,9 +201,9 @@ Availability of balenaFin in either the current version or a compatible later re
 
 <div class="page-break"></div>
 
-# 7. Radio specifications
+# 8. Radio specifications
 
-### 7.1 Frequency range
+### 8.1 Frequency range
 
 | **Description** | **Min.** | **Typ.** | **Max.** | **Unit** |
 | --- | --- | --- | --- | --- |
@@ -201,7 +212,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | BT / BLE (main) | 2402 | - | 2480 | MHz |
 | BT / BLE (secondary, co-processor) | 2400 | - | 2483.5 | MHz |
 
-### 7.2 TX Output Power
+### 8.2 TX Output Power
 
 | **Description** | **Min.** | **Typ.** | **Max.** | **Unit** |
 | --- | --- | --- | --- | --- |
@@ -210,7 +221,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | BT / BLE (main) | -6 | 0 | 4 | dBm |
 | BT / BLE (secondary, co-processor) | -26 | - | 8 | dBm |
 
-### 7.3 RX Sensitivity
+### 8.3 RX Sensitivity
 
 | **Description** | **Min.** | **Typ.** | **Max.** | **Unit** |
 | --- | --- | --- | --- | --- |
@@ -221,7 +232,7 @@ Availability of balenaFin in either the current version or a compatible later re
 
 <div class="page-break"></div>
 
-# 8. Certification
+# 9. Certification
 
 | **Certification** | **Country / Region** | **Identifier(s)** |
 | --- | --- | --- |
@@ -233,7 +244,7 @@ Availability of balenaFin in either the current version or a compatible later re
 
 <div class="page-break"></div>
 
-## 8.1 Labelling
+## 9.1 Labelling
 
 The end product must be labeled, in a visible area, with the following:
 
@@ -242,9 +253,9 @@ The end product must be labeled, in a visible area, with the following:
 
 <div class="page-break"></div>
 
-## 8.2 Regulatory Insert
+## 9.2 Regulatory Insert
 
-### 8.1.1 FCC Compliance Statement (USA)
+### 9.1.1 FCC Compliance Statement (USA)
 
 This device complies with Part 15 rules. Operation is subject to the following two conditions:
 
@@ -273,7 +284,7 @@ Cet équipement est conforme aux limites d'exposition aux rayonnements énonce
 
 <div class="page-break"></div>
 
-### 8.1.2 Canadian DOC Compliance Statement
+### 9.1.2 Canadian DOC Compliance Statement
 
 Cet appareil numerique de la classe B est conforme a la norme NMB-003 du Canada. This Class B digital apparatus complies with Canadian ICES-003.
 
