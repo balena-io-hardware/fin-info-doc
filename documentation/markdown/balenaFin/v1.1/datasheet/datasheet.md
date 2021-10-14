@@ -20,12 +20,13 @@
 
 | **Date (dd/mm/yyyy)** | **Version** | **Author** | **Description** |
 | --- | --- | --- | --- |
-| 13/02/2019 | 0.0.1 | Carlo Maria Curinga | First draft |
-| 21/02/2019 | 0.0.2 | Carlo Maria Curinga | First release |
-| 22/02/2019 | 0.0.3 | Carlo Maria Curinga | Update temperature range Minimum value |
+| 13/02/2019 | 0.0.1 | Carlo Curinga | First draft |
+| 21/02/2019 | 0.0.2 | Carlo Curinga | First release |
+| 22/02/2019 | 0.0.3 | Carlo Curinga | Update minimum temperature value |
 | 06/06/2019 | 0.0.4 | Nicolas Tzovanis | Fixed HAT Header pinout for pin 13 |
 | 24/06/2019 | 0.0.5 | Nicolas Tzovanis | Improved description of USB header |
 | 26/06/2020 | 0.0.6 | Alex Bucknall | Added BGM111 Port Reference |
+| 14/10/2021 | 0.0.7 | Nicolas Tzovanis | Added information for IEC report |
 
 </center>
 
@@ -33,7 +34,9 @@
 
 # 1. Introduction
 
-BalenaFin is a carrier board for the Raspberry Pi Compute Module 3 Lite and Compute Module 3+ Lite produced by the Raspberry Pi Foundation.
+The balenaFin is a carrier board for the Raspberry Pi Compute Module 3 Lite and Compute Module 3+ Lite[1] hardened for field deployment. 
+The balenaFin includes 8/16/32/64 GB of on-board industrial eMMC depending on the model, has dual-band connectivity for both 2.4 and 5GHz WiFi networks, can be connected to an external antenna for WiFi and Bluetooth, and can accept a wide range of DC power input via either the barrel jack or 2-position phoenix connector.
+Low power mode and real time applications are supported through the integrated BGM111[2] microcontroller.
 
 For more information about the Raspberry Pi Compute Module please refer to the following links:
 
@@ -45,6 +48,15 @@ For more information about the Raspberry Pi Compute Module please refer to the f
 # 2. Continuity of supply
 
 Availability of balenaFin in either the current version or a compatible later revision is guaranteed, on commercially reasonable basis, until January 2024. 
+
+## 2.1 Ordering information  
+
+| Part number | Description |
+| --- | --- |
+| FIN0110-S08 | 8GB on-board eMMC |
+| FIN0110-S16 | 16GB on-board eMMC |
+| FIN0110-S32 | 32GB on-board eMMC |
+| FIN0110-S64 | 64GB on-board eMMC |
 
 <div class="page-break"></div>
 
@@ -78,9 +90,9 @@ Availability of balenaFin in either the current version or a compatible later re
 | 19 | USB | 2 x USB Type-A |
 | 20 | USB2 ON Status LED | The green LED stays on as long as there is enough current flowing on the bottom USB port; when this LED is off, it means a fault or under-voltage is happening on the bottom USB port |
 | 21 | Ethernet | 10/100 ethernet RJ45 connector |
-| 22 | PRG - Programming port | micro-USB connector that allows flashing of the eMMC from a host computer using [balenaEtcher](balena.io/etcher) or usbboot. If the device is powered via a cable connected to this port, it will enter a programming mode exposing its eMMC as mass-storage to a host computer (via balenaEtcher or usbboot). __balenaFin can only be booted into flash mode via this port__ |
-| 23 | Phoenix power in | Industry standard 2-POS Phoenix type connector for 6-24V input power; polarity is denoted on PCB silkscreen |
-| 24 | Barrel Jack power in |  2.1 / 5.5 mm barrel jack type connector for 6-24V input power. Positive polarity (Positive tip, Negative sleeve) - Denoted by symbol on the bottom PCB silkscreen.|
+| 22 | PRG port | micro-USB programming port). __balenaFin can only be booted into flash mode via this port__ |
+| 23 | Phoenix power in | Industry standard 2-POS Phoenix type connector for 630V input power; polarity is denoted on PCB silkscreen |
+| 24 | Barrel Jack power in |  2.1 / 5.5 mm barrel jack type connector for 6-30V input power. Positive polarity (Positive tip, Negative sleeve) - Denoted by symbol on the bottom PCB silkscreen.|
 | 25 | Co-Processor I/O connector | 8 x GPIO / ADC, 1 x SPI, 1 x I2C, 1 x Debug UART |
 | 26 | CR122 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off |
 | 27 | RGB LED | Connected to a PCA9633 controller that allows standard linux sysfs LED control |
@@ -89,13 +101,48 @@ Availability of balenaFin in either the current version or a compatible later re
 | 30 | CM3L socket | SODIMM-200 socket for the Raspberry Pi Compute Module 3/3+ Lite |
 | 31 | eMMC | 8/16/32/64 GB class 5.1 industrial eMMC - main storage for the CM3L (30). Positioned under the CM3L (30) |
 | 32 | mPCIe | Mini PCI Express socket |
-| 33 | Antenna switch | 2 position switch - when set to OFF (labeled in silkscreen as "INT"), the WiFi/BT combo chip (14) uses the WiFi/BT embedded antenna (16). When set to ON (labeled in silkscreen as "EXT"), the WiFi/BT combo chip (14) uses the WiFi/BT uFL antenna connector (15) |
-| 34 | PoE HAT headers | exposes the incoming voltage from the RJ45 (21) port for PoE HATs that step down and flow 5V to the 5V HAT (13) pins |
-| 35 | USB 2.0 4-pin header | Exposes a USB 2.0 port via male headers. Pin 1 is the one closest to the coprocessor. Pinout: 1->VCC; 2->D-; 3->D+; 4->GND |
+| 33 | Antenna switch | Internal/external antenna selection switch |
+| 34 | PoE HAT headers | exposes the incoming voltage from the RJ45 (21) port for PoE HATs |
+| 35 | USB 2.0 4-pin header | Exposes a USB 2.0 interface via male pin headers. |
 | 36 | GND probe interface | Exposes a GND probe interface for easy debugging |
-| 37 | DSI/CAM1 switch | Switches the full-size Raspberry Pi MIPI connector (10) between Display or secondary Camera (cam1) mode - when set to OFF (labeled in silkscreen as "DISP"), the full-size Raspberry Pi MIPI connector (#10) exposes the DSI (disp1) interface. When set to ON (labeled in silkscreen as "CAM1") the full-size Raspberry Pi MIPI connector (10) exposes the secondary CSI (cam1) interface |
+| 37 | DSI/CAM1 switch | Switches the full-size Raspberry Pi MIPI connector (10) between Display or secondary Camera (cam1) mode |
 | 38 | POWER IN Fuse (on 23 & 24) | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
 | 39 | HAT 5V Fuse | 3A 125VAC/VDC fuse - MPN: 0154003.DR |
+
+### CSI/DSI selection switch [37]
+Switches the full-size Raspberry Pi MIPI connector (10) between Display or secondary Camera (Cam1) mode.
+When set to “DISP”, the full-size Raspberry Pi MIPI connector [10] will expose the DSI (Disp1) interface. When set to “CAM1” the full-size Raspberry Pi MIPI connector [10] will expose the secondary CSI (Cam1) interface
+
+**WARNING:** Only use the switch when the balenaFin is completely powered off and no cables are connected. 
+
+### Internal/External antenna selection switch [33]
+Switches the embedded WiFi/Bluetooth module [14] between the internal (PCB) and external antennas. 
+When set to “INT”, the WiFi/Bluetooth module will use the embedded (PCB) antenna. When set to "EXT”, the WiFi/Bluetooth module will use any antenna connected to the uFL connector [15]
+
+**WARNING:** Only use the switch when the balenaFin is completely powered off and no cables are connected. 
+
+### PRG port [22]
+This port is used to flash the on-board eMMC with a bootable image/OS. When a host is connected to the PRG port, the balenaFin will enter a flashing mode exposing its eMMC as mass-storage device. 
+More information on how to use the programming port can be found on the getting started guide at: https://www.balena.io/fin/1.1/docs/getting-started/
+
+**Note:** The balenaFin can only be booted into flash mode via this port. When using the PRG port, make sure no other power cable is connected to either the Phoenix[23] nor the Barrel Jack [24] power ports.
+
+### USB Header [35]
+Standard 0.1” pin header exposing a 2.0 USB interface. 
+
+| Pin number | Name | Description |
+| --- | --- | --- |
+| 1 | VCC | +5V DC supply |
+| 2 | D- | USB data - |
+| 3 | D+ | USB data + |
+| 4 | GND | Ground |
+
+**Note:** Pin 1 is the one closest to the co-processor[17] and pin 4 is the one closest to the USB Type-A port [19].
+
+### PoE header [34]
+The PoE header is a standard 0.1” header that adds PoE support to the balenaFin via an external HAT. The balenaFin is compatible with all the PoE HATs that are compatible with the Raspberry Pi 3B+.
+
+**Note:** some PoE HATs do not follow the official Raspberry Pi HAT specifications and might have components that collide with components on the balenaFin.
 
 <div class="page-break"></div>
 
@@ -184,9 +231,11 @@ Availability of balenaFin in either the current version or a compatible later re
 
 | **Parameter** | **Minimum** | **Typical** | **Maximum** | **Conditions** |
 | --- | --- | --- | --- | --- |
-| Power input via power connectors | 6V | - | 24V | 12.5W |
+| Power input via power connectors | 6V | - | 30V | 12.5W |
 | Power input via HAT connector | 5V | 5V | 5V | 12.5W |
 | Operation temperature | -25 celsius | - | 70 celsius |   |
+
+**NOTE:** The board cannot be powered from the microUSB [PRG] port. This power input can only be used for flashing the internal eMMC.
 
 <div class="page-break"></div>
 
