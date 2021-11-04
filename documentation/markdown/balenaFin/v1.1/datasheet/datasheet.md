@@ -6,6 +6,7 @@
 | --- | --- |
 | **Product ID:** | BLNFN100001 (20173009) |
 | **Product Name** | BalenaFin |
+| **Product Description** | RaspberryPi CM3 carrier board |
 | **Product Version** | 1.1.0 |
 | **Manufacturer Part Number** | FIN0110-SX (where X is the storage size: 8/16/32/64) |
 | **Document Version** | 0.0.5 |
