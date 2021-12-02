@@ -33,6 +33,7 @@
 | Australia | [DoC](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/AUS/AUS_RCM_DoC.pdf) |  
 | Japan | [JR Certificate](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/JP/JP_RadioCertificate.pdf) |  
 | Japan | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/JP/Lab) |  
+| IEC | [Lab Results](https://github.com/balena-io/balena-fin/raw/master/documentation/PDF/balenaFin/v1.1/conformity/IEC) |  
 
 
 ## Is your region not included?
