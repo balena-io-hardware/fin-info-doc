@@ -4,28 +4,32 @@
  * @license Apache-2.0
  */
 
-"use strict";
+'use strict';
 
-const assert = require("assert");
-const fse = require("fs-extra");
-const { join } = require("path");
-const { homedir } = require("os");
+const assert = require('assert');
+const fse = require('fs-extra');
+const { join } = require('path');
+const { homedir } = require('os');
+
+// required for unwrapping images
+const imagefs = require('balena-image-fs');
+const stream = require('stream')
+const pipeline = require('bluebird').promisify(stream.pipeline);
 
 module.exports = {
-  title: "Unmanaged BalenaOS release suite",
-  run: async function () {
+  title: 'balenaFin QC test suite',
+  run: async function (test) {
     // The worker class contains methods to interact with the DUT, such as flashing, or executing a command on the device
-    const Worker = this.require("common/worker");
-
+    const Worker = this.require('common/worker');
     // The balenaOS class contains information on the OS image to be flashed, and methods to configure it
-    const BalenaOS = this.require("components/os/balenaos");
+    const BalenaOS = this.require('components/os/balenaos');
 
     await fse.ensureDir(this.suite.options.tmpdir);
 
-    // The suite contex is an object that is shared across all tests. Setting something into the context makes it accessible by every test
+    // The suite context is an object that is shared across all tests. Setting something into the context makes it accessible by every test
     this.suite.context.set({
-      utils: this.require("common/utils"),
-      sshKeyPath: join(homedir(), "id"),
+      utils: this.require('common/utils'),
+      sshKeyPath: join(homedir(), 'id'),
       link: `${this.suite.options.balenaOS.config.uuid.slice(0, 7)}.local`,
       worker: new Worker(this.suite.deviceType.slug, this.getLogger()),
     });
@@ -63,24 +67,26 @@ module.exports = {
                   .utils.createSSHKey(this.context.get().sshKeyPath),
               ],
             },
+            // Set an API endpoint for the HTTPS time sync service.
+            apiEndpoint: 'https://api.balena-cloud.com',
             // persistentLogging is managed by the supervisor and only read at first boot
             persistentLogging: true,
             // Set local mode so we can perform local pushes of containers to the DUT
             localMode: true,
+            developmentMode: true,
           },
         },
-        this.getLogger()
+        this.getLogger(),
       ),
     });
 
     // Register a teardown function execute at the end of the test, regardless of a pass or fail
     this.suite.teardown.register(() => {
-      this.log("Removing image");
-      fse.unlinkSync("/data/image"); // Delete the unpacked an modified image from the testbot cache to prevent use in the next suite
-      this.log("Worker teardown");
+      this.log('Worker teardown');
       return this.context.get().worker.teardown();
     });
-    this.log("Setting up worker");
+
+    this.log('Setting up worker');
 
     // Create network AP on testbot
     await this.context
@@ -88,11 +94,7 @@ module.exports = {
       .worker.network(this.suite.options.balenaOS.network);
 
     // Unpack OS image .gz
-    await this.context.get().os.fetch({
-      type: this.suite.options.balenaOS.download.type,
-      version: this.suite.options.balenaOS.download.version,
-      releaseInfo: this.suite.options.balenaOS.releaseInfo,
-    });
+    await this.context.get().os.fetch();
 
     // Configure OS image
     await this.context.get().os.configure();
@@ -102,20 +104,31 @@ module.exports = {
     await this.context.get().worker.flash(this.context.get().os.image.path);
     await this.context.get().worker.on();
 
-    this.log("Waiting for device to be reachable");
+    this.log('Waiting for device to be reachable');
     assert.equal(
       await this.context
         .get()
         .worker.executeCommandInHostOS(
-          "cat /etc/hostname",
-          this.context.get().link
+          'cat /etc/hostname',
+          this.context.get().link,
         ),
-      this.context.get().link.split(".")[0],
-      "Device should be reachable"
+      this.context.get().link.split('.')[0],
+      'Device should be reachable',
     );
+
+    // Retrieving journalctl logs: register teardown after device is reachable
+    this.suite.teardown.register(async () => {
+      await this.context.get().worker.archiveLogs(this.id, this.context.get().link);
+    });
+
   },
   tests: [
-      "./tests/led",
-      // Add additional tests here
+    './tests/power',
+    './tests/eeprom',
+    './tests/wifi',
+    './tests/eth',
+    './tests/i2c',
+    './tests/rgbled',
+    './tests/coprocessor',
   ],
 };

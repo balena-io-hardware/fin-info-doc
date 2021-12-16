@@ -31,7 +31,6 @@ All PDF documentation is generated automatically from markdown files. To install
 
 Once `config.json` is configured, run `npm start` to generate the PDF
 
-
 ### Project specific syntax
 
 #### Page breaks
