@@ -1,0 +1,16 @@
+version: '2'
+services:
+  eeprom:
+    build: .
+    restart: always
+    privileged: true
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RAWIO
+    labels:
+      io.balena.features.supervisor-api: '1'
+      io.balena.features.balena-api: '1'
+      io.balena.features.sysfs: '1'
+      io.balena.features.kernel-modules: '1'

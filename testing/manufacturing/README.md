@@ -4,6 +4,33 @@ This directory contains the information regarding the provisioning and testing u
 
 The tests should be performed using the [leviathan](https://github.com/balena-io/leviathan) test framework and performed using a hardware test rig as specified in the [rig assembly guide](docs/ASSEMBLY.md).
 
+## Installation & Setup
+
+These tests run against the leviathan framework and thus need to be deploy using testbot hardware.
+
+The following is an example `config.js` file used to set up the testbots.
+
+```js
+module.exports = {
+    deviceType: "fin-cm3",
+    suite: `${__dirname}/../suites/os`,
+    config: {
+        networkWired: true,
+        networkWireless: true,
+        downloadVersion: 'latest',
+        interactiveTests: false,
+        balenaApiKey: process.env.BALENACLOUD_API_KEY,
+        balenaApiUrl: 'balena-cloud.com',
+        organization: process.env.BALENACLOUD_ORG
+    },
+    image: `false`,
+    workers: ['testbot.local'],
+};
+```
+
+`BALENACLOUD_API_KEY` and `BALENACLOUD_ORG` should be set to the corresponding balenaCloud user's API key and the organisation that the fleet belongs to.
+
+
 ## Post-Manufacturing Steps
 
 As a post-manufacturing step, the balenaFin is configured to write its manufacturing serial number to an internal EEPROM, flash its coprocessor and check that it can boot and connect to balenaCloud in provisioning application.

@@ -123,12 +123,12 @@ module.exports = {
 
   },
   tests: [
-    './tests/power',
+    // './tests/power',
     './tests/eeprom',
-    './tests/wifi',
-    './tests/eth',
-    './tests/i2c',
-    './tests/rgbled',
-    './tests/coprocessor',
+    // './tests/wifi',
+    // './tests/eth',
+    // './tests/i2c',
+    // './tests/rgbled',
+    // './tests/coprocessor',
   ],
 };
