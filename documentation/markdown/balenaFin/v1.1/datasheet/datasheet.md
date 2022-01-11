@@ -9,11 +9,13 @@
 | **Product Description** | RaspberryPi CM3 carrier board |
 | **Product Version** | 1.1.0 |
 | **Manufacturer Part Number** | FIN0110-SX (where X is the storage size: 8/16/32/64) |
-| **Document Version** | 0.0.5 |
+| **Document Version** | 0.0.8 |
 | **Author** | Carlo Maria Curinga |
 | **State (Draft/Proposed/Approved)** | Approved |
 
 </center>
+
+<div class="page-break"></div>
 
 ## Revision history
 
@@ -28,6 +30,7 @@
 | 24/06/2019 | 0.0.5 | Nicolas Tzovanis | Improved description of USB header |
 | 26/06/2020 | 0.0.6 | Alex Bucknall | Added BGM111 Port Reference |
 | 14/10/2021 | 0.0.7 | Nicolas Tzovanis | Added information for IEC report |
+| 11/01/2022 | 0.0.8 | Alex Bucknall | Corrected balenaFin voltage range |
 
 </center>
 
@@ -92,7 +95,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | 20 | USB2 ON Status LED | The green LED stays on as long as there is enough current flowing on the bottom USB port; when this LED is off, it means a fault or under-voltage is happening on the bottom USB port |
 | 21 | Ethernet | 10/100 ethernet RJ45 connector |
 | 22 | PRG port | micro-USB programming port). __balenaFin can only be booted into flash mode via this port__ |
-| 23 | Phoenix power in | Industry standard 2-POS Phoenix type connector for 630V input power; polarity is denoted on PCB silkscreen |
+| 23 | Phoenix power in | Industry standard 2-POS Phoenix type connector for 6-30V input power; polarity is denoted on PCB silkscreen |
 | 24 | Barrel Jack power in |  2.1 / 5.5 mm barrel jack type connector for 6-30V input power. Positive polarity (Positive tip, Negative sleeve) - Denoted by symbol on the bottom PCB silkscreen.|
 | 25 | Co-Processor I/O connector | 8 x GPIO / ADC, 1 x SPI, 1 x I2C, 1 x Debug UART |
 | 26 | CR122 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off |
