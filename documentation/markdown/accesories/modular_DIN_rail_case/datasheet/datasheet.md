@@ -21,6 +21,7 @@
 | 24/05/2018 | 0.0.1 | Nicolas Tzovanis | First release |
 | 06/07/2019 | 0.0.2 | Nicolas Tzovanis | Update phoenix ring pinout |
 | 11/07/2019 | 1.0.0 | Nicolas Tzovanis | Fix balenaFin HAT pinout |
+| 25/02/2022 | 1.0.1 | Konstantinos Mouzakis | Updated case dimensions |
 
 </center>
 
