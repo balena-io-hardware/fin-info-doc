@@ -31,6 +31,7 @@
 | 26/06/2020 | 0.0.6 | Alex Bucknall | Added BGM111 Port Reference |
 | 14/10/2021 | 0.0.7 | Nicolas Tzovanis | Added information for IEC report |
 | 11/01/2022 | 0.0.8 | Alex Bucknall | Corrected balenaFin voltage range |
+| 01/04/2022 | 0.0.9 | Konstantinos Mouzakis | Corrected coin cell battery type |
 
 </center>
 

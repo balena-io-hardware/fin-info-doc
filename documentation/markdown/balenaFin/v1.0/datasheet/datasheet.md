@@ -27,6 +27,7 @@
 | 16/12/2018 | 1.0.0 | Nicolas Tzovanis | Public release |
 | 06/06/2019 | 1.0.1 | Nicolas Tzovanis | Fixed HAT Header pinout for pin 13 |
 | 26/06/2020 | 1.0.2 | Alex Bucknall | Added Artik020 Port Reference |
+| 01/04/2022 | 1.0.3 | Konstantinos Mouzakis | Corrected coin cell battery type |
 
 </center>
 
