@@ -86,7 +86,7 @@ BalenaFin (current version or a compatible later revision) availability is guara
 | 23 | Phoenix power in | 2-POS Phoenix type connector for 6-24V input power. Negative polarity is denoted by '-' symbol on PCB silkscreen. This is an Industry standard connector.|
 | 24 | Barrel Jack power in |  2.1 / 5.5 mm barrel jack type connector for 6-24V input power. Positive polarity (Positive tip, Negative sleeve) - Denoted by symbol on PCB silkscreen.|
 | 25 | Co-Processor I/O connector | 8 x GPIO / ADC, 1 x SPI, 1 x I2C, 1 x Debug UART |
-| 26 | CR122 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off. |
+| 26 | CR1225 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off. |
 | 27 | RGB LED |   |
 | 28 | RESET push-button | When pressed (and released) DS1307 reboots the CM3L (30) |
 | 29 | nano-SIM socket | This allows the use of a wide portfolio of cellular Modems via the mPCIE socket (32) |

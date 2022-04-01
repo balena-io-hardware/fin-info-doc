@@ -38,7 +38,7 @@
 
 # 1. Introduction
 
-The balenaFin is a carrier board for the Raspberry Pi Compute Module 3 Lite and Compute Module 3+ Lite[1] hardened for field deployment. 
+The balenaFin is a carrier board for the Raspberry Pi Compute Module 3 Lite and Compute Module 3+ Lite[1] hardened for field deployment.
 The balenaFin includes 8/16/32/64 GB of on-board industrial eMMC depending on the model, has dual-band connectivity for both 2.4 and 5GHz WiFi networks, can be connected to an external antenna for WiFi and Bluetooth, and can accept a wide range of DC power input via either the barrel jack or 2-position phoenix connector.
 Low power mode and real time applications are supported through the integrated BGM111[2] microcontroller.
 
@@ -51,7 +51,7 @@ For more information about the Raspberry Pi Compute Module please refer to the f
 
 # 2. Continuity of supply
 
-Availability of balenaFin in either the current version or a compatible later revision is guaranteed, on commercially reasonable basis, until January 2024. 
+Availability of balenaFin in either the current version or a compatible later revision is guaranteed, on commercially reasonable basis, until January 2024.
 
 ## 2.1 Ordering information  
 
@@ -98,7 +98,7 @@ Availability of balenaFin in either the current version or a compatible later re
 | 23 | Phoenix power in | Industry standard 2-POS Phoenix type connector for 6-30V input power; polarity is denoted on PCB silkscreen |
 | 24 | Barrel Jack power in |  2.1 / 5.5 mm barrel jack type connector for 6-30V input power. Positive polarity (Positive tip, Negative sleeve) - Denoted by symbol on the bottom PCB silkscreen.|
 | 25 | Co-Processor I/O connector | 8 x GPIO / ADC, 1 x SPI, 1 x I2C, 1 x Debug UART |
-| 26 | CR122 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off |
+| 26 | CR1225 RTC coin-cell battery socket | This allows the embedded RTC to keep track of time while the device is powered off |
 | 27 | RGB LED | Connected to a PCA9633 controller that allows standard linux sysfs LED control |
 | 28 | USB3 ON Status LED | The green LED stays on as long as there is enough current flowing on the 4-pin header USB port; when this LED is off, it means a fault or under-voltage is happening on the 4-pin header USB port |
 | 29 | nano-SIM socket | This allows the use of a wide portfolio of cellular modems via the mPCIe socket (32) |
@@ -117,22 +117,22 @@ Availability of balenaFin in either the current version or a compatible later re
 Switches the full-size Raspberry Pi MIPI connector (10) between Display or secondary Camera (Cam1) mode.
 When set to “DISP”, the full-size Raspberry Pi MIPI connector [10] will expose the DSI (Disp1) interface. When set to “CAM1” the full-size Raspberry Pi MIPI connector [10] will expose the secondary CSI (Cam1) interface
 
-**WARNING:** Only use the switch when the balenaFin is completely powered off and no cables are connected. 
+**WARNING:** Only use the switch when the balenaFin is completely powered off and no cables are connected.
 
 ### Internal/External antenna selection switch [33]
-Switches the embedded WiFi/Bluetooth module [14] between the internal (PCB) and external antennas. 
+Switches the embedded WiFi/Bluetooth module [14] between the internal (PCB) and external antennas.
 When set to “INT”, the WiFi/Bluetooth module will use the embedded (PCB) antenna. When set to "EXT”, the WiFi/Bluetooth module will use any antenna connected to the uFL connector [15]
 
-**WARNING:** Only use the switch when the balenaFin is completely powered off and no cables are connected. 
+**WARNING:** Only use the switch when the balenaFin is completely powered off and no cables are connected.
 
 ### PRG port [22]
-This port is used to flash the on-board eMMC with a bootable image/OS. When a host is connected to the PRG port, the balenaFin will enter a flashing mode exposing its eMMC as mass-storage device. 
+This port is used to flash the on-board eMMC with a bootable image/OS. When a host is connected to the PRG port, the balenaFin will enter a flashing mode exposing its eMMC as mass-storage device.
 More information on how to use the programming port can be found on the getting started guide at: https://www.balena.io/fin/1.1/docs/getting-started/
 
 **Note:** The balenaFin can only be booted into flash mode via this port. When using the PRG port, make sure no other power cable is connected to either the Phoenix[23] nor the Barrel Jack [24] power ports.
 
 ### USB Header [35]
-Standard 0.1” pin header exposing a 2.0 USB interface. 
+Standard 0.1” pin header exposing a 2.0 USB interface.
 
 | Pin number | Name | Description |
 | --- | --- | --- |
