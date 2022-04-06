@@ -30,6 +30,7 @@ const id = `${Math.random()
 module.exports = options => {
 	return {
 		id,
+		manufacturing: true,
 		balenaOS: {
 			config: {
 				uuid: uid(),

@@ -30,7 +30,6 @@ module.exports = {
 
 `BALENACLOUD_API_KEY` and `BALENACLOUD_ORG` should be set to the corresponding balenaCloud user's API key and the organisation that the fleet belongs to.
 
-
 ## Post-Manufacturing Steps
 
 As a post-manufacturing step, the balenaFin is configured to write its manufacturing serial number to an internal EEPROM, flash its coprocessor and check that it can boot and connect to balenaCloud in provisioning application.

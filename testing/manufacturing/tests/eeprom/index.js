@@ -24,7 +24,9 @@ module.exports = {
         properties: {
             slug: {
                 type: 'string',
-                const: 'fincm3',
+                enum: [
+                    'fincm3',
+                ],
             },
         },
     },

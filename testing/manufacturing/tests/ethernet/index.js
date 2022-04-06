@@ -17,7 +17,7 @@
 const URL_TEST = 'www.google.com';
 
 module.exports = {
-    title: 'WiFi tests',
+    title: 'Connectivity tests',
     tests: [
         {
             title: 'Interface tests',

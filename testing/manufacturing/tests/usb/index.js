@@ -14,17 +14,22 @@
 
 "use strict";
 
+const { delay } = require("bluebird");
+const request = require("request-promise");
+
 module.exports = {
-    title: "Power test",
+    title: "USB test",
+    os: {
+        type: "object",
+        required: ["variant"],
+        properties: {
+            variant: {
+                type: "string",
+                const: "Development",
+            },
+        },
+    },
     run: async function (test) {
 
-        const datetime = await this.context
-            .get()
-            .worker.executeCommandInHostOS(
-                `hwclock -r`,
-                this.context.get().link
-            );
-
-        test.not(isNaN(Date.parse(datetime)), true, `Datetime is ${datetime}. NaN is not expected.`);
-    },
+    }
 };

@@ -15,9 +15,32 @@
 "use strict";
 
 module.exports = {
-    title: "Power test",
+    title: "Real Time Clock test",
+    deviceType: {
+        type: 'object',
+        required: ['slug'],
+        properties: {
+            slug: {
+                type: 'string',
+                enum: [
+                    'fincm3',
+                ],
+            },
+        },
+    },
     run: async function (test) {
 
+        // check rtc is registered in kernel at boot
+        const result = await this.context
+            .get()
+            .worker.executeCommandInHostOS(
+                'dmesg | grep rtc',
+                this.context.get().link,
+            );
+        const check = result.includes("registered as rtc");
+        test.is(check, true, "Should see that rtc driver registered");
+
+        // check hwclock returns a valid datetime
         const datetime = await this.context
             .get()
             .worker.executeCommandInHostOS(
