@@ -5,7 +5,7 @@
  *  in MLAN module.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -1685,7 +1685,6 @@ typedef struct _mlan_init_para {
     /** dev cap mask */
 	t_u32 dev_cap_mask;
 	t_u32 drcs_chantime_mode;
-	t_bool fw_region;
 } mlan_init_para, *pmlan_init_para;
 
 /** Adapter data structure for MLAN */
@@ -2271,6 +2270,11 @@ t_void wlan_cmd_timeout_func(t_void *function_context);
 /** process host cmd */
 mlan_status wlan_misc_ioctl_host_cmd(IN pmlan_adapter pmadapter,
 				     IN pmlan_ioctl_req pioctl_req);
+#ifdef UAP_SUPPORT
+/** process wacp mode */
+mlan_status wlan_misc_ioctl_wacp_mode(IN pmlan_adapter pmadapter,
+				      IN pmlan_ioctl_req pioctl_req);
+#endif
 /** process init/shutdown cmd*/
 mlan_status wlan_misc_ioctl_init_shutdown(IN pmlan_adapter pmadapter,
 					  IN pmlan_ioctl_req pioctl_req);

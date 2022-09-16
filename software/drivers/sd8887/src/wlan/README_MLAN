@@ -68,6 +68,7 @@
 	  pm_keep_power=1|0 <PM keep power in suspend (default) | PM no power in suspend>
 	  shutdown_hs=1|0 <Enable HS when shutdown | No HS when shutdown (default)>
 	  cfg_11d=0|1|2 <use MLAN default | enable 11d | disable 11d>
+          wacp_mode=0|1|2 <disable WACP default | WACP mode 1 | WACP mode 2>
 	  dts_enable=0|1 <Disable DTS | Enable DTS (default)>
 	  hw_test=0|1 <Disable hardware test (default) | Enable hardware test>
 	  fw_serial=0|1 <support parallel download FW | support serial download FW (default)>
@@ -84,7 +85,7 @@
       cntry_txpwr=0|1|2
                   0: Disable setting tx power table of country (default)
                   1: Enable setting tx power table of country
-                  2: Enable setting tx power table of country and only allow use the channel in tx power table
+                  2: Enable setting rgpower table of country
 	  init_hostcmd_cfg=<init hostcmd config file name>
 		e.g. copy init_hostcmd_cfg.conf to firmware directory, init_hostcmd_cfg=nxp/init_hostcmd_cfg.conf
 	  sdio_rx_aggr=1|0 <Enable SDIO rx aggr (default) | Disable SDIO rx aggr>
@@ -110,6 +111,8 @@
                   only works with specific board and firmware.>
 	  gtk_rekey_offload=0|1|2 <disable gtk_rekey_offload|enable gtk_rekey_offload (default) | enable gtk_rekey_offload in suspend mode only>
       napi=0|1 <disable napi | enable napi>
+	host_mlme=0|1 <Operate in non-host_mlme mode (default)| Operate in host_mlme mode>
+		for supplicant/authenticator running on host side, WPA3 support is available only in host_mlme mode
 
 	Note: On some platforms (e.g. PXA910/920) double quotation marks ("") need to used
 	for module parameters.
@@ -1682,6 +1685,12 @@ hostcmd fwdump
 	Usage:
 		mlanutl mlanX hostcmd <fwdump.conf> fwdump
 
+hostcmd timesync_reset
+	This command is used to reset rolling average delta in firmware
+
+	Usage:
+	./mlanutl mlanX hostcmd <timesync.conf> timesync_reset
+
 hscfg
 	This command is used to configure the host sleep parameters.
 
@@ -2301,10 +2310,10 @@ otpuserdata
 		mlanutl mlan0 otpuserdata 10         : Get the 10-byte OTP user data
 
 passphrase
-	This command is used to set/get passphrase for WPA-PSK/WPA2-PSK mode.
+	This command is used to set/get passphrase for WPA-PSK/WPA2-PSK/WPA3-SAE mode.
 
 	Where <l>
-		ASCII string for ssid/passphrase/psk.
+		ASCII string for ssid/passphrase/psk/sae_password.
 
 	1) "0;<ssid=valid ssid>" - This will get the passphrase, AKMP
 	   for specified ssid, if none specified then it will get all.

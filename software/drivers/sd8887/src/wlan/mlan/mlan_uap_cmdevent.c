@@ -1372,6 +1372,7 @@ wlan_uap_cmd_sys_configure(pmlan_private pmpriv,
 	t_u16 req_len = 0, travel_len = 0;
 	custom_ie *cptr = MNULL;
 	mlan_status ret = MLAN_STATUS_SUCCESS;
+	MrvlIEtypes_wacp_mode_t *tlv_wacp_mode = MNULL;
 
 	ENTER();
 
@@ -1791,6 +1792,23 @@ wlan_uap_cmd_sys_configure(pmlan_private pmpriv,
 					       misc->param.cust_ie.ie_data_list,
 					       misc->param.cust_ie.len);
 			}
+		}
+		if (misc->sub_command == MLAN_OID_MISC_WACP_MODE) {
+			tlv_wacp_mode =
+				(MrvlIEtypes_wacp_mode_t *) sys_config->
+				tlv_buffer;
+			tlv_wacp_mode->header.type =
+				wlan_cpu_to_le16(TLV_TYPE_UAP_WACP_MODE);
+			tlv_wacp_mode->header.len = wlan_cpu_to_le16(1);
+			if (cmd_action == HostCmd_ACT_GEN_SET) {
+				tlv_wacp_mode->wacp_mode =
+					wlan_cpu_to_le16(misc->param.wacp_mode);
+			}
+			cmd->size =
+				wlan_cpu_to_le16(sizeof(HostCmd_DS_SYS_CONFIG) -
+						 1 + S_DS_GEN +
+						 sizeof
+						 (MrvlIEtypes_wacp_mode_t));
 		}
 	}
 done:

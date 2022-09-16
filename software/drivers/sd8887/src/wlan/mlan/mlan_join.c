@@ -7,7 +7,7 @@
  *  to the firmware.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -535,8 +535,8 @@ wlan_update_rsn_ie(mlan_private *pmpriv, MrvlIEtypes_RsnParamSet_t *ptlv_rsn_ie)
 						      + sizeof(t_u16) +
 						      pairwise_cipher_count *
 						      PAIRWISE_CIPHER_SUITE_LEN
-						      + sizeof(t_u16)),
-			       sha_256_oui, AKM_SUITE_LEN);
+						      + sizeof(t_u16)), temp,
+			       AKM_SUITE_LEN);
 			/* Shift remaining bytes of RSN IE after this */
 			memmove(pmadapter,
 				ptlv_rsn_ie->rsn_ie + (sizeof(t_u16) +

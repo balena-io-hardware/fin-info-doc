@@ -3,7 +3,7 @@
  *  @brief This file contains the handling of AP mode ioctls
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -338,6 +338,10 @@ wlan_uap_bss_ioctl_reset(IN pmlan_adapter pmadapter,
 		pmpriv->aggr_prio_tbl[i].amsdu = tos_to_tid_inv[i];
 		pmpriv->addba_reject[i] = ADDBA_RSP_STATUS_ACCEPT;
 	}
+
+	pmpriv->aggr_prio_tbl[6].amsdu = BA_STREAM_NOT_ALLOWED;
+	pmpriv->aggr_prio_tbl[7].amsdu = BA_STREAM_NOT_ALLOWED;
+
 	pmpriv->aggr_prio_tbl[6].ampdu_user =
 		pmpriv->aggr_prio_tbl[7].ampdu_user = BA_STREAM_NOT_ALLOWED;
 	pmpriv->addba_reject[6] =
@@ -696,30 +700,10 @@ wlan_uap_bss_ioctl_deauth_sta(IN pmlan_adapter pmadapter,
 	mlan_status ret = MLAN_STATUS_SUCCESS;
 	pmlan_private pmpriv = pmadapter->priv[pioctl_req->bss_index];
 	mlan_ds_bss *bss = MNULL;
-	const t_u8 bc_mac[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-	sta_node *sta_ptr = MNULL;
 
 	ENTER();
 
 	bss = (mlan_ds_bss *)pioctl_req->pbuf;
-	if (pmpriv->uap_host_based & UAP_FLAG_HOST_MLME) {
-		if (memcmp
-		    (pmpriv->adapter, bss->param.deauth_param.mac_addr, bc_mac,
-		     MLAN_MAC_ADDR_LENGTH)) {
-			sta_ptr =
-				wlan_get_station_entry(pmpriv,
-						       bss->param.deauth_param.
-						       mac_addr);
-			if (!sta_ptr) {
-				PRINTM(MCMND,
-				       "Skip deauth to station " MACSTR "\n",
-				       MAC2STR(bss->param.deauth_param.
-					       mac_addr));
-				LEAVE();
-				return ret;
-			}
-		}
-	}
 	ret = wlan_prepare_cmd(pmpriv,
 			       HOST_CMD_APCMD_STA_DEAUTH,
 			       HostCmd_ACT_GEN_SET,
@@ -1923,6 +1907,11 @@ wlan_ops_uap_ioctl(t_void *adapter, pmlan_ioctl_req pioctl_req)
 		if (misc->sub_command == MLAN_OID_MISC_OPER_CLASS)
 			status = wlan_misc_ioctl_oper_class(pmadapter,
 							    pioctl_req);
+#ifdef UAP_SUPPORT
+		if (misc->sub_command == MLAN_OID_MISC_WACP_MODE)
+			status = wlan_misc_ioctl_wacp_mode(pmadapter,
+							   pioctl_req);
+#endif
 		if (misc->sub_command == MLAN_OID_MISC_FW_DUMP_EVENT)
 			status = wlan_misc_ioctl_fw_dump_event(pmadapter,
 							       pioctl_req);

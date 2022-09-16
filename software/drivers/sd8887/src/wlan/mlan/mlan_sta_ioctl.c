@@ -1402,6 +1402,40 @@ wlan_bss_ioctl_find_bss(IN pmlan_adapter pmadapter,
 }
 
 /**
+ *  @brief Search for a BSS
+ *
+ *  @param pmadapter   A pointer to mlan_adapter structure
+ *  @param pioctl_req  A pointer to ioctl request buffer
+ *
+ *  @return            MLAN_STATUS_SUCCESS/MLAN_STATUS_PENDING --success, otherwise fail
+ */
+mlan_status
+wlan_bss_ioctl_find_bssid(IN pmlan_adapter pmadapter,
+			  IN pmlan_ioctl_req pioctl_req)
+{
+	mlan_private *pmpriv = pmadapter->priv[pioctl_req->bss_index];
+	mlan_ds_bss *bss = MNULL;
+	mlan_status ret = MLAN_STATUS_SUCCESS;
+	int i = 0;
+
+	ENTER();
+	bss = (mlan_ds_bss *)pioctl_req->pbuf;
+	i = wlan_find_bssid_in_list(pmpriv, (t_u8 *)&bss->param.bssid,
+				    MLAN_BSS_MODE_AUTO);
+	if (i < 0) {
+		PRINTM(MCMND, "Can not find bssid " MACSTR "\n",
+		       MAC2STR((t_u8 *)&bss->param.bssid));
+		pioctl_req->status_code = MLAN_ERROR_INVALID_PARAMETER;
+		LEAVE();
+		return MLAN_STATUS_FAILURE;
+	}
+	PRINTM(MCMND, "Find bssid " MACSTR "\n",
+	       MAC2STR((t_u8 *)&bss->param.bssid));
+	LEAVE();
+	return ret;
+}
+
+/**
  *  @brief Check if BSS channel is valid for Station's region
  *
  *  @param pmadapter	A pointer to mlan_adapter structure
@@ -1492,6 +1526,9 @@ wlan_bss_ioctl(IN pmlan_adapter pmadapter, IN pmlan_ioctl_req pioctl_req)
 		break;
 	case MLAN_OID_BSS_FIND_BSS:
 		status = wlan_bss_ioctl_find_bss(pmadapter, pioctl_req);
+		break;
+	case MLAN_OID_BSS_FIND_BSSID:
+		status = wlan_bss_ioctl_find_bssid(pmadapter, pioctl_req);
 		break;
 	case MLAN_OID_IBSS_BCN_INTERVAL:
 		status = wlan_bss_ioctl_beacon_interval(pmadapter, pioctl_req);

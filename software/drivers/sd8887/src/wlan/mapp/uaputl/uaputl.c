@@ -11655,6 +11655,8 @@ static command_table ap_command[] = {
 	{"sys_cfg_pmf", apcmd_sys_cfg_pmf, "\tSet/get PMF capabilities."},
 	{"uap_oper_ctrl", apcmd_uap_oper_ctrl,
 	 "\tSet/get uap operation control value."},
+	{"sys_cfg_wacp_mode", apcmd_sys_cfg_wacp_mode,
+	 "\tConfigure WACP mode."},
 	{NULL, NULL, 0}
 };
 
@@ -12588,6 +12590,16 @@ is_input_valid(valid_inputs cmd, int argc, char *argv[])
 				printf("ERR: Exactly one mode can be enabled at a time.\n");
 				ret = UAP_FAILURE;
 			}
+		}
+		break;
+	case WACPMODE:
+		if (argc != 1) {
+			printf("ERR:Incorrect number of arguments for WACPMODE\n");
+			ret = UAP_FAILURE;
+		} else if ((IS_HEX_OR_DIGIT(argv[0]) == 0) ||
+			   ((atoi(argv[0]) > 0x7))) {
+			printf("ERR: Incorrect WACPMODE Value\n");
+			ret = UAP_FAILURE;
 		}
 		break;
 	default:

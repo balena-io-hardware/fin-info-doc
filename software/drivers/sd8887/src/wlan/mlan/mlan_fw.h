@@ -5,7 +5,7 @@
  *  in MLAN module.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -1665,6 +1665,9 @@ typedef enum _ENH_PS_MODES {
 #define EVENT_TX_STATUS_REPORT               0x00000074
 
 #define EVENT_BT_COEX_WLAN_PARA_CHANGE	 0x00000076
+
+/** Card Event definition : RESET PN */
+#define EVENT_RESET_PN_ON_REKEY         0x00000092
 
 #define EVENT_EXCEED_MAX_P2P_CONN     0x00000089
 
@@ -5186,6 +5189,9 @@ typedef MLAN_PACK_START struct _MrvlIEtypes_MacAddr_t {
 /**TLV type : AP Max Station number */
 #define TLV_TYPE_UAP_MAX_STA_CNT\
 		(PROPRIETARY_TLV_BASE_ID + 0x55)	/* 0x0155 */
+/**TLV type : AP wacp mode */
+#define TLV_TYPE_UAP_WACP_MODE\
+		(PROPRIETARY_TLV_BASE_ID + 0x147)	/* 0x0247 */
 /**TLV type : AP Retry limit */
 #define TLV_TYPE_UAP_RETRY_LIMIT\
 		(PROPRIETARY_TLV_BASE_ID + 0x5d)	/* 0x015d */
@@ -5304,6 +5310,14 @@ typedef MLAN_PACK_START struct _MrvlIEtypes_max_sta_count_t {
     /** max station count */
 	t_u16 max_sta_count;
 } MLAN_PACK_END MrvlIEtypes_max_sta_count_t;
+
+/** MrvlIEtypes_wacp_mode_t */
+typedef MLAN_PACK_START struct _MrvlIEtypes_wacp_mode_t {
+    /** Header */
+	MrvlIEtypesHeader_t header;
+    /** wacp_mode */
+	t_u8 wacp_mode;
+} MLAN_PACK_END MrvlIEtypes_wacp_mode_t;
 
 /** MrvlIEtypes_sta_ageout_t */
 typedef MLAN_PACK_START struct _MrvlIEtypes_sta_ageout_t {

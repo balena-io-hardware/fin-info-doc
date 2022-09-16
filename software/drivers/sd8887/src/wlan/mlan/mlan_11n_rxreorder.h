@@ -4,7 +4,7 @@
  *  of 11n RxReordering functionalities
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -97,6 +97,7 @@ mlan_status wlan_cmd_11n_addba_req(mlan_private *priv, HostCmd_DS_COMMAND *cmd,
 void wlan_11n_cleanup_reorder_tbl(mlan_private *priv);
 RxReorderTbl *wlan_11n_get_rxreorder_tbl(mlan_private *priv, int tid, t_u8 *ta);
 void wlan_11n_rxba_sync_event(mlan_private *priv, t_u8 *event_buf, t_u16 len);
+void wlan_reset_pn_on_rekey(mlan_private *priv, t_u8 *event_buf);
 void wlan_update_rxreorder_tbl(pmlan_adapter pmadapter, t_u8 flag);
 void wlan_flush_rxreorder_tbl(pmlan_adapter pmadapter);
 void wlan_coex_ampdu_rxwinsize(pmlan_adapter pmadapter);

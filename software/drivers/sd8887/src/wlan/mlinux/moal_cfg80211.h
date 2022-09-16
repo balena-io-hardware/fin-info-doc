@@ -84,8 +84,10 @@ moal_private *woal_get_scan_interface(moal_handle *handle);
 #define HOST_MLME_AUTH_DONE			MBIT(1)
 #define HOST_MLME_ASSOC_PENDING                 MBIT(2)
 #define HOST_MLME_ASSOC_DONE                    MBIT(3)
-void woal_host_mlme_disconnect(moal_private *priv, t_u16 reason_code);
+void woal_host_mlme_disconnect(moal_private *priv, t_u16 reason_code, u8 *sa);
 void woal_host_mlme_work_queue(struct work_struct *work);
+void woal_host_mlme_process_assoc_resp(moal_private *priv,
+				       mlan_ds_misc_assoc_rsp *assoc_rsp);
 #endif
 #endif
 
@@ -211,7 +213,7 @@ void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
 #else
 				       t_u16 frame_type, bool reg
 #endif
-);
+	);
 
 int woal_cfg80211_mgmt_tx(struct wiphy *wiphy,
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 6, 0)
@@ -438,6 +440,7 @@ void woal_channel_switch_event(moal_private *priv, chan_band_info * pchan_info);
 #endif
 #endif
 
+void woal_deauth_event(moal_private *priv, int reason_code);
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
 mlan_status woal_chandef_create(moal_private *priv,
 				struct cfg80211_chan_def *chandef,
