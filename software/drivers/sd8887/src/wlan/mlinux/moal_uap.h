@@ -421,7 +421,14 @@ typedef struct _domain_info_param {
 int woal_set_get_uap_power_mode(moal_private *priv, t_u32 action,
 				mlan_ds_ps_mgmt *ps_mgmt);
 void woal_uap_set_multicast_list(struct net_device *dev);
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+int woal_uap_do_ioctl(struct net_device *dev, struct ifreq *req,
+		      void __user *data, int cmd);
+#else
 int woal_uap_do_ioctl(struct net_device *dev, struct ifreq *req, int cmd);
+#endif
+
 int woal_uap_bss_ctrl(moal_private *priv, t_u8 wait_option, int data);
 #ifdef UAP_CFG80211
 #if defined(DFS_TESTING_SUPPORT)

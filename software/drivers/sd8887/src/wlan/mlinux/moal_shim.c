@@ -1630,7 +1630,12 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 					   &priv->phandle->rx_work);
 #else
 				if (rtnl_is_locked())
-					cfg80211_sched_scan_stopped_rtnl(priv->
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+					cfg80211_sched_scan_stopped_locked(
+#else
+					cfg80211_sched_scan_stopped_rtnl(
+#endif
+									 priv->
 									 wdev->
 									 wiphy
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(4, 12, 0)
@@ -1677,7 +1682,12 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 					   &priv->phandle->rx_work);
 #else
 				if (rtnl_is_locked())
-					cfg80211_sched_scan_stopped_rtnl(priv->
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+					cfg80211_sched_scan_stopped_locked(
+#else
+					cfg80211_sched_scan_stopped_rtnl(
+#endif
+									 priv->
 									 wdev->
 									 wiphy
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(4, 12, 0)

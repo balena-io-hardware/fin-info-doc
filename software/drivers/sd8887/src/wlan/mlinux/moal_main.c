@@ -2322,6 +2322,12 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 
 	if (type == INIT_CFG_DATA) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, init_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_cfg_data_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, init_cfg,
@@ -2338,6 +2344,7 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 			     (THIS_MODULE, init_cfg, handle->hotplug_device,
 			      handle,
 			      woal_request_init_cfg_data_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2366,6 +2373,13 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 		}
 		/* 'country_txpwrlimit' holds the value of Configured Tx Power Limit */
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT,
+			      country_txpwrlimit, handle->hotplug_device,
+			      GFP_KERNEL, handle,
+			      woal_request_init_user_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG,
@@ -2384,6 +2398,7 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 			     (THIS_MODULE, country_txpwrlimit,
 			      handle->hotplug_device, handle,
 			      woal_request_init_user_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2413,6 +2428,12 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 		}
 	} else if (type == INIT_HOSTCMD_CFG_DATA) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, init_hostcmd_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_user_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, init_hostcmd_cfg,
@@ -2429,6 +2450,7 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 			     (THIS_MODULE, init_hostcmd_cfg,
 			      handle->hotplug_device, handle,
 			      woal_request_init_user_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2694,6 +2716,12 @@ woal_init_fw_dpc(moal_handle *handle)
 
 	if (dpd_data_cfg && strncmp(dpd_data_cfg, "none", strlen("none"))) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, dpd_data_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_dpd_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, dpd_data_cfg,
@@ -2710,6 +2738,7 @@ woal_init_fw_dpc(moal_handle *handle)
 			     (THIS_MODULE, dpd_data_cfg, handle->hotplug_device,
 			      handle,
 			      woal_request_init_dpd_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2741,6 +2770,12 @@ woal_init_fw_dpc(moal_handle *handle)
 	}
 	if (txpwrlimit_cfg && strncmp(txpwrlimit_cfg, "none", strlen("none"))) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, txpwrlimit_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_txpwr_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, txpwrlimit_cfg,
@@ -2757,6 +2792,7 @@ woal_init_fw_dpc(moal_handle *handle)
 			     (THIS_MODULE, txpwrlimit_cfg,
 			      handle->hotplug_device, handle,
 			      woal_request_init_txpwr_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR, "Region txpwrlimit cfg data "
@@ -2788,6 +2824,12 @@ woal_init_fw_dpc(moal_handle *handle)
 
 	if (cal_data_cfg && strncmp(cal_data_cfg, "none", strlen("none"))) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, cal_data_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_user_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, cal_data_cfg,
@@ -2804,6 +2846,7 @@ woal_init_fw_dpc(moal_handle *handle)
 			     (THIS_MODULE, cal_data_cfg, handle->hotplug_device,
 			      handle,
 			      woal_request_init_user_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -3011,6 +3054,13 @@ woal_request_fw(moal_handle *handle)
 
 	PRINTM(MMSG, "Request firmware: %s\n", handle->drv_mode.fw_name);
 	if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+		err = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
+					      handle->drv_mode.fw_name,
+					      handle->hotplug_device,
+					      GFP_KERNEL, handle,
+					      woal_request_fw_callback);
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 		err = request_firmware_nowait(THIS_MODULE, FW_ACTION_HOTPLUG,
 					      handle->drv_mode.fw_name,
@@ -3028,6 +3078,7 @@ woal_request_fw(moal_handle *handle)
 					      handle->drv_mode.fw_name,
 					      handle->hotplug_device, handle,
 					      woal_request_fw_callback);
+#endif
 #endif
 #endif
 		if (err < 0) {
@@ -3175,7 +3226,11 @@ const struct net_device_ops woal_netdev_ops = {
 	.ndo_open = woal_open,
 	.ndo_start_xmit = woal_hard_start_xmit,
 	.ndo_stop = woal_close,
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+	.ndo_siocdevprivate = woal_do_ioctl,
+#else
 	.ndo_do_ioctl = woal_do_ioctl,
+#endif
 	.ndo_set_mac_address = woal_set_mac_address,
 	.ndo_tx_timeout = woal_tx_timeout,
 	.ndo_get_stats = woal_get_stats,
@@ -3251,7 +3306,11 @@ const struct net_device_ops woal_uap_netdev_ops = {
 	.ndo_open = woal_open,
 	.ndo_start_xmit = woal_hard_start_xmit,
 	.ndo_stop = woal_close,
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+	.ndo_siocdevprivate = woal_uap_do_ioctl,
+#else
 	.ndo_do_ioctl = woal_uap_do_ioctl,
+#endif
 	.ndo_set_mac_address = woal_set_mac_address,
 	.ndo_tx_timeout = woal_tx_timeout,
 	.ndo_get_stats = woal_get_stats,
@@ -7106,7 +7165,13 @@ woal_create_dump_dir(moal_handle *phandle, char *dir_buf, int buf_size)
 		       dir_buf);
 		goto default_dir;
 	}
+
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+	ret = vfs_mkdir(&init_user_ns, path.dentry->d_inode, dentry, 0777);
+#else
 	ret = vfs_mkdir(path.dentry->d_inode, dentry, 0777);
+#endif
+
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,7,0)
 	mutex_unlock(&path.dentry->d_inode->i_mutex);
 #else

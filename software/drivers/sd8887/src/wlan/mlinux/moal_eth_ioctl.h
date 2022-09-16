@@ -269,7 +269,12 @@ Change log:
 
 #define PRIV_CMD_BOOTSLEEP            "bootsleep"
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+int woal_do_ioctl(struct net_device *dev, struct ifreq *req, void __user *data,
+		  int cmd);
+#else
 int woal_do_ioctl(struct net_device *dev, struct ifreq *req, int cmd);
+#endif
 
 /*
  * For android private commands, fixed value of ioctl is used.

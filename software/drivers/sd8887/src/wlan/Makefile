@@ -454,9 +454,9 @@ export		CC LD ccflags-y KERNELDIR
 
 ifeq ($(CONFIG_STA_SUPPORT),y)
 ifeq ($(CONFIG_UAP_SUPPORT),y)
-.PHONY: mapp/mlanconfig mapp/mlan2040coex mapp/mlanevent mapp/uaputl mapp/mlanutl clean distclean
+.PHONY: mapp/mlanconfig mapp/mlanevent mapp/uaputl mapp/mlanutl clean distclean
 else
-.PHONY: mapp/mlanconfig mapp/mlanevent mapp/mlan2040coex mapp/mlanutl clean distclean
+.PHONY: mapp/mlanconfig mapp/mlanevent mapp/mlanutl clean distclean
 endif
 else
 ifeq ($(CONFIG_UAP_SUPPORT),y)
@@ -469,8 +469,6 @@ ifeq ($(CONFIG_STA_SUPPORT),y)
 mapp/mlanconfig:
 	$(MAKE) -C $@
 mapp/mlanutl:
-	$(MAKE) -C $@
-mapp/mlan2040coex:
 	$(MAKE) -C $@
 endif
 ifeq ($(CONFIG_UAP_SUPPORT),y)
@@ -509,7 +507,6 @@ endif
 ifneq ($(APPDIR),)
 	$(MAKE) -C mapp/mlanconfig $@ INSTALLDIR=$(BINDIR)
 	$(MAKE) -C mapp/mlanutl $@ INSTALLDIR=$(BINDIR)
-	$(MAKE) -C mapp/mlan2040coex $@ INSTALLDIR=$(BINDIR)
 endif
 endif
 ifeq ($(CONFIG_UAP_SUPPORT),y)
@@ -547,7 +544,6 @@ ifneq ($(APPDIR),)
 ifeq ($(CONFIG_STA_SUPPORT),y)
 	$(MAKE) -C mapp/mlanconfig $@
 	$(MAKE) -C mapp/mlanutl $@
-	$(MAKE) -C mapp/mlan2040coex $@
 endif
 ifeq ($(CONFIG_UAP_SUPPORT),y)
 	$(MAKE) -C mapp/uaputl $@
@@ -585,7 +581,6 @@ ifneq ($(APPDIR),)
 ifeq ($(CONFIG_STA_SUPPORT),y)
 	$(MAKE) -C mapp/mlanconfig $@
 	$(MAKE) -C mapp/mlanutl $@
-	$(MAKE) -C mapp/mlan2040coex $@
 endif
 ifeq ($(CONFIG_UAP_SUPPORT),y)
 	$(MAKE) -C mapp/uaputl $@
