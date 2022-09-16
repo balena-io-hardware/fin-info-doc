@@ -44,9 +44,6 @@ typedef u64 t_ptr;
 typedef u32 t_ptr;
 #endif
 
-/** Unsigned long (4-bytes) */
-typedef unsigned long t_u32;
-
 /** max number of adapter supported */
 #define MAX_BT_ADAPTER      3
 /** Define drv_mode bit */
@@ -267,14 +264,6 @@ hexdump(char *prompt, u8 *buf, int len)
 
 #define os_wait_timeout(waitq, cond, timeout) \
          wait_event_timeout(waitq, cond, ((timeout) * HZ / 1000))
-
-/** timeval */
-typedef struct {
-	/** Time (seconds) */
-	t_u32 time_sec;
-	/** Time (micro seconds) */
-	t_u32 time_usec;
-} bt_timeval;
 
 /** bt thread structure */
 typedef struct {
@@ -565,7 +554,6 @@ struct proc_private_data {
 	struct item_data *pdata;
 	/** Private structure */
 	struct _bt_private *pbt;
-
 	/** File operations */
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
 	const struct proc_ops *fops;
@@ -585,6 +573,14 @@ struct device_proc {
 	/** pointer to proc_private_data */
 	struct proc_private_data *pfiles;
 };
+
+/** timeval */
+typedef struct {
+	/** Time (seconds) */
+	u32 time_sec;
+	/** Time (micro seconds) */
+	u32 time_usec;
+} bt_timeval;
 
 /** Private structure for the MV device */
 typedef struct _bt_private {
@@ -930,7 +926,7 @@ typedef struct _BT_HCI_CMD {
 } __ATTRIB_PACK__ BT_HCI_CMD;
 
 static inline void
-get_monotonic_time(bt_timeval *tv)
+get_monotonic_time(bt_timeval * tv)
 {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
 	struct timespec64 ts;
@@ -938,15 +934,14 @@ get_monotonic_time(bt_timeval *tv)
 	struct timespec ts;
 #endif
 
-
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
 	ktime_get_raw_ts64(&ts);
 #else
 	getrawmonotonic(&ts);
 #endif
 	if (tv) {
-		tv->time_sec = (t_u32)ts.tv_sec;
-		tv->time_usec = (t_u32)ts.tv_nsec / 1000;
+		tv->time_sec = (u32)ts.tv_sec;
+		tv->time_usec = (u32)ts.tv_nsec / 1000;
 	}
 }
 

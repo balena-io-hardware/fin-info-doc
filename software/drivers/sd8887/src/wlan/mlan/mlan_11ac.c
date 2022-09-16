@@ -3,7 +3,7 @@
  *  @brief This file contains the functions for station ioctl.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -71,6 +71,7 @@ wlan_get_center_freq_idx(IN mlan_private *pmpriv,
 				center_freq_idx = 42;
 				break;
 			}
+			/* fallthrough */
 		case 52:
 		case 56:
 		case 60:
@@ -82,6 +83,7 @@ wlan_get_center_freq_idx(IN mlan_private *pmpriv,
 				center_freq_idx = 50;
 				break;
 			}
+			/* fallthrough */
 		case 100:
 		case 104:
 		case 108:
@@ -90,6 +92,7 @@ wlan_get_center_freq_idx(IN mlan_private *pmpriv,
 				center_freq_idx = 106;
 				break;
 			}
+			/* fallthrough */
 		case 116:
 		case 120:
 		case 124:
@@ -101,6 +104,7 @@ wlan_get_center_freq_idx(IN mlan_private *pmpriv,
 				center_freq_idx = 114;
 				break;
 			}
+			/* fallthrough */
 		case 132:
 		case 136:
 		case 140:
@@ -109,6 +113,7 @@ wlan_get_center_freq_idx(IN mlan_private *pmpriv,
 				center_freq_idx = 138;
 				break;
 			}
+			/* fallthrough */
 		case 149:
 		case 153:
 		case 157:
@@ -117,6 +122,7 @@ wlan_get_center_freq_idx(IN mlan_private *pmpriv,
 				center_freq_idx = 155;
 				break;
 			}
+			/* fallthrough */
 		case 165:
 		case 169:
 		case 173:
@@ -125,6 +131,7 @@ wlan_get_center_freq_idx(IN mlan_private *pmpriv,
 				center_freq_idx = 171;
 				break;
 			}
+			/* fallthrough */
 		case 184:
 		case 188:
 		case 192:
@@ -133,6 +140,7 @@ wlan_get_center_freq_idx(IN mlan_private *pmpriv,
 				center_freq_idx = 190;
 				break;
 			}
+			/* fallthrough */
 
 		default:	/* error. go to the default */
 			center_freq_idx = 42;

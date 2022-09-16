@@ -3,7 +3,7 @@
   * @brief This file contains standard ioctl functions
   *
   *
-  * Copyright 2014-2020 NXP
+  * Copyright 2014-2021 NXP
   *
   * This software file (the File) is distributed by NXP
   * under the terms of the GNU General Public License Version 2, June 1991
@@ -59,6 +59,9 @@ static t_u8 SupportedAdhocBand[] = {
 ********************************************************/
 
 extern int cfg80211_wext;
+#ifdef UAP_SUPPORT
+extern int wacp_mode;
+#endif
 
 /********************************************************
 			Local Functions
@@ -255,6 +258,16 @@ woal_warm_reset(moal_private *priv)
 #endif /* STA_SUPPORT && UAP_SUPPORT */
 #endif /* WIFI_DIRECT_SUPPORT && V14_FEATURE */
 	}
+
+#ifdef UAP_SUPPORT
+	if (wacp_mode) {
+		/* set WACP mode in uap */
+		if (woal_set_wacp_mode(handle, MOAL_IOCTL_WAIT)) {
+			ret = MLAN_STATUS_FAILURE;
+			goto done;
+		}
+	}
+#endif
 
 	/* Enable interfaces */
 	for (intf_num = 0; intf_num < handle->priv_num; intf_num++) {

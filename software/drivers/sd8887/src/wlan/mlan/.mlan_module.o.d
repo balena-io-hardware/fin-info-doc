@@ -1,5 +1,5 @@
 mlan_module.o: \
- /temp/src_SD-8887C4X15687_A2-MGPL/cdriver/SD-UAPSTA-BT-8887-U16-MMC-W15.68.19.p48-15.26.19.p48-C4X15687_A2-MGPL/wlan_src/mlan/mlan_module.c \
+ /temp/src_SD-8887C4X15698_A2-MGPL/cdriver/SD-UAPSTA-BT-8887-U16-MMC-W15.68.19.p59-15.26.19.p59-C4X15698_A2-MGPL/wlan_src/mlan/mlan_module.c \
  include/linux/kconfig.h include/generated/autoconf.h \
  include/linux/module.h include/linux/list.h include/linux/types.h \
  include/uapi/linux/types.h arch/x86/include/uapi/asm/types.h \
@@ -144,5 +144,5 @@ mlan_module.o: \
  include/linux/moduleparam.h include/linux/extable.h \
  include/linux/rbtree_latch.h arch/x86/include/asm/module.h \
  include/asm-generic/module.h \
- /temp/src_SD-8887C4X15687_A2-MGPL/cdriver/SD-UAPSTA-BT-8887-U16-MMC-W15.68.19.p48-15.26.19.p48-C4X15687_A2-MGPL/wlan_src/mlan/mlan_decl.h \
- /temp/src_SD-8887C4X15687_A2-MGPL/cdriver/SD-UAPSTA-BT-8887-U16-MMC-W15.68.19.p48-15.26.19.p48-C4X15687_A2-MGPL/wlan_src/mlan/mlan_ioctl.h
+ /temp/src_SD-8887C4X15698_A2-MGPL/cdriver/SD-UAPSTA-BT-8887-U16-MMC-W15.68.19.p59-15.26.19.p59-C4X15698_A2-MGPL/wlan_src/mlan/mlan_decl.h \
+ /temp/src_SD-8887C4X15698_A2-MGPL/cdriver/SD-UAPSTA-BT-8887-U16-MMC-W15.68.19.p59-15.26.19.p59-C4X15698_A2-MGPL/wlan_src/mlan/mlan_ioctl.h

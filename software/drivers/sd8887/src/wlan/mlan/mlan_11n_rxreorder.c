@@ -4,7 +4,7 @@
  *  driver.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -802,6 +802,32 @@ wlan_reset_pn_value(mlan_private *pmpriv, mlan_ds_encrypt_key *key)
 	}
 
 done:
+	LEAVE();
+	return;
+}
+
+/**
+ *  @bref This function is to reset PN value when rekey
+ *  @param pmpriv      pointer to mlan_private
+ *  @param event_buf  A pointer to event buf
+ *
+ *  @return                     N/A
+ */
+void
+wlan_reset_pn_on_rekey(mlan_private *priv, t_u8 *event_buf)
+{
+	t_u8 tid = 0;
+	RxReorderTbl *rx_reor_tbl_ptr = MNULL;
+	ENTER();
+	for (tid = 0; tid < 7; tid++) {
+		rx_reor_tbl_ptr =
+			wlan_11n_get_rxreorder_tbl(priv, tid, event_buf);
+
+		if (rx_reor_tbl_ptr) {
+			rx_reor_tbl_ptr->hi_curr_rx_count32 = 0xffffffff;
+			rx_reor_tbl_ptr->lo_curr_rx_count16 = 0;
+		}
+	}
 	LEAVE();
 	return;
 }

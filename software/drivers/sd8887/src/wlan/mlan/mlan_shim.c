@@ -305,6 +305,7 @@ mlan_register(IN pmlan_device pmdevice, OUT t_void **ppmlan_adapter)
 	MASSERT(pcb->moal_spin_unlock);
 	MASSERT(pcb->moal_hist_data_add);
 	MASSERT(pcb->moal_updata_peer_signal);
+	MASSERT(pcb->moal_do_div);
 	/* Save pmoal_handle */
 	pmadapter->pmoal_handle = pmdevice->pmoal_handle;
 
@@ -363,7 +364,6 @@ mlan_register(IN pmlan_device pmdevice, OUT t_void **ppmlan_adapter)
 	pmadapter->multiple_dtim = pmdevice->multi_dtim;
 	pmadapter->inact_tmo = pmdevice->inact_tmo;
 	pmadapter->init_para.drcs_chantime_mode = pmdevice->drcs_chantime_mode;
-	pmadapter->init_para.fw_region = pmdevice->fw_region;
 	pmadapter->hs_wake_interval = pmdevice->hs_wake_interval;
 	if (pmdevice->indication_gpio != 0xff) {
 		pmadapter->ind_gpio = pmdevice->indication_gpio & 0x0f;

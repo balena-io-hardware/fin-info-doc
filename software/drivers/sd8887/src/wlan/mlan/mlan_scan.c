@@ -6,7 +6,7 @@
  *  for sending scan commands to the firmware.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -6201,7 +6201,7 @@ wlan_scan_specific_ssid(IN mlan_private *pmpriv,
 
 	memcpy(pmpriv->adapter, pscan_cfg->ssid_list[0].ssid,
 	       preq_ssid->ssid, preq_ssid->ssid_len);
-	pscan_cfg->keep_previous_scan = MTRUE;
+	pscan_cfg->keep_previous_scan = MFALSE;
 
 	ret = wlan_scan_networks(pmpriv, pioctl_buf, pscan_cfg);
 

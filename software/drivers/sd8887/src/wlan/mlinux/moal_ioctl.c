@@ -837,6 +837,14 @@ woal_request_set_multicast_list(moal_private *priv, struct net_device *dev)
 
 	ENTER();
 
+#ifdef STA_SUPPORT
+	if (priv->phandle->scan_pending_on_block == MTRUE) {
+		PRINTM(MERROR,
+		       "Scan is pending, woal_request_set_multicast_list failed");
+		LEAVE();
+		return;
+	}
+#endif
 	/* Allocate an IOCTL request buffer */
 	req = (mlan_ioctl_req *)woal_alloc_mlan_ioctl_req(sizeof(mlan_ds_bss));
 	if (req == NULL) {
@@ -863,8 +871,9 @@ woal_request_set_multicast_list(moal_private *priv, struct net_device *dev)
 			bss->param.multicast_list.mode = MLAN_ALL_MULTI_MODE;
 	}
 
+	PRINTM(MCMND, "%s set multicast_list\n", dev->name);
 	/* Send IOCTL request to MLAN */
-	status = woal_request_ioctl(priv, req, MOAL_NO_WAIT);
+	status = woal_request_ioctl(priv, req, MOAL_IOCTL_WAIT);
 	if (status != MLAN_STATUS_PENDING)
 		kfree(req);
 done:
@@ -4473,6 +4482,46 @@ woal_find_best_network(moal_private *priv, t_u8 wait_option,
 		       (int)ssid_bssid->idx);
 	}
 
+done:
+	if (ret != MLAN_STATUS_PENDING)
+		kfree(req);
+	LEAVE();
+	return ret;
+}
+
+/**
+ *  @brief Find the best network to associate
+ *
+ *  @param priv             A pointer to moal_private structure
+ *  @param bssid                       A pointer to bssid
+ *
+ *  @return                     MLAN_STATUS_SUCCESS/MLAN_STATUS_PENDING -- success, otherwise fail
+ */
+mlan_status
+woal_find_bssid(moal_private *priv, mlan_802_11_mac_addr bssid)
+{
+	mlan_ioctl_req *req = NULL;
+	mlan_ds_bss *bss = NULL;
+	mlan_status ret = MLAN_STATUS_SUCCESS;
+
+	ENTER();
+	/* Allocate an IOCTL request buffer */
+	req = woal_alloc_mlan_ioctl_req(sizeof(mlan_ds_bss));
+	if (req == NULL) {
+		ret = MLAN_STATUS_FAILURE;
+		goto done;
+	}
+
+	/* Fill request buffer */
+	bss = (mlan_ds_bss *)req->pbuf;
+	req->req_id = MLAN_IOCTL_BSS;
+	req->action = MLAN_ACT_GET;
+	bss->sub_command = MLAN_OID_BSS_FIND_BSSID;
+
+	memcpy(&bss->param.bssid, bssid, sizeof(mlan_802_11_mac_addr));
+
+	/* Send IOCTL request to MLAN */
+	ret = woal_request_ioctl(priv, req, MOAL_IOCTL_WAIT);
 done:
 	if (ret != MLAN_STATUS_PENDING)
 		kfree(req);

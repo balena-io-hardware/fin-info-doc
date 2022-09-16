@@ -1,7 +1,7 @@
 ===============================================================================
 			U S E R  M A N U A L
 
- Copyright 2014-2020 NXP
+ Copyright 2014-2021 NXP
 
 
 1) FOR DRIVER BUILD
@@ -52,6 +52,7 @@
 	  pm_keep_power=1|0 <PM keep power in suspend (default) | PM no power in suspend>
 	  shutdown_hs=1|0 <Enable HS when shutdown | No HS when shutdown (default)>
 	  cfg_11d=0|1|2 <use MLAN default | enable 11d | disable 11d>
+          wacp_mode=0|1|2 <disable WACP default | WACP mode 1 | WACP mode 2>
 	  dts_enable=0|1 <Disable DTS | Enable DTS (default)>
 	  hw_test=0|1 <Disable hardware test (default) | Enable hardware test>
 	  fw_serial=0|1 <support parallel download FW | support serial download FW (default)>
@@ -324,6 +325,7 @@ sys_cfg_80211d [state STATE] [country COUNTRY]
 uap_stats
 sys_cfg_tdls_ext_cap [CONFIG_FILE]
 sys_cfg_restrict_client_mode [<ENABLE> [MODE_CONFIG]]
+sys_cfg_wacp_mode [Mode]
 
 -------------------
 Details of Commands
@@ -2461,6 +2463,21 @@ restrict_client_mode
 	User should make sure that the mode advertized by uAP in beacons
 	(i.e. combination of supported/extended rates IE and capability IEs)
 	is superset of the mode allowed for ex-STA associations using this TLV.
+
+sys_cfg_wacp_mode
+-----------------
+    "./uaputl.exe sys_cfg_wacp_mode [MODE]"
+
+    This commands is used to configure WACP mode.
+
+    <MODE>       0 - default mode, disable WACP
+                 1 - enable WACP mode 1
+                 2 - enable WACP mode 2
+
+    Examples:
+	./uaputl.exe sys_cfg_wacp_mode 1   : Enable WACP Mode 1
+	./uaputl.exe sys_cfg_wacp_mode 0   : Disable WACP Mode
+
 
 uap_oper_ctrl
 -------------
