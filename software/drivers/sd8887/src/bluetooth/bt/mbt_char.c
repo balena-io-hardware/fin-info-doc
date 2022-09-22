@@ -121,12 +121,20 @@ mbtchar_chmod(char *name, mode_t mode)
 	newattrs.ia_mode = (mode & S_IALLUGO) | (inode->i_mode & ~S_IALLUGO);
 	newattrs.ia_valid = ATTR_MODE | ATTR_CTIME;
 	if (inode->i_op->setattr)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+		ret = inode->i_op->setattr(&init_user_ns, path.dentry, &newattrs);
+#else
 		ret = inode->i_op->setattr(path.dentry, &newattrs);
+#endif
 	else
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+		ret = simple_setattr(&init_user_ns, path.dentry, &newattrs);
+#else
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 35)
 		ret = simple_setattr(path.dentry, &newattrs);
 #else
 		ret = inode_setattr(inode, &newattrs);
+#endif
 #endif
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,7,0)
@@ -203,12 +211,20 @@ mbtchar_chown(char *name, uid_t user, gid_t group)
 		newattrs.ia_valid |=
 			ATTR_KILL_SUID | ATTR_KILL_SGID | ATTR_KILL_PRIV;
 	if (inode->i_op->setattr)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+		ret = inode->i_op->setattr(&init_user_ns, path.dentry, &newattrs);
+#else
 		ret = inode->i_op->setattr(path.dentry, &newattrs);
+#endif
 	else
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+		ret = simple_setattr(&init_user_ns, path.dentry, &newattrs);
+#else
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 35)
 		ret = simple_setattr(path.dentry, &newattrs);
 #else
 		ret = inode_setattr(inode, &newattrs);
+#endif
 #endif
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,7,0)
