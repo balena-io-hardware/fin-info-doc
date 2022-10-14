@@ -3,7 +3,7 @@
  *  @brief This file contains functions for 11n Aggregation.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -352,6 +352,7 @@ wlan_11n_deaggregate_pkt(mlan_private *priv, pmlan_buffer pmbuf)
 		case MLAN_STATUS_FAILURE:
 			PRINTM(MERROR, "Deaggr, send to moal failed\n");
 			daggr_mbuf->status_code = MLAN_ERROR_PKT_INVALID;
+			/* fallthrough */
 		case MLAN_STATUS_SUCCESS:
 			wlan_recv_packet_complete(pmadapter, daggr_mbuf, ret);
 			break;

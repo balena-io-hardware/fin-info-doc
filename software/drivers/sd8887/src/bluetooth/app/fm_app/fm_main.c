@@ -30,6 +30,8 @@ Change log:
 #include <getopt.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/epoll.h>
+#include <sys/time.h>
 #include <fcntl.h>
 #include <errno.h>
 #include "fm.h"
@@ -60,6 +62,10 @@ static struct option main_options[] = {
 	{0, 0, 0, 0}
 };
 
+struct epoll_event event_test;
+static int ep_fd = -1;
+static int ep_ret;
+
 /**
  *  @brief                dump HCI cmd/evt
  *  @param pref      data pref for dump
@@ -86,6 +92,76 @@ mrvl_hex_dump(char *pref, int width, uint8_t * buf, int len)
 	if (i && n != 1) {
 		printf("\n");
 	}
+}
+
+/**
+ *  @brief this function creat event to be monitored by epoll
+ *
+ *  @return void
+ */
+void
+init_epoll_event(int uart_fd)
+{
+	int ret = 0;
+	ep_fd = epoll_create(1);
+	event_test.events = EPOLLIN;
+	event_test.data.fd = uart_fd;
+	ret = epoll_ctl(ep_fd, EPOLL_CTL_ADD, uart_fd, &event_test);
+	if (ret != 0) {
+		printf("set epoll error!\n");
+	}
+}
+
+/**
+ *  @brief this function reads serial port
+ *
+ *  @return number of bytes on success, otherwise error code
+ */
+int
+read_hci_event(int fd, unsigned char *buf, int size)
+{
+	int remain, r;
+	int count = 0;
+	if (size <= 0) {
+		printf("Invalid size arguement!");
+		return -1;
+	}
+	// printf("%s: Wait for Command Compete Event from SOC", __FUNCTION__);
+
+	/* The first byte identifies the packet type. For HCI event packets, it
+	   should be 0x04, so we read until we get to the 0x04. */
+	while (1) {
+		r = read(fd, buf, 1);
+		if (r <= 0)
+			return -1;
+		if (buf[0] == 0x04)
+			break;
+	}
+	count++;
+	/* The next two bytes are the event code and parameter total length. */
+	while (count < 3) {
+		r = read(fd, buf + count, 3 - count);
+		if (r <= 0)
+			return -1;
+		count += r;
+	}
+	/* Now we read the parameters. */
+	if (buf[2] < (size - 3))
+		remain = buf[2];
+	else
+		remain = size - 3;
+
+	do {
+		ep_ret = epoll_wait(ep_fd, &event_test, 1, 100);
+	}
+	while (ep_ret <= 0);
+	while ((count - 3) < remain) {
+		r = read(fd, buf + count, remain - (count - 3));
+		if (r <= 0)
+			return -1;
+		count += r;
+	}
+	return count;
 }
 
 /**
@@ -155,11 +231,13 @@ fm_wait_for_cmd_complete(int dd, uint8_t ogf, uint16_t ocf)
 	memset(ecc, 0, sizeof(evt_cmd_complete));
 
 	while (1) {
-		len = read(dd, buf, HCI_MAX_EVENT_SIZE);
-		if (len < 0) {
-			perror("Read failed");
-			exit(EXIT_FAILURE);
+		// check read port ready
+		do {
+			ep_ret = epoll_wait(ep_fd, &event_test, 1, 100);
 		}
+		while (ep_ret <= 0);
+
+		len = read_hci_event(dd, buf, HCI_MAX_EVENT_SIZE);
 
 		hdr = (void *)(buf + 1);
 		ptr = buf + (1 + HCI_EVENT_HDR_SIZE);
@@ -301,6 +379,7 @@ main(int argc, char *argv[])
 	strcat(dev, optstr);
 
 	fd = init_chardev(dev);
+	init_epoll_event(fd);
 
 	argv++;
 	argc--;

@@ -2015,7 +2015,6 @@ wlan_set_regiontable(mlan_private *pmpriv, t_u8 region, t_u8 band)
 	region_chan_t region_chan_old[MAX_REGION_CHANNEL_NUM];
 	t_u8 cfp_code_bg = region;
 	t_u8 cfp_code_a = region;
-
 	ENTER();
 
 	memcpy(pmadapter, region_chan_old, pmadapter->region_channel,

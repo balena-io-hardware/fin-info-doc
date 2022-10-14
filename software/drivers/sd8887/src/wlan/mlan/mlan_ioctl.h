@@ -3,7 +3,7 @@
  *  @brief This file declares the IOCTL data structures and APIs.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -83,6 +83,7 @@ enum _mlan_ioctl_req_id {
 #ifdef UAP_SUPPORT
 	MLAN_OID_UAP_ADD_STATION = 0x0002001C,
 #endif
+	MLAN_OID_BSS_FIND_BSSID = 0x0002001D,
 
 	/* Radio Configuration Group */
 	MLAN_IOCTL_RADIO_CFG = 0x00030000,
@@ -299,6 +300,9 @@ enum _mlan_ioctl_req_id {
 	MLAN_OID_MISC_TX_AMPDU_PROT_MODE = 0x00200068,
 	MLAN_OID_MISC_GET_CHAN_TRPC_CFG = 0x00200070,
 	MLAN_OID_MISC_GET_REGIONPWR_CFG = 0x00200071,
+#ifdef UAP_SUPPORT
+	MLAN_OID_MISC_WACP_MODE = 0x00200080,
+#endif
 };
 
 /** Sub command size */
@@ -1737,7 +1741,8 @@ typedef struct MLAN_PACK_START _ExtCap_t {
 	t_u8 NCC:1;		/* bit 67 */
 	t_u8 rsvdBit66:1;	/* bit 66 */
 	t_u8 chanSchedMgnt:1;	/* bit 65 */
-	t_u8 MaxAMSDU:2;	/* bit 63-bit 64 */
+	t_u8 MaxAMSDU1:1;	/* bit 64 */
+	t_u8 MaxAMSDU0:1;	/* bit 63 */
 	t_u8 OperModeNtf:1;	/* bit 62 */
 	t_u8 TDLSWildBandwidth:1;	/* bit 61 */
 	t_u8 rsvdBit60:1;	/* bit 60 */
@@ -1869,7 +1874,8 @@ typedef struct MLAN_PACK_START _ExtCap_t {
 	t_u8 rsvdBit60:1;	/* bit 60 */
 	t_u8 TDLSWildBandwidth:1;	/* bit 61 */
 	t_u8 OperModeNtf:1;	/* bit 62 */
-	t_u8 MaxAMSDU:2;	/* bit 63-bit 64 */
+	t_u8 MaxAMSDU0:1;	/* bit 63 */
+	t_u8 MaxAMSDU1:1;	/* bit 64 */
 	t_u8 chanSchedMgnt:1;	/* bit 65 */
 	t_u8 rsvdBit66:1;	/* bit 66 */
 	t_u8 NCC:1;		/* bit 67 */
@@ -2315,7 +2321,7 @@ enum _mlan_auth_mode {
 
 /**Enumeration for AssocAgent authentication mode, sync from FW.*/
 typedef enum {
-	AssocAgentAuth_Open,
+	AssocAgentAuth_Open = 0,
 	AssocAgentAuth_Shared,
 	AssocAgentAuth_FastBss,
 	AssocAgentAuth_FastBss_Skip,
@@ -4379,6 +4385,9 @@ typedef struct _mlan_ds_misc_cfg {
 		mlan_ds_misc_acs acs;
 		mlan_ds_misc_chan_trpc_cfg trpc_cfg;
 		mlan_ds_misc_chnrgpwr_cfg rgchnpwr_cfg;
+#ifdef UAP_SUPPORT
+		t_u8 wacp_mode;
+#endif
 	} param;
 } mlan_ds_misc_cfg, *pmlan_ds_misc_cfg;
 

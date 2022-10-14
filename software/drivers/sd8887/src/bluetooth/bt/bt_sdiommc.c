@@ -3,7 +3,7 @@
  *  related functions.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -856,6 +856,12 @@ sd_download_firmware_w_helper(bt_private *priv)
 
 	PRINTM(MSG, "BT Request firmware: %s\n", cur_fw_name);
 	if (bt_req_fw_nowait) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+		ret = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
+					      cur_fw_name, priv->hotplug_device,
+					      GFP_KERNEL, priv,
+					      sd_request_fw_callback);
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 		ret = request_firmware_nowait(THIS_MODULE, FW_ACTION_HOTPLUG,
 					      cur_fw_name, priv->hotplug_device,
@@ -870,6 +876,7 @@ sd_download_firmware_w_helper(bt_private *priv)
 		ret = request_firmware_nowait(THIS_MODULE,
 					      cur_fw_name, priv->hotplug_device,
 					      priv, sd_request_fw_callback);
+#endif
 #endif
 #endif
 		if (ret < 0)

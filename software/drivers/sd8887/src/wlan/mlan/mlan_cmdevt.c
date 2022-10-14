@@ -4,7 +4,7 @@
  *  @brief This file contains the handling of CMD/EVENT in MLAN
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -1519,12 +1519,6 @@ wlan_prepare_cmd(IN mlan_private *pmpriv,
 	}
 #endif
 	wlan_release_cmd_lock(pmadapter);
-	PRINTM_NETINTF(MCMND, pcmd_node->priv);
-	PRINTM(MCMND, "QUEUE_CMD: cmd=0x%x is queued\n",
-	       wlan_le16_to_cpu(*
-				((t_u16 *)(pcmd_node->cmdbuf->pbuf +
-					   pcmd_node->cmdbuf->data_offset))));
-
 done:
 	LEAVE();
 	return ret;
@@ -1618,6 +1612,9 @@ wlan_insert_cmd_to_pending_q(IN mlan_adapter *pmadapter,
 				       (pmlan_linked_list)pcmd_node,
 				       MNULL, MNULL);
 	}
+
+	PRINTM_NETINTF(MCMND, pcmd_node->priv);
+	PRINTM(MCMND, "QUEUE_CMD: cmd=0x%x is queued\n", command);
 
 done:
 	LEAVE();
@@ -3647,14 +3644,11 @@ wlan_adapter_get_hw_spec(IN pmlan_adapter pmadapter)
 			goto done;
 		}
 	}
-	/* Get FW region and cfp tables */
-	if (pmadapter->init_para.fw_region) {
-		ret = wlan_prepare_cmd(priv, HostCmd_CMD_CHAN_REGION_CFG,
-				       HostCmd_ACT_GEN_GET, 0, MNULL, MNULL);
-		if (ret) {
-			ret = MLAN_STATUS_FAILURE;
-			goto done;
-		}
+	ret = wlan_prepare_cmd(priv, HostCmd_CMD_CHAN_REGION_CFG,
+			       HostCmd_ACT_GEN_GET, 0, MNULL, MNULL);
+	if (ret) {
+		ret = MLAN_STATUS_FAILURE;
+		goto done;
 	}
 	/*
 	 * Get HW spec
@@ -5897,9 +5891,10 @@ wlan_cmd_802_11_supplicant_pmk(IN pmlan_private pmpriv,
 		passphrase_flag = 1;
 	}
 	if ((cmd_action == HostCmd_ACT_GEN_SET) &&
-	    ((ssid_flag || bssid_flag) && (!pmk_flag && !passphrase_flag))) {
+	    ((ssid_flag || bssid_flag) && (!pmk_flag && !passphrase_flag)
+	    )) {
 		PRINTM(MERROR,
-		       "Invalid case,ssid/bssid present without pmk or passphrase\n");
+		       "Invalid case,ssid/bssid present without pmk, passphrase or sae password\n");
 		LEAVE();
 		return MLAN_STATUS_FAILURE;
 	}

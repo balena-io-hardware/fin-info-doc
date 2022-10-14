@@ -3,7 +3,7 @@
   * @brief This file contains private ioctl functions
   *
   *
-  * Copyright 2014-2020 NXP
+  * Copyright 2014-2021 NXP
   *
   * This software file (the File) is distributed by NXP
   * under the terms of the GNU General Public License Version 2, June 1991
@@ -81,6 +81,7 @@ static t_u8 SupportedAdhocBand[] = {
 #ifdef UAP_SUPPORT
 /** Network device handlers for uAP */
 extern const struct net_device_ops woal_uap_netdev_ops;
+extern int wacp_mode;
 #endif
 #ifdef STA_SUPPORT
 /** Network device handlers for STA */
@@ -4894,6 +4895,16 @@ woal_priv_warmreset(moal_private *priv, t_u8 *respbuf, t_u32 respbuflen)
 #endif /* STA_SUPPORT && UAP_SUPPORT */
 #endif /* WIFI_DIRECT_SUPPORT && V14_FEATURE */
 	}
+
+#ifdef UAP_SUPPORT
+	if (wacp_mode) {
+		/* set WCP Mode in uap */
+		if (woal_set_wacp_mode(handle, MOAL_IOCTL_WAIT)) {
+			ret = MLAN_STATUS_FAILURE;
+			goto done;
+		}
+	}
+#endif
 
 	/* Enable interfaces */
 	for (intf_num = 0; intf_num < handle->priv_num; intf_num++) {
@@ -10875,6 +10886,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 38;
 				break;
 			}
+			/* fallthrough */
 		case 44:
 		case 48:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10885,6 +10897,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 42;
 				break;
 			}
+			/* fallthrough */
 		case 52:
 		case 56:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10892,6 +10905,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 54;
 				break;
 			}
+			/* fallthrough */
 		case 60:
 		case 64:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10905,6 +10919,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 50;
 				break;
 			}
+			/* fallthrough */
 		case 68:
 		case 72:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10912,6 +10927,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 70;
 				break;
 			}
+			/* fallthrough */
 		case 76:
 		case 80:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10922,6 +10938,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 74;
 				break;
 			}
+			/* fallthrough */
 		case 84:
 		case 88:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10929,6 +10946,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 86;
 				break;
 			}
+			/* fallthrough */
 		case 92:
 		case 96:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10939,6 +10957,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 90;
 				break;
 			}
+			/* fallthrough */
 		case 100:
 		case 104:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10946,6 +10965,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 102;
 				break;
 			}
+			/* fallthrough */
 		case 108:
 		case 112:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10956,6 +10976,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 106;
 				break;
 			}
+			/* fallthrough */
 		case 116:
 		case 120:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10963,6 +10984,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 118;
 				break;
 			}
+			/* fallthrough */
 		case 124:
 		case 128:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10981,6 +11003,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 134;
 				break;
 			}
+			/* fallthrough */
 		case 140:
 		case 144:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -10997,6 +11020,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 151;
 				break;
 			}
+			/* fallthrough */
 		case 157:
 		case 161:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -11007,6 +11031,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 155;
 				break;
 			}
+			/* fallthrough */
 		case 165:
 		case 169:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -11014,6 +11039,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 167;
 				break;
 			}
+			/* fallthrough */
 		case 173:
 		case 177:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -11024,6 +11050,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 171;
 				break;
 			}
+			/* fallthrough */
 		case 184:
 		case 188:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -11031,6 +11058,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 186;
 				break;
 			}
+			/* fallthrough */
 		case 192:
 		case 196:
 			if (chan_bw == CHANNEL_BW_40MHZ_ABOVE ||
@@ -11041,6 +11069,7 @@ woal_get_center_freq_idx(IN moal_private *priv,
 				center_freq_idx = 190;
 				break;
 			}
+			/* fallthrough */
 
 		default:	/* error. go to the default */
 			center_freq_idx = 42;
@@ -13331,12 +13360,21 @@ wlan_get_scan_table_ret_entry(BSSDescriptor_t *pbss_desc,
  *
  *  @return          0 --success, otherwise fail
  */
-int
-woal_do_ioctl(struct net_device *dev, struct ifreq *req, int cmd)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+int woal_do_ioctl(struct net_device *dev, struct ifreq *req, void __user *data,
+		  int cmd)
+#else
+int woal_do_ioctl(struct net_device *dev, struct ifreq *req, int cmd)
+#endif
 {
 	int ret = 0;
 
 	ENTER();
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+	if (in_compat_syscall()) /* not implemented yet */
+		return -EOPNOTSUPP;
+#endif
 
 	PRINTM(MINFO, "woal_do_ioctl: ioctl cmd = 0x%x\n", cmd);
 	switch (cmd) {

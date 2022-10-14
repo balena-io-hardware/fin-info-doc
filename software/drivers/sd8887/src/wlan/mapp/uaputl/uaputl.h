@@ -802,6 +802,7 @@ typedef enum {
 	GWK_CIPHER,
 	RESTRICT_CLIENT_MODE,
 	AKM_SUITE,
+	WACPMODE
 } valid_inputs;
 
 /** Message verbosity level */
@@ -2438,6 +2439,16 @@ typedef struct _uap_operation_ctrl {
     /**uap operation control */
 	struct eth_priv_uap_oper_ctrl uap_oper;
 } uap_operation_ctrl;
+
+#define MRVL_AP_WACP_MODE_TLV_ID        (PROPRIETARY_TLV_BASE_ID + 0x147)
+
+/** TLV buffer : WACP Mode*/
+typedef PACK_START struct _tlvbuf_wacp_mode_ {
+    /** Header */
+	TLVHEADER;
+    /** WACP mode*/
+	t_u8 wacp_mode;
+} PACK_END tlvbuf_wacp_mode;
 
 /** Function Prototype Declaration */
 int mac2raw(char *mac, t_u8 *raw);

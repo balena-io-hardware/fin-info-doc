@@ -3,7 +3,7 @@
   * @brief This file contains wlan driver specific defines etc.
   *
   *
-  * Copyright 2014-2020 NXP
+  * Copyright 2014-2021 NXP
   *
   * This software file (the File) is distributed by NXP
   * under the terms of the GNU General Public License Version 2, June 1991
@@ -222,8 +222,10 @@ Change log:
 #define write_can_lock(X) 1
 #endif
 
-/** enable FW region */
-#define FW_REGION_ENABLE    1
+/** country txpower mode */
+#define CNTRY_TXPOWER_MODE  1
+/** country rgpower mode */
+#define CNTRY_RGPOWER_MODE  2
 
 /** Define BOOLEAN */
 typedef t_u8 BOOLEAN;
@@ -984,7 +986,18 @@ struct tx_status_info {
 /** woal event type */
 enum woal_event_type {
 	WOAL_EVENT_CHAN_SWITCH,
+	WOAL_EVENT_RX_MGMT_PKT,
+	WOAL_EVENT_DEAUTH,
+	WOAL_EVENT_ASSOC_RESP,
+
 };
+
+typedef struct _woal_evt_buf {
+	/** Event len */
+	t_u16 event_len;
+	/** Event buffer */
+	t_u8 event_buf[1024];
+} woal_evt_buf;
 
 /** woal event */
 struct woal_event {
@@ -996,6 +1009,9 @@ struct woal_event {
 	void *priv;
 	union {
 		chan_band_info chan_info;
+		mlan_ds_misc_assoc_rsp assoc_resp;
+		int reason_code;
+		woal_evt_buf evt;
 	};
 };
 
@@ -1100,6 +1116,10 @@ struct _moal_private {
 	t_u8 current_addr[ETH_ALEN];
 	/** Media connection status */
 	BOOLEAN media_connected;
+	/** mclist work queue */
+	struct workqueue_struct *mclist_workqueue;
+	/** csa work */
+	struct work_struct mclist_work;
 	/** Statistics of tcp ack tx dropped */
 	t_u32 tcp_ack_drop_cnt;
 	/** Statistics of tcp ack tx in total from kernel */
@@ -1174,6 +1194,8 @@ struct _moal_private {
 	t_u8 conn_wep_key[MAX_WEP_KEY_SIZE];
     /** connection param */
 	struct cfg80211_connect_params sme_current;
+	/* associcate bss */
+	struct cfg80211_bss *assoc_bss;
 #endif
 	t_u8 wait_target_ap_pmkid;
 	wait_queue_head_t okc_wait_q __ATTRIB_ALIGN__;
@@ -1276,6 +1298,8 @@ struct _moal_private {
 	t_u8 host_mlme;
     /** flag for auth */
 	t_u8 auth_flag;
+    /** flag for auth algorithm */
+	t_u16 auth_alg;
 #endif
 #endif				/* STA_SUPPORT */
 #endif				/* STA_CFG80211 */
@@ -1819,7 +1843,7 @@ extern t_u32 drvdbg;
 } while (0)
 #define	PRINTM_MERROR(level, msg...) do { \
 	woal_print(level, msg); \
-	if (drvdbg & MERROR) printk(KERN_ERR msg); \
+	if (drvdbg & MERROR) printk(KERN_DEBUG msg); \
 } while (0)
 #define	PRINTM_MFATAL(level, msg...) do { \
 	woal_print(level, msg); \
@@ -2006,7 +2030,8 @@ woal_get_priv_bss_type(moal_handle *handle, mlan_bss_type bss_type)
 	return NULL;
 }
 
-static inline void woal_get_monotonic_time(wifi_timeval *tv)
+static inline void
+woal_get_monotonic_time(wifi_timeval * tv)
 {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
 	struct timespec64 ts;
@@ -2502,6 +2527,7 @@ void woal_reassoc_timer_func(void *context);
 t_void woal_main_work_queue(struct work_struct *work);
 t_void woal_rx_work_queue(struct work_struct *work);
 t_void woal_evt_work_queue(struct work_struct *work);
+t_void woal_mclist_work_queue(struct work_struct *work);
 
 int woal_hard_start_xmit(struct sk_buff *skb, struct net_device *dev);
 #ifdef STA_SUPPORT
@@ -2527,6 +2553,7 @@ mlan_status woal_enable_ext_scan(moal_private *priv, t_u8 enable);
 mlan_status woal_set_powermode(moal_private *priv, char *powermode);
 int woal_find_essid(moal_private *priv, mlan_ssid_bssid *ssid_bssid,
 		    t_u8 wait_option);
+mlan_status woal_find_bssid(moal_private *priv, mlan_802_11_mac_addr bssid);
 mlan_status woal_request_userscan(moal_private *priv, t_u8 wait_option,
 				  wlan_user_scan_cfg *scan_cfg);
 mlan_status woal_do_scan(moal_private *priv, wlan_user_scan_cfg *scan_cfg);
@@ -2601,6 +2628,10 @@ void woal_hist_reset_table(moal_private *priv, t_u8 antenna);
 void woal_hist_data_add(moal_private *priv, t_u8 rx_rate, t_s8 snr, t_s8 nflr,
 			t_u8 antenna);
 mlan_status woal_delba_all(moal_private *priv, t_u8 wait_option);
+
+#ifdef UAP_SUPPORT
+mlan_status woal_set_wacp_mode(moal_handle *handle, t_u8 wait_option);
+#endif
 
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 1, 0)
 mlan_status woal_set_rekey_data(moal_private *priv,

@@ -3,7 +3,7 @@
  *  @brief This file contains functions for 802.11H.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -3431,7 +3431,7 @@ wlan_11h_radar_detected_handling(mlan_adapter *pmadapter, mlan_private *pmpriv)
 		pstate_rdh->max_bcn_dtim_ms = 0;
 		pstate_rdh->priv_curr_idx = RDH_STAGE_FIRST_ENTRY_PRIV_IDX;
 		pstate_rdh->stage = RDH_STOP_TRAFFIC;
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_STOP_TRAFFIC:
 		PRINTM(MCMD_D, "%s(): stage(%d)=%s\n",
@@ -3445,7 +3445,7 @@ wlan_11h_radar_detected_handling(mlan_adapter *pmadapter, mlan_private *pmpriv)
 
 		pstate_rdh->priv_curr_idx = RDH_STAGE_FIRST_ENTRY_PRIV_IDX;
 		pstate_rdh->stage = RDH_GET_INFO_CHANNEL;
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_GET_INFO_CHANNEL:
 		PRINTM(MCMD_D, "%s(): stage(%d)=%s, priv_idx=%d\n",
@@ -3561,7 +3561,7 @@ wlan_11h_radar_detected_handling(mlan_adapter *pmadapter, mlan_private *pmpriv)
 
 		pstate_rdh->priv_curr_idx = RDH_STAGE_FIRST_ENTRY_PRIV_IDX;
 		pstate_rdh->stage = RDH_GET_INFO_BEACON_DTIM;
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_GET_INFO_BEACON_DTIM:
 		PRINTM(MCMD_D, "%s(): stage(%d)=%s, priv_idx=%d\n",
@@ -3634,7 +3634,7 @@ wlan_11h_radar_detected_handling(mlan_adapter *pmadapter, mlan_private *pmpriv)
 		/* else */
 		pstate_rdh->priv_curr_idx = RDH_STAGE_FIRST_ENTRY_PRIV_IDX;
 		pstate_rdh->stage = RDH_SET_CUSTOM_IE;
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_SET_CUSTOM_IE:
 		PRINTM(MCMD_D, "%s(): stage(%d)=%s, priv_idx=%d\n",
@@ -3684,7 +3684,7 @@ wlan_11h_radar_detected_handling(mlan_adapter *pmadapter, mlan_private *pmpriv)
 		/* else */
 		pstate_rdh->priv_curr_idx = RDH_STAGE_FIRST_ENTRY_PRIV_IDX;
 		pstate_rdh->stage = RDH_REM_CUSTOM_IE;
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_REM_CUSTOM_IE:
 		PRINTM(MCMD_D, "%s(): stage(%d)=%s, priv_idx=%d\n",
@@ -3749,7 +3749,7 @@ wlan_11h_radar_detected_handling(mlan_adapter *pmadapter, mlan_private *pmpriv)
 		/* else */
 		pstate_rdh->priv_curr_idx = RDH_STAGE_FIRST_ENTRY_PRIV_IDX;
 		pstate_rdh->stage = RDH_STOP_INTFS;
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_STOP_INTFS:
 		PRINTM(MCMD_D, "%s(): stage(%d)=%s, priv_idx=%d\n",
@@ -3805,7 +3805,7 @@ wlan_11h_radar_detected_handling(mlan_adapter *pmadapter, mlan_private *pmpriv)
 			goto rdh_restart_intfs;	/* skip next stage */
 		}
 #endif
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_SET_NEW_CHANNEL:
 		PRINTM(MCMD_D, "%s(): stage(%d)=%s, priv_idx=%d\n",
@@ -3852,7 +3852,7 @@ wlan_11h_radar_detected_handling(mlan_adapter *pmadapter, mlan_private *pmpriv)
 		/* else */
 		pstate_rdh->priv_curr_idx = RDH_STAGE_FIRST_ENTRY_PRIV_IDX;
 		pstate_rdh->stage = RDH_RESTART_INTFS;
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_RESTART_INTFS:
 #ifdef DFS_TESTING_SUPPORT
@@ -3944,7 +3944,7 @@ rdh_restart_intfs:
 		/* else */
 		pstate_rdh->priv_curr_idx = RDH_STAGE_FIRST_ENTRY_PRIV_IDX;
 		pstate_rdh->stage = RDH_RESTART_TRAFFIC;
-		/* FALL THROUGH TO NEXT STAGE */
+		/* fallthrough */
 
 	case RDH_RESTART_TRAFFIC:
 		PRINTM(MCMD_D, "%s(): stage(%d)=%s\n",

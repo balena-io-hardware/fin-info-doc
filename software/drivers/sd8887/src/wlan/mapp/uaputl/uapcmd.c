@@ -719,6 +719,24 @@ print_cfg_data_usage(void)
 }
 
 /**
+ *  @brief Show usage information for the sys_cfg_wacp_mode
+ *   command
+ *
+ *  $return         N/A
+ */
+void
+print_sys_cfg_wacp_mode(void)
+{
+	printf("\nUsage : sys_cfg_wacp_mode [Mode]\n");
+	printf("\n        0 :  Wacp-Mode-0");
+	printf("\n        (Default Mode, Disable WACP Mode)");
+	printf("\n        1 :  Wacp Mode 1");
+	printf("\n        2 :  Wacp Mode 2");
+	printf("\nIf WACP Mode is provided, a 'set' is performed, else a 'get' is performed.\n");
+	return;
+}
+
+/**
  *  @brief  Get configured operational rates.
  *
  *  @param  rates   Operational rates allowed are
@@ -7526,6 +7544,111 @@ apcmd_sys_cfg_restrict_client_mode(int argc, char *argv[])
 	} else {
 		printf("ERR:Command sending failed!\n");
 	}
+	if (buffer)
+		free(buffer);
+	return ret;
+}
+
+/**
+ *  @brief Creates a sys_cfg request for enabling or disabling
+ *  WACP mode
+ *
+ *   Usage: "sys_cfg_wacp_mode [enable/disable]"
+ *
+ *  @param argc     Number of arguments
+ *  @param argv     Pointer to the arguments
+ *  @return         UAP_SUCCESS/UAP_FAILURE
+ */
+int
+apcmd_sys_cfg_wacp_mode(int argc, char *argv[])
+{
+	apcmdbuf_sys_configure *cmd_buf = NULL;
+	tlvbuf_wacp_mode *tlv = NULL;
+	t_u8 *buffer = NULL;
+	t_u16 cmd_len = 0;
+	t_u16 buf_len = MRVDRV_SIZE_OF_CMD_BUFFER;
+	int ret = UAP_SUCCESS;
+	int opt;
+	while ((opt = getopt_long(argc, argv, "+", cmd_options, NULL)) != -1) {
+		switch (opt) {
+		default:
+			print_sys_cfg_wacp_mode();
+			return UAP_SUCCESS;
+		}
+	}
+	argc -= optind;
+	argv += optind;
+	/* Check arguments */
+	if (argc && (is_input_valid(WACPMODE, argc, argv) != UAP_SUCCESS)) {
+		print_sys_cfg_wacp_mode();
+		return UAP_FAILURE;
+	}
+
+	/* Initialize the command length */
+	cmd_len = sizeof(apcmdbuf_sys_configure) + sizeof(tlvbuf_wacp_mode);
+
+	/* Initialize the command buffer */
+	buffer = (t_u8 *)malloc(buf_len);
+	if (!buffer) {
+		printf("ERR:Cannot allocate buffer for command!\n");
+		return UAP_FAILURE;
+	}
+	memset(buffer, 0, buf_len);
+
+	/* Locate headers */
+	cmd_buf = (apcmdbuf_sys_configure *)buffer;
+	tlv = (tlvbuf_wacp_mode *) (buffer + sizeof(apcmdbuf_sys_configure));
+
+	/* Fill the command buffer */
+	cmd_buf->cmd_code = APCMD_SYS_CONFIGURE;
+	cmd_buf->size = cmd_len;
+	cmd_buf->seq_num = 0;
+	cmd_buf->result = 0;
+	tlv->tag = MRVL_AP_WACP_MODE_TLV_ID;
+	tlv->length = 1;
+	if (argc == 0) {
+		cmd_buf->action = ACTION_GET;
+	} else {
+		cmd_buf->action = ACTION_SET;
+		tlv->wacp_mode = (t_u8)A2HEXDECIMAL(argv[0]);
+	}
+	endian_convert_tlv_header_out(tlv);
+	/* Send the command */
+	ret = uap_ioctl((t_u8 *)cmd_buf, &cmd_len, buf_len);
+	endian_convert_tlv_header_in(tlv);
+
+	/* Process response */
+	if (ret == UAP_SUCCESS) {
+		/* Verify response */
+		if ((cmd_buf->cmd_code !=
+		     (APCMD_SYS_CONFIGURE | APCMD_RESP_CHECK)) ||
+		    (tlv->tag != MRVL_AP_WACP_MODE_TLV_ID)) {
+			printf("ERR:Corrupted response! cmd_code=%x, Tlv->tag=%x\n", cmd_buf->cmd_code, tlv->tag);
+			free(buffer);
+			return UAP_FAILURE;
+		}
+		/* Print response */
+		if (cmd_buf->result == CMD_SUCCESS) {
+			if (argc == 0) {
+				printf("WACP Mode %s\n",
+				       (tlv->
+					wacp_mode) ? "Enabled" : "Disabled");
+				printf("WACP Mode 0x%x\n", tlv->wacp_mode);
+			} else {
+				printf("WACP Mode setting successful\n");
+			}
+		} else {
+			if (argc == 0) {
+				printf("ERR:Could not get WACP Mode !\n");
+			} else {
+				printf("ERR:Could not set WACP Mode !\n");
+			}
+			ret = UAP_FAILURE;
+		}
+	} else {
+		printf("ERR:Command sending failed!\n");
+	}
+
 	if (buffer)
 		free(buffer);
 	return ret;

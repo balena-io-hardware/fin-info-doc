@@ -2253,7 +2253,7 @@ woal_mgmt_frame_register(moal_private *priv, u16 frame_type, bool reg)
 	LEAVE();
 }
 
-#if KERNEL_VERSION(3, 6, 0) > CFG80211_VERSION_CODE
+#if CFG80211_VERSION_CODE < KERNEL_VERSION(3, 6, 0)
 /**
  * @brief register/unregister mgmt frame forwarding
  *
@@ -2264,14 +2264,16 @@ woal_mgmt_frame_register(moal_private *priv, u16 frame_type, bool reg)
  *
  * @return                0 -- success, otherwise fail
  */
-void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
-				       struct net_device *dev, u16 frame_type,
-				       bool reg)
+void
+woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
+				  struct net_device *dev, u16 frame_type,
+				  bool reg)
 #else
 #if KERNEL_VERSION(5, 8, 0) <= CFG80211_VERSION_CODE
-void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
-				       struct wireless_dev *wdev,
-				       struct mgmt_frame_regs *upd)
+void
+woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
+				  struct wireless_dev *wdev,
+				  struct mgmt_frame_regs *upd)
 #else
 /**
  * @brief register/unregister mgmt frame forwarding
@@ -2283,37 +2285,39 @@ void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
  *
  * @return                0 -- success, otherwise fail
  */
-void woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
-				       struct wireless_dev *wdev,
-				       u16 frame_type, bool reg)
+void
+woal_cfg80211_mgmt_frame_register(struct wiphy *wiphy,
+				  struct wireless_dev *wdev, u16 frame_type,
+				  bool reg)
 #endif
 #endif
 {
-#if KERNEL_VERSION(3, 6, 0) <= CFG80211_VERSION_CODE
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 6, 0)
 	struct net_device *dev = wdev->netdev;
 #endif
 	moal_private *priv = (moal_private *)woal_get_netdev_priv(dev);
 
 	ENTER();
-
 #if KERNEL_VERSION(5, 8, 0) <= CFG80211_VERSION_CODE
 	if ((upd->interface_stypes & BIT(IEEE80211_STYPE_AUTH >> 4))
-	    /** Supplicant 2.8 always register auth, FW will handle auth when
-	     *  host_mlme=0
-	     */
+			/** Supplicant 2.8 always register auth, FW will handle auth when
+			 *	host_mlme=0
+			 */
 	    && !host_mlme)
 		upd->interface_stypes &= ~BIT(IEEE80211_STYPE_AUTH >> 4);
-	woal_reg_rx_mgmt_ind(priv, MLAN_ACT_SET, &upd->interface_stypes,
-			     MOAL_NO_WAIT);
+
+	if (priv->mgmt_subtype_mask != upd->interface_stypes) {
+		priv->mgmt_subtype_mask = upd->interface_stypes;
+		woal_reg_rx_mgmt_ind(priv, MLAN_ACT_SET,
+				     &upd->interface_stypes, MOAL_NO_WAIT);
+	}
 #else
 	if (frame_type == IEEE80211_STYPE_AUTH
-#if KERNEL_VERSION(3, 8, 0) <= CFG80211_VERSION_CODE
-	    /** Supplicant 2.8 always register auth, FW will handle auth when
-	     *  host_mlme=0
-	     */
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
+	    /** Supplicant 2.8 always register auth, FW will handle auth when host_mlme=0 */
 	    && !host_mlme
 #endif
-	) {
+		) {
 		LEAVE();
 		return;
 	}
@@ -4204,4 +4208,37 @@ woal_get_second_channel_offset(int chan)
 		break;
 	}
 	return chan2Offset;
+}
+
+/*
+ *   @brief  prepare and send fake deauth packet to cfg80211 to
+ *   notify wpa_supplicant about disconnection
+ *   <host_mlme, wiphy suspend case>
+ *
+ *   @param priv           A pointer moal_private structure
+ *   @param reason_code    disconnect reason code
+ *
+ *   @return          N/A
+ */
+void
+woal_deauth_event(moal_private *priv, int reason_code)
+{
+	struct woal_event *evt;
+	unsigned long flags;
+	moal_handle *handle = priv->phandle;
+
+	evt = kzalloc(sizeof(struct woal_event), GFP_ATOMIC);
+	if (!evt) {
+		PRINTM(MERROR, "Fail to alloc memory for deauth event\n");
+		LEAVE();
+		return;
+	}
+	evt->priv = priv;
+	evt->type = WOAL_EVENT_DEAUTH;
+	evt->reason_code = reason_code;
+	INIT_LIST_HEAD(&evt->link);
+	spin_lock_irqsave(&handle->evt_lock, flags);
+	list_add_tail(&evt->link, &handle->evt_queue);
+	spin_unlock_irqrestore(&handle->evt_lock, flags);
+	queue_work(handle->evt_workqueue, &handle->evt_work);
 }

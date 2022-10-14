@@ -78,4 +78,5 @@ void print_rx_packet_coalesc_help(void);
 #endif
 int apcmd_sys_cfg_2040_coex(int argc, char *argv[]);
 int apcmd_sys_cfg_restrict_client_mode(int argc, char *argv[]);
+int apcmd_sys_cfg_wacp_mode(int argc, char *argv[]);
 #endif /* _UAP_H */

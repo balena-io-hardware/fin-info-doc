@@ -3384,11 +3384,21 @@ woal_uap_set_multicast_list(struct net_device *dev)
  *
  *  @return         0 --success, otherwise fail
  */
-int
-woal_uap_do_ioctl(struct net_device *dev, struct ifreq *req, int cmd)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+int woal_uap_do_ioctl(struct net_device *dev, struct ifreq *req,
+		      void __user *data, int cmd)
+#else
+int woal_uap_do_ioctl(struct net_device *dev, struct ifreq *req, int cmd)
+#endif
 {
 	int ret = 0;
 	ENTER();
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+	if (in_compat_syscall()) /* not implemented yet */
+		return -EOPNOTSUPP;
+#endif
+
 	PRINTM(MIOCTL, "uap_do_ioctl: ioctl cmd = 0x%x\n", cmd);
 	switch (cmd) {
 	case WOAL_ANDROID_DEF_CMD:

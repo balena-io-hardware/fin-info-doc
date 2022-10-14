@@ -4,7 +4,7 @@
  *  @brief This file include miscellaneous functions for MLAN module
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -363,6 +363,45 @@ wlan_misc_ioctl_host_cmd(IN pmlan_adapter pmadapter,
 	LEAVE();
 	return ret;
 }
+
+#ifdef UAP_SUPPORT
+/**
+ *  @brief set wacp mode
+ *
+ *  @param pmadapter	A pointer to mlan_adapter structure
+ *  @param pioctl_req	A pointer to ioctl request buffer
+ *
+ *  @return		MLAN_STATUS_PENDING --success, otherwise fail
+ */
+mlan_status
+wlan_misc_ioctl_wacp_mode(IN pmlan_adapter pmadapter,
+			  IN pmlan_ioctl_req pioctl_req)
+{
+	mlan_status ret = MLAN_STATUS_SUCCESS;
+	mlan_private *pmpriv = pmadapter->priv[pioctl_req->bss_index];
+	mlan_ds_misc_cfg *misc = MNULL;
+	t_u16 cmd_action;
+
+	ENTER();
+
+	misc = (mlan_ds_misc_cfg *)pioctl_req->pbuf;
+
+	if (pioctl_req->action == MLAN_ACT_SET)
+		cmd_action = HostCmd_ACT_GEN_SET;
+	else
+		cmd_action = HostCmd_ACT_GEN_GET;
+
+	ret = wlan_prepare_cmd(pmpriv,
+			       HOST_CMD_APCMD_SYS_CONFIGURE,
+			       cmd_action,
+			       0, (t_void *)pioctl_req, &misc->param.wacp_mode);
+	if (ret == MLAN_STATUS_SUCCESS)
+		ret = MLAN_STATUS_PENDING;
+
+	LEAVE();
+	return ret;
+}
+#endif
 
 /**
  *  @brief Send function init/shutdown command to firmware
@@ -1070,6 +1109,7 @@ wlan_delay_func(mlan_adapter *pmadapter, t_u32 delay, t_delay_unit u)
 			break;
 		case MSEC:
 			delay *= 1000;
+			/* fallthrough */
 		case USEC:
 			upto_tv_sec += (delay / 1000000);
 			upto_tv_usec += (delay % 1000000);
@@ -1692,11 +1732,7 @@ wlan_get_station_entry(mlan_private *priv, t_u8 *mac)
 		return MNULL;
 	}
 	sta_ptr = (sta_node *)util_peek_list(priv->adapter->pmoal_handle,
-					     &priv->sta_list,
-					     priv->adapter->callbacks.
-					     moal_spin_lock,
-					     priv->adapter->callbacks.
-					     moal_spin_unlock);
+					     &priv->sta_list, MNULL, MNULL);
 
 	while (sta_ptr && (sta_ptr != (sta_node *)&priv->sta_list)) {
 		if (!memcmp
@@ -1746,9 +1782,7 @@ wlan_add_station_entry(mlan_private *priv, t_u8 *mac)
 	memset(priv->adapter, sta_ptr, 0, sizeof(sta_node));
 	memcpy(priv->adapter, sta_ptr->mac_addr, mac, MLAN_MAC_ADDR_LENGTH);
 	util_enqueue_list_tail(priv->adapter->pmoal_handle, &priv->sta_list,
-			       (pmlan_linked_list)sta_ptr,
-			       priv->adapter->callbacks.moal_spin_lock,
-			       priv->adapter->callbacks.moal_spin_unlock);
+			       (pmlan_linked_list)sta_ptr, MNULL, MNULL);
 done:
 	pmadapter->callbacks.moal_spin_unlock(pmadapter->pmoal_handle,
 					      priv->wmm.ra_list_spinlock);
@@ -1776,9 +1810,7 @@ wlan_delete_station_entry(mlan_private *priv, t_u8 *mac)
 	sta_ptr = wlan_get_station_entry(priv, mac);
 	if (sta_ptr) {
 		util_unlink_list(priv->adapter->pmoal_handle, &priv->sta_list,
-				 (pmlan_linked_list)sta_ptr,
-				 priv->adapter->callbacks.moal_spin_lock,
-				 priv->adapter->callbacks.moal_spin_unlock);
+				 (pmlan_linked_list)sta_ptr, MNULL, MNULL);
 		priv->adapter->callbacks.moal_mfree(priv->adapter->pmoal_handle,
 						    (t_u8 *)sta_ptr);
 	}
@@ -2849,55 +2881,83 @@ wlan_process_802dot11_mgmt_pkt(IN mlan_private *priv,
 	switch (sub_type) {
 	case SUBTYPE_ASSOC_REQUEST:
 	case SUBTYPE_REASSOC_REQUEST:
-		mgmt = (IEEE80211_MGMT *)payload;
-		sta_ptr = wlan_add_station_entry(priv, pieee_pkt_hdr->addr2);
-		if (sta_ptr) {
-			sta_ptr->capability =
-				wlan_le16_to_cpu(mgmt->u.assoc_req.capab_info);
-			pmbuf = wlan_alloc_mlan_buffer(pmadapter, payload_len,
-						       0, MOAL_MALLOC_BUFFER);
-			if (pmbuf) {
-				PRINTM(MCMND, "check sta capability\n");
-				pmbuf->data_len = ASSOC_EVENT_FIX_SIZE;
-				tlv = (MrvlIETypes_MgmtFrameSet_t *)(pmbuf->
-								     pbuf +
-								     pmbuf->
-								     data_offset
-								     +
-								     pmbuf->
-								     data_len);
-				tlv->type =
-					wlan_cpu_to_le16(TLV_TYPE_MGMT_FRAME);
-				tlv->len = sizeof(IEEEtypes_FrameCtl_t);
-				memcpy(pmadapter, (t_u8 *)&tlv->frame_control,
-				       &pieee_pkt_hdr->frm_ctl,
-				       sizeof(IEEEtypes_FrameCtl_t));
-				pmbuf->data_len +=
-					sizeof(MrvlIETypes_MgmtFrameSet_t);
-				memcpy(pmadapter,
-				       pmbuf->pbuf + pmbuf->data_offset +
-				       pmbuf->data_len,
-				       payload + sizeof(wlan_802_11_header),
-				       payload_len -
-				       sizeof(wlan_802_11_header));
-				pmbuf->data_len +=
-					payload_len -
-					sizeof(wlan_802_11_header);
-				tlv->len +=
-					payload_len -
-					sizeof(wlan_802_11_header);
-				tlv->len = wlan_cpu_to_le16(tlv->len);
-				DBG_HEXDUMP(MCMD_D, "assoc_req",
-					    pmbuf->pbuf + pmbuf->data_offset,
-					    pmbuf->data_len);
-				wlan_check_sta_capability(priv, pmbuf, sta_ptr);
+		if (priv->uap_host_based & UAP_FLAG_HOST_MLME) {
+			if (!memcmp(pmadapter, pieee_pkt_hdr->addr3,
+				    priv->curr_addr, MLAN_MAC_ADDR_LENGTH)) {
+
+				mgmt = (IEEE80211_MGMT *)payload;
+				sta_ptr =
+					wlan_add_station_entry(priv,
+							       pieee_pkt_hdr->
+							       addr2);
+				if (sta_ptr) {
+					sta_ptr->capability =
+						wlan_le16_to_cpu(mgmt->u.
+								 assoc_req.
+								 capab_info);
+					pmbuf = wlan_alloc_mlan_buffer
+						(pmadapter, payload_len, 0,
+						 MOAL_MALLOC_BUFFER);
+					if (pmbuf) {
+						PRINTM(MCMND,
+						       "check sta capability\n");
+						pmbuf->data_len =
+							ASSOC_EVENT_FIX_SIZE;
+						tlv = (MrvlIETypes_MgmtFrameSet_t *)(pmbuf->pbuf + pmbuf->data_offset + pmbuf->data_len);
+						tlv->type =
+							wlan_cpu_to_le16
+							(TLV_TYPE_MGMT_FRAME);
+						tlv->len =
+							sizeof
+							(IEEEtypes_FrameCtl_t);
+						memcpy(pmadapter,
+						       (t_u8 *)&tlv->
+						       frame_control,
+						       &pieee_pkt_hdr->frm_ctl,
+						       sizeof
+						       (IEEEtypes_FrameCtl_t));
+						pmbuf->data_len +=
+							sizeof
+							(MrvlIETypes_MgmtFrameSet_t);
+						memcpy(pmadapter,
+						       pmbuf->pbuf +
+						       pmbuf->data_offset +
+						       pmbuf->data_len,
+						       payload +
+						       sizeof
+						       (wlan_802_11_header),
+						       payload_len -
+						       sizeof
+						       (wlan_802_11_header));
+						pmbuf->data_len +=
+							payload_len -
+							sizeof
+							(wlan_802_11_header);
+						tlv->len +=
+							payload_len -
+							sizeof
+							(wlan_802_11_header);
+						tlv->len =
+							wlan_cpu_to_le16(tlv->
+									 len);
+						DBG_HEXDUMP(MCMD_D, "assoc_req",
+							    pmbuf->pbuf +
+							    pmbuf->data_offset,
+							    pmbuf->data_len);
+						wlan_check_sta_capability(priv,
+									  pmbuf,
+									  sta_ptr);
+						wlan_free_mlan_buffer(pmadapter,
+								      pmbuf);
+					}
+				}
+			} else {
+				PRINTM(MMSG,
+				       "wlan: Drop MICRO_AP_STA_ASSOC " MACSTR
+				       " from unknown BSSID " MACSTR "\n",
+				       MAC2STR(pieee_pkt_hdr->addr2),
+				       MAC2STR(pieee_pkt_hdr->addr3));
 			}
-		} else {
-			PRINTM(MMSG,
-			       "wlan: Drop MICRO_AP_STA_ASSOC " MACSTR
-			       " from unknown BSSID " MACSTR "\n",
-			       MAC2STR(pieee_pkt_hdr->addr2),
-			       MAC2STR(pieee_pkt_hdr->addr3));
 		}
 		unicast = MTRUE;
 		break;

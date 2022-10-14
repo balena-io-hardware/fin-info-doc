@@ -3,7 +3,7 @@
  *  @brief This file declares the generic data structures and APIs.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -29,7 +29,7 @@ Change log:
 #define _MLAN_DECL_H_
 
 /** MLAN release version */
-#define MLAN_RELEASE_VERSION		 "C687"
+#define MLAN_RELEASE_VERSION		 "C698"
 
 /** Re-define generic data types for MLAN/MOAL */
 /** Signed char (1-byte) */
@@ -1154,6 +1154,14 @@ typedef struct _tdls_tear_down_event {
 	t_u16 reason_code;
 } tdls_tear_down_event;
 
+/** timeval */
+typedef struct {
+    /** Time (seconds) */
+	t_u32 time_sec;
+    /** Time (micro seconds) */
+	t_u32 time_usec;
+} wifi_timeval;
+
 /** station stats */
 typedef struct _sta_stats {
 	t_u64 last_rx_in_msec;
@@ -1308,6 +1316,7 @@ typedef struct _mlan_callbacks {
 					   IN t_u32 bss_index,
 					   IN t_u8 *peer_addr,
 					   IN t_s8 snr, IN t_s8 nflr);
+	t_u64 (*moal_do_div) (IN t_u64 num, IN t_u32 base);
 } mlan_callbacks, *pmlan_callbacks;
 
 /** Parameter unchanged, use MLAN default setting */
@@ -1391,7 +1400,6 @@ typedef struct _mlan_device {
 	t_u8 indication_gpio;
     /** channel time and mode for DRCS*/
 	t_u32 drcs_chantime_mode;
-	t_bool fw_region;
 } mlan_device, *pmlan_device;
 
 /** MLAN API function prototype */

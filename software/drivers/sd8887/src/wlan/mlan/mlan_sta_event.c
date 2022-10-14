@@ -3,7 +3,7 @@
  *  @brief This file contains MLAN event handling.
  *
  *
- *  Copyright 2014-2020 NXP
+ *  Copyright 2014-2021 NXP
  *
  *  This software file (the File) is distributed by NXP
  *  under the terms of the GNU General Public License Version 2, June 1991
@@ -523,6 +523,10 @@ wlan_reset_connect_state(pmlan_private priv, t_u8 drv_disconnect)
 		return;
 	}
 
+	if (pmadapter->pending_disconnect_priv) {
+		LEAVE();
+		return;
+	}
 	pevent->bss_index = priv->bss_index;
 	pevent->event_id = MLAN_EVENT_ID_FW_DISCONNECTED;
 	pevent->event_len = sizeof(priv->disconnect_reason_code);
@@ -1194,6 +1198,11 @@ wlan_ops_sta_process_event(IN t_void *priv)
 		memcpy(pmadapter, (t_u8 *)pevent->event_buf,
 		       pmadapter->event_body, pevent->event_len);
 		wlan_recv_event(pmpriv, MLAN_EVENT_ID_FW_WEP_ICV_ERR, pevent);
+		break;
+
+	case EVENT_RESET_PN_ON_REKEY:
+		PRINTM(MEVENT, "EVENT: RESET PN ON REKEY\n");
+		wlan_reset_pn_on_rekey(pmpriv, pmadapter->event_body);
 		break;
 
 	case EVENT_BW_CHANGE:

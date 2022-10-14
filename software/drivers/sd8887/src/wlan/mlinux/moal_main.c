@@ -4,7 +4,7 @@
   * driver.
   *
   *
-  * Copyright 2014-2020 NXP
+  * Copyright 2014-2021 NXP
   *
   * This software file (the File) is distributed by NXP
   * under the terms of the GNU General Public License Version 2, June 1991
@@ -133,6 +133,8 @@ int max_uap_bss = DEF_UAP_BSS;
 char *uap_name;
 /** Max uAP station number */
 int uap_max_sta = 0;
+/** WACP mode */
+int wacp_mode = 0;
 #endif
 
 #if defined(WIFI_DIRECT_SUPPORT)
@@ -196,8 +198,6 @@ int cfg80211_wext = STA_WEXT_MASK | UAP_WEXT_MASK;
 /** CFG80211 mode */
 int cfg80211_wext = STA_CFG80211_MASK | UAP_CFG80211_MASK;
 #endif
-
-int fw_region = 1;
 
 /** Work queue priority */
 int wq_sched_prio;
@@ -272,6 +272,7 @@ static mlan_callbacks woal_callbacks = {
 	.moal_assert = moal_assert,
 	.moal_hist_data_add = moal_hist_data_add,
 	.moal_updata_peer_signal = moal_updata_peer_signal,
+	.moal_do_div = moal_do_div,
 };
 
 #if defined(STA_SUPPORT) && defined(UAP_SUPPORT)
@@ -341,10 +342,9 @@ int woal_close(struct net_device *dev);
 int woal_set_mac_address(struct net_device *dev, void *addr);
 void woal_tx_timeout(struct net_device *dev
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
-		     ,
-		     unsigned int txqueue
+		     , unsigned int txqueue
 #endif
-);
+	);
 struct net_device_stats *woal_get_stats(struct net_device *dev);
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 29)
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0)
@@ -453,6 +453,8 @@ woal_is_any_interface_active(moal_handle *handle)
 {
 	int i;
 	for (i = 0; i < handle->priv_num; i++) {
+		if (!handle->priv[i])
+			continue;
 #ifdef STA_SUPPORT
 		if (GET_BSS_ROLE(handle->priv[i]) == MLAN_BSS_ROLE_STA) {
 			if (handle->priv[i]->media_connected == MTRUE)
@@ -1301,6 +1303,13 @@ woal_init_from_dev_tree(void)
 				uap_max_sta = data;
 			}
 		}
+
+		else if (!strncmp(prop->name, "wacp_mode", strlen("wacp_mode"))) {
+			if (!of_property_read_u32(dt_node, prop->name, &data)) {
+				PRINTM(MERROR, "wacp_mode=0x%x\n", data);
+				wacp_mode = data;
+			}
+		}
 #endif
 	}
 	LEAVE();
@@ -1541,8 +1550,6 @@ woal_init_sw(moal_handle *handle)
 			handle->drv_mode.bss_attr[i].bss_virtual;
 	}
 	memcpy(&device.callbacks, &woal_callbacks, sizeof(mlan_callbacks));
-	if (fw_region)
-		device.fw_region = MTRUE;
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 32)
 	sdio_claim_host(((struct sdio_mmc_card *)handle->card)->func);
 #endif
@@ -2315,6 +2322,12 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 
 	if (type == INIT_CFG_DATA) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, init_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_cfg_data_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, init_cfg,
@@ -2331,6 +2344,7 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 			     (THIS_MODULE, init_cfg, handle->hotplug_device,
 			      handle,
 			      woal_request_init_cfg_data_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2359,6 +2373,13 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 		}
 		/* 'country_txpwrlimit' holds the value of Configured Tx Power Limit */
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT,
+			      country_txpwrlimit, handle->hotplug_device,
+			      GFP_KERNEL, handle,
+			      woal_request_init_user_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG,
@@ -2377,6 +2398,7 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 			     (THIS_MODULE, country_txpwrlimit,
 			      handle->hotplug_device, handle,
 			      woal_request_init_user_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2406,6 +2428,12 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 		}
 	} else if (type == INIT_HOSTCMD_CFG_DATA) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, init_hostcmd_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_user_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, init_hostcmd_cfg,
@@ -2422,6 +2450,7 @@ woal_set_user_init_data(moal_handle *handle, int type, t_u8 wait_option,
 			     (THIS_MODULE, init_hostcmd_cfg,
 			      handle->hotplug_device, handle,
 			      woal_request_init_user_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2473,6 +2502,55 @@ done:
 
 static int woal_netdevice_event(struct notifier_block *nb,
 				unsigned long event, void *ptr);
+
+#ifdef UAP_SUPPORT
+/**
+ *  @brief Configure WACP Mode
+ *
+ *  @param priv         A pointer to moal_private structure
+ *  @param wait_option  Wait option
+ *
+ *  @return             MLAN_STATUS_SUCCESS/MLAN_STATUS_PENDING -- success,
+ *                          otherwise fail
+ */
+mlan_status
+woal_set_wacp_mode(moal_handle *handle, t_u8 wait_option)
+{
+	moal_private *priv = NULL;
+	mlan_ioctl_req *req = NULL;
+	mlan_ds_misc_cfg *pcfg_misc = NULL;
+	mlan_status status;
+
+	ENTER();
+
+	priv = woal_get_priv(handle, MLAN_BSS_ROLE_UAP);
+	if (!priv) {
+		LEAVE();
+		return MLAN_STATUS_FAILURE;
+	}
+	/* Allocate an IOCTL request buffer */
+	req = woal_alloc_mlan_ioctl_req(sizeof(mlan_ds_misc_cfg));
+	if (req == NULL) {
+		status = MLAN_STATUS_FAILURE;
+		goto done;
+	}
+
+	/* Fill request buffer */
+	pcfg_misc = (mlan_ds_misc_cfg *)req->pbuf;
+	pcfg_misc->sub_command = MLAN_OID_MISC_WACP_MODE;
+	req->req_id = MLAN_IOCTL_MISC_CFG;
+	req->action = MLAN_ACT_SET;
+	pcfg_misc->param.wacp_mode = wacp_mode;
+
+	/* Send IOCTL request to MLAN */
+	status = woal_request_ioctl(priv, req, wait_option);
+done:
+	if (status != MLAN_STATUS_PENDING)
+		kfree(req);
+	LEAVE();
+	return status;
+}
+#endif
 
 /**
  * @brief Add interfaces DPC
@@ -2529,6 +2607,16 @@ woal_add_card_dpc(moal_handle *handle)
 			goto err;
 		}
 	}
+
+#ifdef UAP_SUPPORT
+	if (wacp_mode) {
+		/* set wacp mode in uap */
+		if (woal_set_wacp_mode(handle, MOAL_IOCTL_WAIT)) {
+			ret = MLAN_STATUS_FAILURE;
+			goto err;
+		}
+	}
+#endif
 
 	/* Add low power mode check */
 	if (low_power_mode_enable &&
@@ -2628,6 +2716,12 @@ woal_init_fw_dpc(moal_handle *handle)
 
 	if (dpd_data_cfg && strncmp(dpd_data_cfg, "none", strlen("none"))) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, dpd_data_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_dpd_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, dpd_data_cfg,
@@ -2644,6 +2738,7 @@ woal_init_fw_dpc(moal_handle *handle)
 			     (THIS_MODULE, dpd_data_cfg, handle->hotplug_device,
 			      handle,
 			      woal_request_init_dpd_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2675,6 +2770,12 @@ woal_init_fw_dpc(moal_handle *handle)
 	}
 	if (txpwrlimit_cfg && strncmp(txpwrlimit_cfg, "none", strlen("none"))) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, txpwrlimit_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_txpwr_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, txpwrlimit_cfg,
@@ -2691,6 +2792,7 @@ woal_init_fw_dpc(moal_handle *handle)
 			     (THIS_MODULE, txpwrlimit_cfg,
 			      handle->hotplug_device, handle,
 			      woal_request_init_txpwr_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR, "Region txpwrlimit cfg data "
@@ -2722,6 +2824,12 @@ woal_init_fw_dpc(moal_handle *handle)
 
 	if (cal_data_cfg && strncmp(cal_data_cfg, "none", strlen("none"))) {
 		if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+			if ((request_firmware_nowait
+			     (THIS_MODULE, FW_ACTION_UEVENT, cal_data_cfg,
+			      handle->hotplug_device, GFP_KERNEL, handle,
+			      woal_request_init_user_conf_callback)) < 0) {
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 			if ((request_firmware_nowait
 			     (THIS_MODULE, FW_ACTION_HOTPLUG, cal_data_cfg,
@@ -2738,6 +2846,7 @@ woal_init_fw_dpc(moal_handle *handle)
 			     (THIS_MODULE, cal_data_cfg, handle->hotplug_device,
 			      handle,
 			      woal_request_init_user_conf_callback)) < 0) {
+#endif
 #endif
 #endif
 				PRINTM(MERROR,
@@ -2945,6 +3054,13 @@ woal_request_fw(moal_handle *handle)
 
 	PRINTM(MMSG, "Request firmware: %s\n", handle->drv_mode.fw_name);
 	if (req_fw_nowait && !handle->fw_reload) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 14, 0)
+		err = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
+					      handle->drv_mode.fw_name,
+					      handle->hotplug_device,
+					      GFP_KERNEL, handle,
+					      woal_request_fw_callback);
+#else
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 32)
 		err = request_firmware_nowait(THIS_MODULE, FW_ACTION_HOTPLUG,
 					      handle->drv_mode.fw_name,
@@ -2962,6 +3078,7 @@ woal_request_fw(moal_handle *handle)
 					      handle->drv_mode.fw_name,
 					      handle->hotplug_device, handle,
 					      woal_request_fw_callback);
+#endif
 #endif
 #endif
 		if (err < 0) {
@@ -3083,17 +3200,7 @@ woal_fill_mlan_buffer(moal_private *priv,
 	 *   and MSDU lifetime expiry.
 	 */
 	woal_get_monotonic_time(&tstamp);
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 22)
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 17, 0)
-	skb->tstamp = ktime_get_raw();
-#else
-	skb->tstamp = timeval_to_ktime(tstamp);
-#endif
-#elif LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 14)
-	skb_set_timestamp(skb, &tstamp);
-#else
-	memcpy(&skb->stamp, &tstamp, sizeof(skb->stamp));
-#endif
+	skb->tstamp = ktime_get_real();
 
 	pmbuf->pdesc = skb;
 	pmbuf->pbuf = skb->head + sizeof(mlan_buffer);
@@ -3101,8 +3208,8 @@ woal_fill_mlan_buffer(moal_private *priv,
 	pmbuf->data_len = skb->len;
 	pmbuf->priority = skb->priority;
 	pmbuf->buf_type = 0;
-	pmbuf->in_ts_sec = tstamp.time_sec;
-	pmbuf->in_ts_usec = tstamp.time_usec;
+	pmbuf->in_ts_sec = (t_u32)tstamp.time_sec;
+	pmbuf->in_ts_usec = (t_u32)tstamp.time_usec;
 
 	LEAVE();
 	return;
@@ -3119,7 +3226,11 @@ const struct net_device_ops woal_netdev_ops = {
 	.ndo_open = woal_open,
 	.ndo_start_xmit = woal_hard_start_xmit,
 	.ndo_stop = woal_close,
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+	.ndo_siocdevprivate = woal_do_ioctl,
+#else
 	.ndo_do_ioctl = woal_do_ioctl,
+#endif
 	.ndo_set_mac_address = woal_set_mac_address,
 	.ndo_tx_timeout = woal_tx_timeout,
 	.ndo_get_stats = woal_get_stats,
@@ -3195,7 +3306,11 @@ const struct net_device_ops woal_uap_netdev_ops = {
 	.ndo_open = woal_open,
 	.ndo_start_xmit = woal_hard_start_xmit,
 	.ndo_stop = woal_close,
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 15, 0)
+	.ndo_siocdevprivate = woal_uap_do_ioctl,
+#else
 	.ndo_do_ioctl = woal_uap_do_ioctl,
+#endif
 	.ndo_set_mac_address = woal_set_mac_address,
 	.ndo_tx_timeout = woal_tx_timeout,
 	.ndo_get_stats = woal_get_stats,
@@ -3485,6 +3600,20 @@ woal_add_interface(moal_handle *handle, t_u8 bss_index, t_u8 bss_type)
 #endif
 #endif /*UAP_CFG80211 */
 
+	/* Create workqueue for main process */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 36)
+	priv->mclist_workqueue =
+		alloc_workqueue("MCLIST_WORK_QUEUE",
+				WQ_HIGHPRI | WQ_MEM_RECLAIM | WQ_UNBOUND, 1);
+#else
+	priv->mclist_workqueue = create_workqueue("MCLIST_WORK_QUEUE");
+#endif
+	if (!priv->mclist_workqueue) {
+		PRINTM(MERROR, "cannot alloc mclist workqueue \n");
+		goto error;
+	}
+	MLAN_INIT_WORK(&priv->mclist_work, woal_mclist_work_queue);
+
 	/* Initialize priv structure */
 	woal_init_priv(priv, MOAL_IOCTL_WAIT);
 
@@ -3541,9 +3670,16 @@ woal_add_interface(moal_handle *handle, t_u8 bss_index, t_u8 bss_type)
 	return priv;
 error:
 	handle->priv_num = bss_index;
-#if defined(STA_CFG80211) || defined(UAP_CFG80211)
 	/* Unregister wiphy device and free */
 	if (priv) {
+#ifdef WOAK_QUEUE
+		if (priv->mclist_workqueue) {
+			flush_workqueue(priv->mclist_workqueue);
+			destroy_workqueue(priv->mclist_workqueue);
+			priv->mclist_workqueue = NULL;
+		}
+#endif
+#if defined(STA_CFG80211) || defined(UAP_CFG80211)
 		if (priv->wdev && IS_STA_OR_UAP_CFG80211(cfg80211_wext))
 			priv->wdev = NULL;
 #ifdef UAP_CFG80211
@@ -3554,8 +3690,8 @@ error:
 		}
 #endif
 #endif
-	}
 #endif
+	}
 	if (dev && dev->reg_state == NETREG_REGISTERED)
 		unregister_netdev(dev);
 	if (dev)
@@ -3642,6 +3778,14 @@ woal_remove_interface(moal_handle *handle, t_u8 bss_index)
 
 	if (dev->reg_state == NETREG_REGISTERED)
 		unregister_netdev(dev);
+
+#ifdef WOAK_QUEUE
+	if (priv->mclist_workqueue) {
+		flush_workqueue(priv->mclist_workqueue);
+		destroy_workqueue(priv->mclist_workqueue);
+		priv->mclist_workqueue = NULL;
+	}
+#endif
 
 #if defined(STA_CFG80211) || defined(UAP_CFG80211)
 	/* Unregister wiphy device and free */
@@ -3912,6 +4056,7 @@ woal_open(struct net_device *dev)
 		LEAVE();
 		return -EFAULT;
 	}
+
 #if defined(SYSKT)
 	/* On some systems the device open handler will be called before HW ready.
 	   Use the following flag check and wait function to work around the issue. */
@@ -3983,7 +4128,6 @@ int
 woal_close(struct net_device *dev)
 {
 	moal_private *priv = (moal_private *)netdev_priv(dev);
-
 	ENTER();
 	woal_flush_tx_stat_queue(priv);
 
@@ -4365,12 +4509,12 @@ woal_ioctl_timeout(moal_handle *handle)
  *
  *  @return        N/A
  */
-void woal_tx_timeout(struct net_device *dev
+void
+woal_tx_timeout(struct net_device *dev
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 6, 0)
-		     ,
-		     unsigned int txqueue
+		, unsigned int txqueue
 #endif
-)
+	)
 {
 	moal_private *priv = (moal_private *)netdev_priv(dev);
 
@@ -5280,7 +5424,7 @@ woal_set_multicast_list(struct net_device *dev)
 {
 	moal_private *priv = (moal_private *)netdev_priv(dev);
 	ENTER();
-	woal_request_set_multicast_list(priv, dev);
+	queue_work(priv->mclist_workqueue, &priv->mclist_work);
 	LEAVE();
 }
 #endif
@@ -6291,7 +6435,8 @@ woal_send_disconnect_to_system(moal_private *priv, t_u16 disconnect_reason)
 			   not valid */
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
 			if (priv->host_mlme)
-				woal_host_mlme_disconnect(priv, reason_code);
+				woal_host_mlme_disconnect(priv, reason_code,
+							  NULL);
 			else
 #endif
 
@@ -7020,11 +7165,17 @@ woal_create_dump_dir(moal_handle *phandle, char *dir_buf, int buf_size)
 		       dir_buf);
 		goto default_dir;
 	}
+
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+	ret = vfs_mkdir(&init_user_ns, path.dentry->d_inode, dentry, 0777);
+#else
 	ret = vfs_mkdir(path.dentry->d_inode, dentry, 0777);
+#endif
+
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4,7,0)
 	mutex_unlock(&path.dentry->d_inode->i_mutex);
 #else
-	inode_unlock(path.dentry->d_inode);
+	done_path_create(&path, dentry);
 #endif
 
 	if (ret < 0) {
@@ -7705,7 +7856,7 @@ woal_request_country_power_table(moal_private *priv, char *country)
 		LEAVE();
 		return MLAN_STATUS_FAILURE;
 	}
-	if (fw_region)
+	if (cntry_txpwr == CNTRY_RGPOWER_MODE)
 		strncpy(country_name, "rgpower_XX.bin",
 			strlen("rgpower_XX.bin"));
 	handle = priv->phandle;
@@ -7743,7 +7894,8 @@ woal_request_country_power_table(moal_private *priv, char *country)
 	ret = woal_set_user_init_data(handle, COUNTRY_POWER_TABLE,
 				      MOAL_IOCTL_WAIT, file_path);
 	/* Try download WW rgpowertable */
-	if (fw_region && (ret == MLAN_STATUS_FILE_ERR)) {
+	if ((cntry_txpwr == CNTRY_RGPOWER_MODE) &&
+	    (ret == MLAN_STATUS_FILE_ERR)) {
 		strncpy(country_name, "rgpower_WW.bin",
 			strlen("rgpower_WW.bin"));
 		last_slash = strrchr(file_path, '/');
@@ -7794,6 +7946,20 @@ woal_netdev_poll_rx(struct napi_struct *napi, int budget)
 }
 
 /**
+ *  @brief This workqueue function handles set multicast_list
+ *
+ *  @param work    A pointer to work_struct
+ *
+ *  @return        N/A
+ */
+t_void
+woal_mclist_work_queue(struct work_struct *work)
+{
+	moal_private *priv = container_of(work, moal_private, mclist_work);
+	woal_request_set_multicast_list(priv, priv->netdev);
+}
+
+/**
  *  @brief This workqueue function handles woal event queue
  *
  *  @param work    A pointer to work_struct
@@ -7806,6 +7972,7 @@ woal_evt_work_queue(struct work_struct *work)
 	moal_handle *handle = container_of(work, moal_handle, evt_work);
 	struct woal_event *evt;
 	unsigned long flags;
+	moal_private *priv;
 	ENTER();
 	if (handle->surprise_removed == MTRUE) {
 		LEAVE();
@@ -7828,6 +7995,29 @@ woal_evt_work_queue(struct work_struct *work)
 #endif
 #endif
 			break;
+		case WOAL_EVENT_RX_MGMT_PKT:
+#if defined(UAP_CFG80211) || defined(STA_CFG80211)
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
+			priv = evt->priv;
+			mutex_lock(&priv->wdev->mtx);
+			cfg80211_rx_mlme_mgmt(priv->netdev,
+					      evt->evt.event_buf,
+					      evt->evt.event_len);
+			mutex_unlock(&priv->wdev->mtx);
+#endif
+#endif
+			break;
+		case WOAL_EVENT_DEAUTH:
+			priv = evt->priv;
+			woal_host_mlme_disconnect(evt->priv, evt->reason_code,
+						  priv->cfg_bssid);
+			break;
+		case WOAL_EVENT_ASSOC_RESP:
+			woal_host_mlme_process_assoc_resp((moal_private *)evt->
+							  priv,
+							  &evt->assoc_resp);
+			break;
+
 		}
 		kfree(evt);
 		spin_lock_irqsave(&handle->evt_lock, flags);
@@ -9046,7 +9236,7 @@ MODULE_PARM_DESC(txpwrlimit_cfg,
 		 "Set configuration data of Tx power limitation");
 module_param(cntry_txpwr, int, 0);
 MODULE_PARM_DESC(cntry_txpwr,
-		 "Allow setting tx power table of country; 0: disable (default), 1: enable.");
+		 "0: disable (default), 1: enable set country txpower table 2: enable set country rgpower table");
 module_param(init_hostcmd_cfg, charp, 0);
 MODULE_PARM_DESC(init_hostcmd_cfg, "Init hostcmd file name");
 module_param(cfg80211_wext, int, 0660);
@@ -9144,6 +9334,8 @@ MODULE_PARM_DESC(drcs_chantime_mode,
 #ifdef UAP_SUPPORT
 module_param(uap_max_sta, int, 0);
 MODULE_PARM_DESC(uap_max_sta, "Maximum station number for UAP/GO.");
+module_param(wacp_mode, int, 0);
+MODULE_PARM_DESC(wacp_mode, "0(Default) Disable WACP, 1/2 WACP Mode.");
 #endif
 
 MODULE_DESCRIPTION("M-WLAN Driver");

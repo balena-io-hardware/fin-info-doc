@@ -3,7 +3,7 @@
   * @brief This file contains the callback functions registered to MLAN
   *
   *
-  * Copyright 2014-2020 NXP
+  * Copyright 2014-2021 NXP
   *
   * This software file (the File) is distributed by NXP
   * under the terms of the GNU General Public License Version 2, June 1991
@@ -36,6 +36,10 @@ Change log:
 #endif
 extern int drv_mode;
 #include <asm/div64.h>
+
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
+extern int host_mlme;
+#endif
 
 /********************************************************
 		Local Variables
@@ -290,8 +294,8 @@ moal_get_system_time(IN t_void *pmoal_handle, OUT t_u32 *psec, OUT t_u32 *pusec)
 	wifi_timeval t;
 
 	woal_get_monotonic_time(&t);
-	*psec = t.time_sec;
-	*pusec = t.time_usec;
+	*psec = (t_u32)t.time_sec;
+	*pusec = (t_u32)t.time_usec;
 
 	return MLAN_STATUS_SUCCESS;
 }
@@ -984,6 +988,37 @@ done:
 }
 
 /**
+ * @brief   Handle RX MGMT PKT event
+ *
+ * @param priv          A pointer moal_private structure
+ * @param pkt        A pointer to pkt
+ * @param len        length of pkt
+ *
+ * @return          N/A
+ */
+void
+woal_rx_mgmt_pkt_event(moal_private *priv, t_u8 *pkt, t_u16 len)
+{
+	struct woal_event *evt;
+	unsigned long flags;
+	moal_handle *handle = priv->phandle;
+
+	evt = kzalloc(sizeof(struct woal_event), GFP_ATOMIC);
+	if (evt) {
+		evt->priv = priv;
+		evt->type = WOAL_EVENT_RX_MGMT_PKT;
+		evt->evt.event_len = len;
+		memcpy(evt->evt.event_buf, pkt,
+		       MIN(evt->evt.event_len, sizeof(evt->evt.event_buf)));
+		INIT_LIST_HEAD(&evt->link);
+		spin_lock_irqsave(&handle->evt_lock, flags);
+		list_add_tail(&evt->link, &handle->evt_queue);
+		spin_unlock_irqrestore(&handle->evt_lock, flags);
+		queue_work(handle->evt_workqueue, &handle->evt_work);
+	}
+}
+
+/**
  *  @brief This function handles event receive
  *
  *  @param pmoal_handle Pointer to the MOAL context
@@ -1220,6 +1255,7 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
 		priv->auth_flag = 0;
 		priv->host_mlme = MFALSE;
+		priv->auth_alg = 0xFFFF;
 #endif
 #endif
 #ifdef STA_WEXT
@@ -1438,8 +1474,14 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 					       priv->cfg_bssid, NULL, 0,
 					       WLAN_CAPABILITY_ESS,
 					       WLAN_CAPABILITY_ESS);
-			if (bss)
+			if (bss) {
 				cfg80211_unlink_bss(priv->wdev->wiphy, bss);
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 9, 0)
+				cfg80211_put_bss(priv->wdev->wiphy, bss);
+#else
+				cfg80211_put_bss(bss);
+#endif
+			}
 			if (!hw_test && priv->roaming_enabled)
 				woal_config_bgscan_and_rssi(priv, MFALSE);
 			priv->last_event |= EVENT_PRE_BCN_LOST;
@@ -1588,7 +1630,12 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 					   &priv->phandle->rx_work);
 #else
 				if (rtnl_is_locked())
-					cfg80211_sched_scan_stopped_rtnl(priv->
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+					cfg80211_sched_scan_stopped_locked(
+#else
+					cfg80211_sched_scan_stopped_rtnl(
+#endif
+									 priv->
 									 wdev->
 									 wiphy
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(4, 12, 0)
@@ -1635,7 +1682,12 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 					   &priv->phandle->rx_work);
 #else
 				if (rtnl_is_locked())
-					cfg80211_sched_scan_stopped_rtnl(priv->
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(5, 12, 0)
+					cfg80211_sched_scan_stopped_locked(
+#else
+					cfg80211_sched_scan_stopped_rtnl(
+#endif
+									 priv->
 									 wdev->
 									 wiphy
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(4, 12, 0)
@@ -1979,6 +2031,7 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 			    (priv->auth_flag & HOST_MLME_AUTH_PENDING)) {
 				priv->auth_flag = 0;
 				priv->host_mlme = MFALSE;
+				priv->auth_alg = 0xFFFF;
 			}
 			priv->phandle->remain_on_channel = MFALSE;
 			if (priv->phandle->cookie &&
@@ -2079,6 +2132,22 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 		if (IS_UAP_CFG80211(cfg80211_wext)) {
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 0, 0)
 			/* skip 2 bytes extra header will get the mac address */
+#if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 8, 0)
+			/**Forward Deauth, Auth and disassoc frame to Host*/
+			if (host_mlme && priv->uap_host_based) {
+				t_u16 reason_code =
+					woal_le16_to_cpu(*(t_u16 *)pmevent->
+							 event_buf);
+				PRINTM(MCMND, "deauth reason code =0x%x\n",
+				       reason_code);
+				/** BIT 14 indicate deauth is initiated by FW */
+				if (reason_code & MBIT(14))
+					woal_host_mlme_disconnect(priv, 0,
+								  pmevent->
+								  event_buf +
+								  2);
+			} else
+#endif
 			if (priv->netdev && priv->wdev)
 				cfg80211_del_sta(priv->netdev,
 						 pmevent->event_buf + 2,
@@ -2185,32 +2254,40 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 					if (ieee80211_is_auth
 					    (((struct ieee80211_mgmt *)pkt)->
 					     frame_control)) {
+						PRINTM(MEVENT,
+						       "HostMlme %s: Received auth frame type = 0x%x\n",
+						       priv->netdev->name,
+						       priv->auth_alg);
+
 						if (priv->
 						    auth_flag &
 						    HOST_MLME_AUTH_PENDING) {
-							PRINTM(MEVENT,
-							       "HostMlme %s: Receive auth\n",
-							       priv->netdev->
-							       name);
-							priv->auth_flag &=
-								~HOST_MLME_AUTH_PENDING;
-							priv->auth_flag |=
-								HOST_MLME_AUTH_DONE;
-							priv->phandle->
-								host_mlme_priv =
-								priv;
-							queue_work(priv->
-								   phandle->
-								   evt_workqueue,
-								   &priv->
-								   phandle->
-								   host_mlme_work);
+							if (priv->auth_alg !=
+							    WLAN_AUTH_SAE) {
+								priv->auth_flag
+									&=
+									~HOST_MLME_AUTH_PENDING;
+								priv->auth_flag
+									|=
+									HOST_MLME_AUTH_DONE;
+								priv->phandle->
+									host_mlme_priv
+									= priv;
+								queue_work
+									(priv->
+									 phandle->
+									 evt_workqueue,
+									 &priv->
+									 phandle->
+									 host_mlme_work);
+							}
 						} else {
 							PRINTM(MERROR,
-							       "HostMlme %s: Drop auth pkt,auth_flag=0x%x\n",
+							       "HostMlme %s: Drop auth frame, auth_flag=0x%x auth_alg=0x%x\n",
 							       priv->netdev->
 							       name,
-							       priv->auth_flag);
+							       priv->auth_flag,
+							       priv->auth_alg);
 							break;
 						}
 					} else {
@@ -2224,20 +2301,26 @@ moal_recv_event(IN t_void *pmoal_handle, IN pmlan_event pmevent)
 						woal_mgmt_frame_register(priv,
 									 IEEE80211_STYPE_DISASSOC,
 									 MFALSE);
+						woal_send_disconnect_to_system
+							(priv,
+							 DEF_DEAUTH_REASON_CODE);
 						priv->host_mlme = MFALSE;
 						priv->auth_flag = 0;
+						priv->auth_alg = 0xFFFF;
+						if (!priv->wdev->current_bss) {
+							PRINTM(MEVENT,
+							       "HostMlme: Drop deauth/disassociate, we already disconnected\n");
+							break;
+						}
 					}
 #if CFG80211_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
-					mutex_lock(&priv->wdev->mtx);
-					cfg80211_rx_mlme_mgmt(priv->netdev,
-							      pkt,
-							      pmevent->
-							      event_len -
-							      sizeof(pmevent->
-								     event_id)
-							      -
-							      MLAN_MAC_ADDR_LENGTH);
-					mutex_unlock(&priv->wdev->mtx);
+					woal_rx_mgmt_pkt_event(priv, pkt,
+							       pmevent->
+							       event_len -
+							       sizeof(pmevent->
+								      event_id)
+							       -
+							       MLAN_MAC_ADDR_LENGTH);
 #else
 					if (ieee80211_is_deauth
 					    (((struct ieee80211_mgmt *)pkt)->
