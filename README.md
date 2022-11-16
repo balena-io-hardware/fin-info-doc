@@ -9,6 +9,8 @@ Get it now from the official balenaFin [store](https://store.balena.io/).
     │   ├── CAD                          # 2d & 3D files for balenaFin and accessories
     │   ├── PDF                          # PDF files generated from markdown source using the builder
     │   └── markdown                     # balenaFin and accessories documentation source files
+    ├── testing
+    │   └── manufacturing                # test source files required for manufacturing
     ├── software                         # Linux config files for accessing balenaFin HW
     │   ├── dt-blob
     │   ├── overlay                      # Device tree overlay for Linux kernel
@@ -30,7 +32,6 @@ All PDF documentation is generated automatically from markdown files. To install
 `config.json` allows to define the document sources and their destination folder, along with custom overall styling
 
 Once `config.json` is configured, run `npm start` to generate the PDF
-
 
 ### Project specific syntax
 

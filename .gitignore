@@ -268,4 +268,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Leviathan testing
+config.js
+workspace
+
 # End of https://www.gitignore.io/api/osx,node,linux,python,windows
