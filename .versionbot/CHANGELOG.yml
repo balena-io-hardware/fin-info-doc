@@ -1,4 +1,21 @@
 - commits:
+    - subject: Merge content from v1.1.1-fix repo
+      hash: e73488ab0847eb0b5734a89010b7bb5f70a73cb0
+      body: |
+        Put entire contents of balena-fin-v1.1.1-fix-documentation repo in an
+        errata folder. Rename "README" to "apply_v1.1.1_fix" to try to maintain
+        context. Source repo can now be deleted.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Heath Raftery (@hraftery) <heath.raftery@balena.io>
+        signed-off-by: Heath Raftery (@hraftery) <heath.raftery@balena.io>
+      author: Heath Raftery
+      nested: []
+  version: 0.11.2
+  title: ""
+  date: 2022-11-16T12:44:11.834Z
+- commits:
     - subject: Remove protect-branch safety
       hash: c7e2ba9f6e4a2b46ffda7743c2101ddeb134089c
       body: |
