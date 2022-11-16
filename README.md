@@ -12,6 +12,7 @@ Get it now from the official balenaFin [store](https://store.balena.io/).
     ├── software                         # Linux config files for accessing balenaFin HW
     │   ├── dt-blob
     │   ├── overlay                      # Device tree overlay for Linux kernel
+    │   ├── scripts                      # Useful scripts for balenaFin deployment
     │   └── drivers                      # Device drivers for radio, etc.
     ├── examples                         # Example code for the balenaFin
     ├── config.json                      # PDF generator files
