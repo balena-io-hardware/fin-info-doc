@@ -1,0 +1,2306 @@
+- commits:
+    - subject: Remove protect-branch safety
+      hash: c7e2ba9f6e4a2b46ffda7743c2101ddeb134089c
+      body: |
+        Let Flowzone take effect.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Heath Raftery (@hraftery) <heath.raftery@balena.io>
+        signed-off-by: Heath Raftery (@hraftery) <heath.raftery@balena.io>
+      author: Heath Raftery
+      nested: []
+    - subject: Add simple npm test to satisfy Flowzone
+      hash: 926c5d63a2a5c06e7398857a0fd906af81ff4b06
+      body: |
+        Technically this is an npm repo (it builds the PDFs) and Flowzone
+        noticed. When it tried to run the npm tests, later versions of npm fail
+        if there's no test specified. This is an attempt to satisfy the
+        requirement for a test, using the simplest, representative test possible
+        - just run the program. If it runs successfully, the test passes.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Heath Raftery (@hraftery) <heath.raftery@balena.io>
+        signed-off-by: Heath Raftery (@hraftery) <heath.raftery@balena.io>
+      author: Heath Raftery
+      nested: []
+    - subject: Switch from balenaCI to flowzone
+      hash: 47fbe7be7f4bafd015dfb1cbbe1b65d20b647389
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Heath Raftery (@hraftery) <heath.raftery@balena.io>
+        signed-off-by: Heath Raftery (@hraftery) <heath.raftery@balena.io>
+      author: Heath Raftery
+      nested: []
+  version: 0.11.1
+  title: ""
+  date: 2022-11-16T12:29:05.044Z
+- version: 0.11.0
+  date: 2022-10-14T09:27:42Z
+  commits:
+    - hash: f12cb40f7cdefd5e3a9281bf69e000f7a8502b67
+      author: Zahari Petkov
+      footers:
+        change-type: minor
+        signed-off-by: Zahari Petkov <zahari@balena.io>
+      subject: Update to W15.68.19.p59-15.26.19.p59-C4X15698_A2
+      body: Overwrite all files from the provided source and firmware release.
+    - hash: 8b160ed5b884941c91017327f3abc6354ef1b9e7
+      author: Zahari Petkov
+      footers:
+        signed-off-by: Zahari Petkov <zahari@balena.io>
+      subject: Port WiFi code to Linux 5.15
+      body: |-
+        Ideas and some work taken from
+        https://source.codeaurora.org/external/nxpwifi/mwifiex/
+    - hash: 8d92881a1ff541af13410b488e3869aef35431b5
+      author: Zahari Petkov
+      footers:
+        signed-off-by: Zahari Petkov <zahari@balena.io>
+      subject: Port Bluetooth code to Linux 5.15
+      body: null
+- version: 0.10.9
+- date: 2022-04-01T09:57:11Z
+- commits:
+    - hash: d0e995a296e1ffbaea11b5e0bdb88cd30eb51506
+- commits:
+    - author: Konstantinos Mouzakis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: corrected battery type
+- commits:
+    - body: null
+- commits:
+    - hash: 785734f2c78b499865500c2e486f237e30a2a19c
+- commits:
+    - author: Konstantinos Mouzakis
+- commits:
+    - subject: Updated datasheet version
+- commits:
+    - body: null
+- commits:
+    - hash: 5e6f8e2d09e9414e1cffbdba66c8194faaf3e74c
+- commits:
+    - author: Alex
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alex.bucknall@gmail.com>
+- commits:
+    - subject: Adds released datasheets
+- commits:
+    - body: null
+- version: 0.10.8
+- date: 2022-02-25T11:18:43Z
+- commits:
+    - hash: bd681853a4f5841b250778a2d560409ff81d1052
+- commits:
+    - author: Alex
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alex.bucknall@gmail.com>
+- commits:
+    - subject: Added updated case pdf
+- commits:
+    - body: null
+- version: 0.10.7
+- date: 2022-02-25T11:00:30Z
+- commits:
+    - hash: d747ac03eedfc9afd7789d4c553f01885a24721b
+- commits:
+    - author: Konstantinos Mouzakis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: updated version of the case datasheet md
+- commits:
+    - body: null
+- version: 0.10.6
+- date: 2022-02-24T14:52:54Z
+- commits:
+    - hash: 7854e7714e97cf965ea4e83b4911ad530c3ea4ee
+- commits:
+    - author: Konstantinos Mouzakis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Updated case dimensions on the datasheet images
+- commits:
+    - body: null
+- version: 0.10.5
+- date: 2022-01-11T14:16:25Z
+- commits:
+    - hash: 09fd7c3cb2a2328588213f0a1d709ee40dfa1c8c
+- commits:
+    - author: Alex
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alex.bucknall@gmail.com>
+- commits:
+    - subject: Fixes balenaFin v1.1 voltage range in docs
+- commits:
+    - body: null
+- version: 0.10.4
+- date: 2021-12-21T15:39:53Z
+- commits:
+    - hash: 0a9ef3300a00b784a027de4a2b29fe28344e691a
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added product description for IEC approval
+- commits:
+    - body: null
+- commits:
+    - hash: 0db4585dfb8aeefd46f81909ae42828f37571685
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added test report and certificate for IEC62368
+- commits:
+    - body: null
+- version: 0.10.3
+- date: 2021-12-20T12:15:57Z
+- commits:
+    - hash: 5709345312e86efd70a10bf8b719a8891deabe1d
+- commits:
+    - author: Konstantinos Mouzakis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: updated case files
+- commits:
+    - body: null
+- version: 0.10.2
+- date: 2021-10-14T09:58:04Z
+- commits:
+    - hash: 2b3b7797eb9049566101df18edf5696c298f72e2
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added information on datasheet for IEC report compliance
+- commits:
+    - body: null
+- version: 0.10.1
+- date: 2021-08-24T14:38:19Z
+- commits:
+    - hash: da2e8524e21c25e21b9f8d2cc8f6fa0b787d4a40
+- commits:
+    - author: dependabot[bot]
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: dependabot[bot] <support@github.com>
+- commits:
+    - subject: Bump highlight.js from 9.13.1 to 9.18.5
+- commits:
+    - body: >-
+        Bumps [highlight.js](https://github.com/highlightjs/highlight.js) from
+        9.13.1 to 9.18.5.
+
+        - [Release notes](https://github.com/highlightjs/highlight.js/releases)
+
+        - [Changelog](https://github.com/highlightjs/highlight.js/blob/9.18.5/CHANGES.md)
+
+        - [Commits](https://github.com/highlightjs/highlight.js/compare/9.13.1...9.18.5)
+- version: 0.10.0
+- date: 2021-08-24T09:18:11Z
+- commits:
+    - hash: a1d2d028144764dc9de31b05e08829714c3bb0cd
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alex.bucknall@gmail.com>
+- commits:
+    - subject: Added examples from balenafin-examples repo for unification
+- commits:
+    - body: null
+- version: 0.9.2
+- date: 2021-06-03T10:03:25Z
+- commits:
+    - hash: 53673f16279e536afd270faab63ec2efb2352ef4
+- commits:
+    - author: Zahari Petkov
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Zahari Petkov <zahari@balena.io>
+- commits:
+    - subject: Y2K38 timestamp tweaks
+- commits:
+    - body: >-
+        Required to support Linux kernel 5.6 and later.
+
+        Changes were borrowed from the following branch from the forked mxm_wifiex driver
+
+        maintained by NXP:
+
+        https://source.codeaurora.org/external/nxpwifi/mwifiex/log/?h=caf/lf-5.10.y_1.0.0
+- commits:
+    - hash: bd2e429ada784288904041032e55c2ab9d70b36c
+- commits:
+    - author: Zahari Petkov
+- commits:
+    - footers:
+        signed-off-by: Zahari Petkov <zahari@balena.io>
+- commits:
+    - subject: Port woal_cfg80211_mgmt_frame_register
+- commits:
+    - body: >-
+        Required to support Linux kernel 5.8 and later.
+
+        Changes were borrowed from the following branch from the forked mxm_wifiex driver
+
+        maintained by NXP:
+
+        https://source.codeaurora.org/external/nxpwifi/mwifiex/log/?h=caf/lf-5.10.y_1.0.0
+- commits:
+    - hash: c4141480e83eab03b516ecbfb482132f1c078958
+- commits:
+    - author: Zahari Petkov
+- commits:
+    - footers:
+        signed-off-by: Zahari Petkov <zahari@balena.io>
+- commits:
+    - subject: Port file_operations to proc_ops
+- commits:
+    - body: >-
+        Required to support Linux kernel 5.6 and later.
+
+        Changes were borrowed from the following branch from the forked mxm_wifiex driver
+
+        maintained by NXP:
+
+        https://source.codeaurora.org/external/nxpwifi/mwifiex/log/?h=caf/lf-5.10.y_1.0.0
+- commits:
+    - hash: 384cdbfa1d670ea5678ec7500edf68bfa2db1267
+- commits:
+    - author: Zahari Petkov
+- commits:
+    - footers:
+        signed-off-by: Zahari Petkov <zahari@balena.io>
+- commits:
+    - subject: Y2K38 tweaks for the bluetooth driver
+- commits:
+    - body: >-
+        Required to support Linux kernel 5.6 and later.
+
+        Changes were borrowed from the following branch from the forked mxm_wifiex driver
+
+        maintained by NXP:
+
+        https://source.codeaurora.org/external/nxpwifi/mwifiex/log/?h=caf/lf-5.10.y_1.0.0
+- commits:
+    - hash: 9aa9454dae23e54abca4a8b677684a298046010a
+- commits:
+    - author: Zahari Petkov
+- commits:
+    - footers:
+        signed-off-by: Zahari Petkov <zahari@balena.io>
+- commits:
+    - subject: Port file_operations to proc_ops for the bluetooth driver
+- commits:
+    - body: >-
+        Required to support Linux kernel 5.6 and later.
+
+        Changes were borrowed from the following branch from the forked mxm_wifiex driver
+
+        maintained by NXP:
+
+        https://source.codeaurora.org/external/nxpwifi/mwifiex/log/?h=caf/lf-5.10.y_1.0.0
+- version: 0.9.1
+- date: 2021-05-09T16:14:40Z
+- commits:
+    - hash: a4a96b890b5a9e0add183944e90a5cecc23d61ea
+- commits:
+    - author: MTolba
+- commits:
+    - subject: Added the PDF schematic for the v1.1.1
+- commits:
+    - body: null
+- commits:
+    - hash: a1c62a1713cc742d571d0b7a5b077105d1a2433b
+- commits:
+    - author: MTolba
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Mahmoud Tolba <mahmoud@balena.io>
+- commits:
+    - subject: Fixed a typo in the PDF file name
+- commits:
+    - body: null
+- version: 0.9.0
+- date: 2021-04-27T12:22:52Z
+- commits:
+    - hash: 50cb9fae75fa1dd832c571eee730030cc9a95f6b
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alexbucknall@balena.io>
+- commits:
+    - subject: Added source and instruction for building sd8887 driver
+- commits:
+    - body: null
+- version: 0.8.6
+- date: 2021-01-25T23:12:24Z
+- commits:
+    - hash: 93a91ccc434a479408680ed7808a77e233bc6d6e
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fixed path for ISED certificates
+- commits:
+    - body: null
+- commits:
+    - hash: 3b637fce9f61fa52e3789647a281996f9dcad31f
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - subject: Merge branch 'master' into ised
+- commits:
+    - body: null
+- version: 0.8.5
+- date: 2021-01-15T18:16:19Z
+- commits:
+    - hash: d91feb48665de3c9f5f0f4bedd81697eb543b899
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added latest ISED certificate
+- commits:
+    - body: null
+- version: 0.8.4
+- date: 2020-12-29T09:45:20Z
+- commits:
+    - hash: 450c5df46828909143f8f48130a00b5839d39ae3
+- commits:
+    - author: Alex Gonzalez
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Alex Gonzalez <alexg@balena.io>
+- commits:
+    - subject: "balena-fin-overlay: Update for kernel 5.4"
+- commits:
+    - body: >-
+        The base for these overlays file is the upstream linux-raspberrypi
+
+        kernel overlay at tag `raspberrypi-kernel_1.20201022-1`:
+
+        https://github.com/raspberrypi/linux/blob/raspberrypi-kernel_1.20201022-1/arch/arm/boot/dts/overlays/balena-fin-overlay.dts
+
+        It then includes the following modifications:
+
+        * Use pwrseq-simple to power on the SD8787 WiFi.
+
+        In meta-balena we use a modified built-in pwrseq-sd8777 driver. The
+
+        advantage of the pwrseq-simple driver is that it is already part
+
+        of the Raspbian kernel. The difference between them is that the
+
+        pwrseq-sd8777 driver introduces a 300ms delay between powering
+
+        on the chip and the PDN line assertion done in the post_power_on
+
+        hook. This strictly complies with the Marvell chip
+
+        specification.
+
+        https://github.com/balena-os/balena-raspberrypi/blob/v2.60.1%2Brev6/layers/meta-balena-raspberrypi/recipes-kernel/linux/linux-raspberrypi/0004-mmc-pwrseq-Repurpose-for-Marvell-SD8777.patch
+
+        * Switch balenaFin WiFi to STA+uAP mode (uap0 interface)
+
+        * Add DTS overrides to config.txt:
+
+        `wifi_dbg` could be used for tuning the verbosity of the WiFi driver.
+
+        `wifi_mode` could be used for activating/deactivating WiFi interfaces. For
+
+        example `dtparam=wifi_mode=1` will only expose the `wlan0` interface.
+
+        The upstream patch in meta-balena is:
+
+        https://github.com/balena-os/balena-raspberrypi/blob/v2.60.1+rev6/layers/meta-balena-raspberrypi/recipes-kernel/linux/linux-raspberrypi/0005-balena-fin-wifi-sta-uap-mode.patch
+
+        For more information refer to the user manual:
+
+        https://github.com/balena-io/sd8887-mrvl/tree/master/wlan_src
+- commits:
+    - hash: f50c58067ef5c6df7741d73a02a15cf0330ca6ec
+- commits:
+    - author: Alex Gonzalez
+- commits:
+    - subject: Merge branch 'master' into alexgg/fin
+- commits:
+    - body: null
+- version: 0.8.3
+- date: 2020-12-28T18:54:17Z
+- commits:
+    - hash: 9c859d2b2ade619ff093085ca2329a370a63971d
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added RoHS conformity declaration
+- commits:
+    - body: null
+- commits:
+    - hash: 3ef23af6b6e8bf5e352e23a2220b8f6777083bd3
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added REACH declaration
+- commits:
+    - body: null
+- commits:
+    - hash: 475d93e7ce398dd3d114348a300ad511ea6f5af0
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - subject: Merge branch 'master' into rohs
+- commits:
+    - body: null
+- version: 0.8.2
+- date: 2020-12-07T18:21:36Z
+- commits:
+    - hash: d3f76ed80ed6f693cfc74b757340c140c18e47ed
+- commits:
+    - author: MTolba
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Mahmoud Tolba <mahmoud@balena.io>
+- commits:
+    - subject: Added dxf files, created a folder for the 3D files
+- commits:
+    - body: null
+- commits:
+    - hash: 274d5748060f197f9702da7b584559d5fd708ae6
+- commits:
+    - author: Mahmoud Tolba
+- commits:
+    - subject: Added dxf files and modified the directory of the step files
+- commits:
+    - body: null
+- commits:
+    - hash: 61a4fae730195efa273e6259d6dae323ee68c0cf
+- commits:
+    - author: Mahmoud Tolba
+- commits:
+    - subject: Update DOCUMENTATION.md
+- commits:
+    - body: null
+- commits:
+    - hash: c3221d8e772893ce619d9bd3704761f9253cb667
+- commits:
+    - author: Mahmoud Tolba
+- commits:
+    - subject: Update DOCUMENTATION.md
+- commits:
+    - body: null
+- commits:
+    - hash: 8cd1ef573d43e2fd51394ba4e9302e2ede32caa2
+- commits:
+    - author: Mahmoud Tolba
+- commits:
+    - subject: Update README.md
+- commits:
+    - body: null
+- version: 0.8.1
+- date: 2020-11-24T09:19:14Z
+- commits:
+    - hash: cf89e20de8b6a57644d42cb064aadea57e9cd1bd
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added blind-ring stl and step files
+- commits:
+    - body: null
+- version: 0.8.0
+- date: 2020-10-15T08:14:00Z
+- commits:
+    - hash: 7baef1782685a6808229bf256f3f10fffe1634c9
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added latest CE test documents
+- commits:
+    - body: null
+- version: 0.7.3
+- date: 2020-06-26T15:49:22Z
+- commits:
+    - hash: 0ba54cf07423ef714f06172d34064934353df04f
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alexbucknall@balena.io>
+- commits:
+    - subject: Updated PDFs and changelogs
+- commits:
+    - body: Updated compiled PDFs to match markdown source and updated changelogs
+- version: 0.7.2
+- date: 2020-06-26T14:54:48Z
+- commits:
+    - hash: 81554fdc06d3753407860849b33922a44064d32d
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alexbucknall@balena.io>
+- commits:
+    - subject: Adds BGM111 ports to datasheet
+- commits:
+    - body: Adds BGM111 naming scheme for both exp header pins and internal pins
+- version: 0.7.1
+- date: 2020-06-23T22:34:19Z
+- commits:
+    - hash: ad16663c2da7b3c0701659c0b2c436974124bb39
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fixed conformity links
+- commits:
+    - body: null
+- commits:
+    - hash: d7e03e117cb06501058feca05f72f94456170592
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Updated PDF files
+- commits:
+    - body: null
+- version: 0.7.0
+- date: 2020-06-23T15:00:56Z
+- commits:
+    - hash: 914fbd635d0afea733f06f2417aa4de5de0e5900
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added new FCC test reports
+- commits:
+    - body: null
+- commits:
+    - hash: 4c09b3679a8147105b92fab672cfd93d356ad8a2
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Improved supply coverage wording and certifications.
+- commits:
+    - body: null
+- version: 0.6.9
+- date: 2020-03-18T17:31:20Z
+- commits:
+    - hash: 36322c7cbf390194adcfc2d879a0ff2ecbe3f7f5
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added missing test reports and unified FCC_ID reports
+- commits:
+    - body: null
+- commits:
+    - hash: 46f734b6aef60ed7f0884416bb51a64ae4c42de9
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fixed link for NB Certificate
+- commits:
+    - body: null
+- commits:
+    - hash: 48d2c8dbb9cd6edb985404625970d2ee91488ad2
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fixed co-location
+- commits:
+    - body: null
+- commits:
+    - hash: 84a3a5c209d3ea516680a968b9d0f557488f4d54
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into cert-revamp
+- commits:
+    - body: null
+- commits:
+    - hash: f4eee27a25759abd9976fda574696d9c76242372
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into cert-revamp
+- commits:
+    - body: null
+- version: 0.6.8
+- date: 2020-02-05T20:12:18Z
+- commits:
+    - hash: 6d5bfcd772f468399cdabeaed9687cc78d6fac30
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Updated COT details in WiFi CE reports
+- commits:
+    - body: null
+- version: 0.6.7
+- date: 2020-01-02T13:48:17Z
+- commits:
+    - hash: 125a5304eaaf811049e8e30a08beb82fae88b5d0
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added latest version of CE-WiFi test reports
+- commits:
+    - body: null
+- version: 0.6.6
+- date: 2019-08-09T18:29:20Z
+- commits:
+    - hash: a5e18535d6252c8a6cd5c2a9907b8d59af33189c
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added light version of Fin 3D
+- commits:
+    - body: null
+- version: 0.6.5
+- date: 2019-07-11T16:01:02Z
+- commits:
+    - hash: e4b8ee230cee3820d201827e93fa4df10e3fd22d
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fix HAT pinout on phoenix case
+- commits:
+    - body: null
+- version: 0.6.4
+- date: 2019-07-06T23:46:34Z
+- commits:
+    - hash: 7127f66b02a4ccda4064ff43d77afa9c10baf844
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fix phoenix ring pinout information
+- commits:
+    - body: null
+- version: 0.6.3
+- date: 2019-06-26T16:10:31Z
+- commits:
+    - hash: bbfe9a2708a880ef5b3d1860cd303f6d6772dc69
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Improve description of USB header.
+- commits:
+    - body: null
+- version: 0.6.2
+- date: 2019-06-06T20:34:26Z
+- commits:
+    - hash: 19831a0d64c5f8f43931620c33276c4fae3478c0
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        connects-to: "#35"
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fixed pinout for HAT header (pin_13)
+- commits:
+    - body: null
+- version: 0.6.1
+- date: 2019-04-16T15:49:56Z
+- commits:
+    - hash: 886e147141a2d362ff089bcf89844876c14d31d6
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fix conformity.md link
+- commits:
+    - body: null
+- version: 0.6.0
+- date: 2019-04-16T15:35:13Z
+- commits:
+    - hash: 31b47bb96f358371a9f14f85103cd2baf73c1af2
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Added conformity docs and index
+- commits:
+    - body: null
+- version: 0.5.1
+- date: 2019-03-20T19:27:55Z
+- commits:
+    - hash: 5c2a0998bdc7e24240693d3216408b2e11d6f852
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Update DOCUMENTATION.md
+- commits:
+    - body: null
+- version: 0.5.0
+- date: 2019-03-02T10:37:19Z
+- commits:
+    - hash: cb7bd8b30fc5ad20a958cc650a21351d324b0572
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: add link to v1.1 user manual website
+- commits:
+    - body: null
+- commits:
+    - hash: 0d9bdd14c6c8db40edd6f85ec6b219b243ae8614
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Generate 0.0.3 datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: 364304c5445fa7da9aac2c48208ac50fab395fb6
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into v1.1-docs-link
+- commits:
+    - body: null
+- commits:
+    - hash: 0adce9785d25fd59b84284998cab029c1fa708ce
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Update DOCUMENTATION.md
+- commits:
+    - body: null
+- version: 0.4.6
+- date: 2019-02-22T11:23:49Z
+- commits:
+    - hash: 8cf5ccb9768b300f3570ec78f5ab906490b5c146
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: add v1.1 CAD file
+- commits:
+    - body: null
+- commits:
+    - hash: 56e0fe45d156d12062505634702247a0d5ba07b7
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: update index for v1.1 CAD file
+- commits:
+    - body: null
+- version: 0.4.5
+- date: 2019-02-22T11:03:35Z
+- commits:
+    - hash: 2ad159b801a277f072a203030c7916ee03e6ed8c
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Add a documentation index for better UX
+- commits:
+    - body: null
+- version: 0.4.4
+- date: 2019-02-22T09:52:00Z
+- commits:
+    - hash: 368b7e5101a5699a16ac73f555e8f74ea8475c8f
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: fix temperature range min value
+- commits:
+    - body: null
+- commits:
+    - hash: 2ec983df09d3271100869a1cc71b6ca42312c731
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: generate PDF datasheet with temp range fix
+- commits:
+    - body: null
+- commits:
+    - hash: 661fc10bc0a86c30fa88fd244be4eeb4cf510959
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: add changelog to the datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: 1aeb48c23fbbc8e2680164a3d7dca146ec2753b7
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into temp-range-fix
+- commits:
+    - body: null
+- version: 0.4.3
+- date: 2019-02-21T18:07:57Z
+- commits:
+    - hash: 334cf6e8562c6ad15fc4ae52ea2f2ff434348e02
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Add V1.1 schematics
+- commits:
+    - body: null
+- commits:
+    - hash: f5c9e0b534c11daee0cf1e9529e09abea3c5b6a0
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into v10-schematics
+- commits:
+    - body: null
+- version: 0.4.2
+- date: 2019-02-21T16:52:17Z
+- commits:
+    - hash: 11be972f5543a59d8ee465c1f78f6de9665e8dd9
+- commits:
+    - author: Chris Crocker-White
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Chris Crocker-White <chriscw@balena.io>
+- commits:
+    - subject: Correct typo
+- commits:
+    - body: null
+- commits:
+    - hash: 5918e88969cdaa7c640f9b9f20a90c6a30b9f069
+- commits:
+    - author: Chris Crocker-White
+- commits:
+    - subject: Merge branch 'master' into chrisys-patch-1
+- commits:
+    - body: null
+- commits:
+    - hash: 7fa6532e88ef4f9c94b0c0c47ba380ceb996688f
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into chrisys-patch-1
+- commits:
+    - body: null
+- version: 0.4.1
+- date: 2019-02-21T16:43:54Z
+- commits:
+    - hash: fbb59d8330d18200f66756eed757af84f5ffa857
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: reference to BGM111 for co-processor docs
+- commits:
+    - body: null
+- commits:
+    - hash: 781bb41c8baf56c53384f87f1fe664477344052d
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into bgm111
+- commits:
+    - body: null
+- commits:
+    - hash: ca7cb118e6dadd9312b44ab3ec231dbfe1f59dcf
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: generate v1.1 datasheet with bgm111 references
+- commits:
+    - body: null
+- commits:
+    - hash: 50e7c40b39c71ddd8ebe5fd68ed9a1ee7a9e84a4
+- commits:
+    - author: curcuz
+- commits:
+    - subject: Merge branch 'bgm111' of github.com:balena-io/balena-fin into bgm111
+- commits:
+    - body: null
+- version: 0.4.0
+- date: 2019-02-21T16:17:01Z
+- commits:
+    - hash: b4a2d4743d505cd07faf08469c6342ab23000a99
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: v1.1 init
+- commits:
+    - body: null
+- commits:
+    - hash: 468263ac7431a1579f4469f2e232ebb2d3aeafa0
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: update PCB mapping and definitions
+- commits:
+    - body: |-
+        update bottom PCB mapping and definitions
+        update top PCB mapping and definitions
+- commits:
+    - hash: 1bf601783f28f765afb49ae1929f64bbd17f8f17
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into v1.1
+- commits:
+    - body: null
+- commits:
+    - hash: 443b9f1e20c08ba1d3bca6a93e41e29c7a25b9ad
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Add reference to the Fuses we have on the HAT and PWR IN
+- commits:
+    - body: null
+- commits:
+    - hash: ff45c05f803a4086874dde430160b30ffeefd495
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: fix fuses ordering
+- commits:
+    - body: null
+- commits:
+    - hash: cfcc6d013147d835910a8f1c846d9617ec6995f1
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: generate and add PDF for v1.1 datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: 2610e601cd6c25fb670a3921ccfbb01c872494d6
+- commits:
+    - author: Chris Crocker-White
+- commits:
+    - footers:
+        co-authored-by: curcuz <czkzcz.cmc@gmail.com>
+- commits:
+    - subject: Update documentation/markdown/balenaFin/v1.1/datasheet/datasheet.md
+- commits:
+    - body: null
+- commits:
+    - hash: 9de791ff4162562349c9a253973eceea444398b0
+- commits:
+    - author: Chris Crocker-White
+- commits:
+    - footers:
+        co-authored-by: curcuz <czkzcz.cmc@gmail.com>
+- commits:
+    - subject: Update documentation/markdown/balenaFin/v1.1/datasheet/datasheet.md
+- commits:
+    - body: null
+- commits:
+    - hash: 7788c616194f28ab1b84d963537f891afdf1b4bc
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Add missing pointer to device mapping ID for RF switch when mentioned
+- commits:
+    - body: null
+- commits:
+    - hash: 3139ecb8fab4699d0c2571e15d751df0ba99d31d
+- commits:
+    - author: curcuz
+- commits:
+    - subject: Merge branch 'v1.1' of github.com:balena-io/balena-fin into v1.1
+- commits:
+    - body: null
+- commits:
+    - hash: c8f2203388943ea2fc2880bb6e95bde3f4afb402
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: compress device mapping images
+- commits:
+    - body: null
+- commits:
+    - hash: f6254a93c147412bf2b72f863cd9cc879ea10a46
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: update v1.1 PDF datasheet with compressed imgs
+- commits:
+    - body: null
+- commits:
+    - hash: dd168b47a0d58b7a235949251824a32227705c25
+- commits:
+    - author: Chris Crocker-White
+- commits:
+    - subject: Minor text changes and rewording for v1.1 datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: 6b3fe954187a388efc39f87e005ddbf1cf696273
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: update block diagram according to v1.1 architecture
+- commits:
+    - body: null
+- commits:
+    - hash: b949240fdde0f11e7450eef469a8f2dd04cbcb44
+- commits:
+    - author: curcuz
+- commits:
+    - subject: Merge branch 'v1.1' of github.com:balena-io/balena-fin into v1.1
+- commits:
+    - body: null
+- commits:
+    - hash: 462e3007e0388a27aaa4ccf6a4179b89592f38a8
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: re-generate V1.1 datasheet pdf with updated block diagram
+- commits:
+    - body: null
+- commits:
+    - hash: e2555ec6f1ada0ae301cc190337fb07bed670a9d
+- commits:
+    - author: Chris Crocker-White
+- commits:
+    - footers:
+        co-authored-by: curcuz <czkzcz.cmc@gmail.com>
+- commits:
+    - subject: Update documentation/markdown/balenaFin/v1.1/datasheet/datasheet.md
+- commits:
+    - body: null
+- version: 0.3.0
+- date: 2019-02-13T16:56:15Z
+- commits:
+    - hash: b0be42000b915f8a303146ca6736733eb2c88aef
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: wrap balenaFin datasheet in HW version folders
+- commits:
+    - body: null
+- version: 0.2.2
+- date: 2019-02-13T10:27:40Z
+- commits:
+    - hash: 946290a9b0a08c6fa419a89a3201f7e892eb3bdc
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Create user guide document for DIN case
+- commits:
+    - body: null
+- commits:
+    - hash: 623c07218e34c69d0dc93d8d1241e82d556fc76c
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: User guide first draft
+- commits:
+    - body: null
+- commits:
+    - hash: e14edca27f529fa9301ea277569da79e91453e06
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Improve images and wording
+- commits:
+    - body: null
+- commits:
+    - hash: 4285fc38c60fb4fb27992a2c9df8e9e92e596b63
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fix images and wording
+- commits:
+    - body: null
+- commits:
+    - hash: 6c8b2c1c39da670f0256aeab98b84ec62b8ef371
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Restore config.json
+- commits:
+    - body: null
+- commits:
+    - hash: 5ac9dd32f1fbc40190aa6bd5e9e8d35420ca02c6
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into case-guide
+- commits:
+    - body: null
+- version: 0.2.1
+- date: 2019-02-13T10:09:39Z
+- commits:
+    - hash: dede002af1ae37eabfb7827d9d1988f28e3163a5
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add phoenix HAT and IDC cable to datasheet
+- commits:
+    - body: Improved visuals of the rest of the case datasheet images
+- commits:
+    - hash: 7ef6db32b9a250b010720ef0e664452d5f50c2ea
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        connects-to: "#12"
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Generated final PDF
+- commits:
+    - body: null
+- commits:
+    - hash: 03285a26531b4b1a1ce6754167cc05be99af0b1f
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into case_datasheet_pics
+- commits:
+    - body: null
+- commits:
+    - hash: 29c3fc808a79b8d1e41c0b8165d71db108df3f45
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into case_datasheet_pics
+- commits:
+    - body: null
+- version: 0.2.0
+- date: 2019-02-13T09:55:33Z
+- commits:
+    - hash: 9c6ffd77d732343eaa75e1eeface401bbad2688f
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Improved README information for release
+- commits:
+    - body: null
+- version: 0.1.6
+- date: 2019-01-31T10:45:54Z
+- commits:
+    - hash: 63fdd79446224b164f86a29864541d9cf4284c5a
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        connects-to: "#16"
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fix merged rows on radio table
+- commits:
+    - body: |-
+        Markdown does not support merged rows on tables. Fixed by
+        using titles instead of merged rows.
+- commits:
+    - hash: 77c4c230cb39639d3d77b5c715c9fc22a1e8236d
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - subject: Merge branch 'master' into fix-radio-table
+- commits:
+    - body: null
+- version: 0.1.5
+- date: 2019-01-18T14:09:17Z
+- commits:
+    - hash: 52b29f98afe9b5ee127d91c5c294c24463d00417
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: "prefix: Added temperature range errata"
+- commits:
+    - body: null
+- commits:
+    - hash: 9e09659063898c53042c6d008c8346190bd2ed5a
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: "prefix: Fix title bold"
+- commits:
+    - body: null
+- commits:
+    - hash: 803d8a3e8be780f3830d7c5851946b3a47a4a270
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: major
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: "prefix: Update thermal range on datasheet"
+- commits:
+    - body: null
+- commits:
+    - hash: f48e12595673db16a537425be652f88c65291478
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fix errata markdown
+- commits:
+    - body: null
+- commits:
+    - hash: 7bcbdd9e8137a2c5b1c2e5a10a88597725a6a3e3
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add case datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: cd14100e781b89b8cc7f4f9c18e8792742c8a7c3
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add headers pinout to datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: e9ebe21a3147fc8660b50adb7775f337816a72e6
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Improve block diagram
+- commits:
+    - body: null
+- commits:
+    - hash: 5a1c95e28978eef9243c32cc5f4d97ad43e53a88
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fix markdown table
+- commits:
+    - body: null
+- commits:
+    - hash: d07a1238337ace151a35ccb0448009406b35c107
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add Fin CAD to docs
+- commits:
+    - body: null
+- commits:
+    - hash: 9777771039094a8a11c843ac6ffcb3dea33f6289
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Remove unnecesary power legend
+- commits:
+    - body: null
+- commits:
+    - hash: 08f90cf7a2f41604e906ffc7ded3c954958711f9
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Fix errata logo
+- commits:
+    - body: null
+- commits:
+    - hash: 56b4f8b70eb97598a4529405de63ac14fe4f4d6d
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add errata to pdf path
+- commits:
+    - body: null
+- commits:
+    - hash: 9d469467c2954d7076a163dc8e64b20bb136eb5b
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add datasheet for modular case
+- commits:
+    - body: null
+- commits:
+    - hash: 0c4a6e3d2eb8743aeec0504051f168dd5c9effd3
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Center cover tables
+- commits:
+    - body: null
+- commits:
+    - hash: 827968ea0b8997f559f75e7abf40ad42063f1e31
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch|minor|major
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add page break for errata
+- commits:
+    - body: null
+- commits:
+    - hash: a42efc500a6e3b7fa1d25cdb3c32a5c768e75709
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add revision history for case datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: 71e3f283268ef7f80de5a419c0a834720e001e18
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: major
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Clean up folders for improved readability
+- commits:
+    - body: null
+- commits:
+    - hash: dd086e89592f693b34c54a984679be63c236c190
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Improved FAQ readability
+- commits:
+    - body: null
+- commits:
+    - hash: fe7644cff7a3b62770245ace62bf7bb8ceaacb05
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Rename case datasheet for maintaining consistency
+- commits:
+    - body: null
+- commits:
+    - hash: 443725bc0fc2bfb2b8a23097f75a838170daa425
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add case CAD
+- commits:
+    - body: null
+- commits:
+    - hash: eecccb56ae1f10077fc1db77b285cb009ce54934
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Improved balenaFin datasheet readability
+- commits:
+    - body: null
+- commits:
+    - hash: 47f7bb447ea23b887b764444bb488f4176658da4
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add generated PDFs
+- commits:
+    - body: null
+- commits:
+    - hash: 9435a5ce86ea955c9352fddd051398eb5249579f
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: major
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Add phoenix ring information on the datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: 29bbd866a97ea98bf62305c4da0ec9c8a62b686d
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: Change status of documents to proposed for pr
+- commits:
+    - body: null
+- commits:
+    - hash: b9e8d324e8b87ab49010e73f3fbb761479778fa1
+- commits:
+    - author: curcuz
+- commits:
+    - subject: support both cam/disp and double camera setup for Fin 1.1.0
+- commits:
+    - body: null
+- commits:
+    - hash: 373f66bec0c8f9e2edc9eb2f28152528d916bcd6
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Add `balena-fin`overlay
+- commits:
+    - body: null
+- commits:
+    - hash: 44f7e9ee15cbcb83699fd07fdd181a666f448007
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alex.bucknall@gmail.com>
+- commits:
+    - subject: "prefix: Added node engine check"
+- commits:
+    - body: Added engine check to package.json to support fs.promises that were
+        introduced in v10.0.0
+- commits:
+    - hash: a8dbb8d0324edb8161568c9e4c5a8b1266b5d53b
+- commits:
+    - author: Resin CI
+- commits:
+    - subject: v0.1.2
+- commits:
+    - body: null
+- commits:
+    - hash: f04efb3d8d235e88757ff1733fcfa46e93b92f71
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: make the destination a parameter of the document definition
+- commits:
+    - body: null
+- commits:
+    - hash: 926abb2c5629b76d1b943f84c3222d3aa721e283
+- commits:
+    - author: Resin CI
+- commits:
+    - subject: v0.1.3
+- commits:
+    - body: null
+- version: 0.1.4
+- date: 2019-01-15T22:50:00Z
+- commits:
+    - hash: ddea37851513a291ff308101bf7011065fc2197a
+- commits:
+    - author: curcuz
+- commits:
+    - subject: support both cam/disp and double camera setup for Fin 1.1.0
+- commits:
+    - body: null
+- commits:
+    - hash: 9dce3241f754ea96656d3f2b0b666df755ee9670
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Add `balena-fin`overlay
+- commits:
+    - body: null
+- commits:
+    - hash: 47e7a340d383e8daf7e7afa438bd4d16d7030cbd
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into dts-update
+- commits:
+    - body: null
+- commits:
+    - hash: 317b1d45874cf7eee1e00c378e876fc9d1b77897
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into dts-update
+- commits:
+    - body: null
+- commits:
+    - hash: dfd16648beee798a9e269efbfdb6f3641eacf671
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into dts-update
+- commits:
+    - body: null
+- commits:
+    - hash: 607910ab184de8e4ed5905358a9dd217393de5c3
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into dts-update
+- commits:
+    - body: null
+- commits:
+    - hash: 46ac63f126e6b1bf935646edd3a8997b36fdfcbb
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into dts-update
+- commits:
+    - body: null
+- version: 0.1.3
+- date: 2019-01-15T22:01:01Z
+- commits:
+    - hash: 1f51a96b1b83e269881fc2d5e738627773f57227
+- commits:
+    - author: curcuz
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: make the destination a parameter of the document definition
+- commits:
+    - body: null
+- commits:
+    - hash: babedca2188a9feb1336e5d86cdf5341b9aa422d
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into multiple-pdf-destinations
+- commits:
+    - body: null
+- commits:
+    - hash: 9247647139dc71143bea46de213faa235c066386
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into multiple-pdf-destinations
+- commits:
+    - body: null
+- commits:
+    - hash: 944e5ee65c76d564bdc9072d2daa506805839504
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into multiple-pdf-destinations
+- commits:
+    - body: null
+- version: 0.1.2
+- date: 2019-01-15T21:02:08Z
+- commits:
+    - hash: e5f6921a23c4cffa3aaa05b73b54859868450c0e
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alex.bucknall@gmail.com>
+- commits:
+    - subject: "prefix: Added node engine check"
+- commits:
+    - body: Added engine check to package.json to support fs.promises that were
+        introduced in v10.0.0
+- commits:
+    - hash: fbe714dee16cea4e38339a6f9020b632d9c76eec
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - subject: Merge branch 'master' into check-engine
+- commits:
+    - body: null
+- version: 0.1.1
+- date: 2019-01-10T16:50:47Z
+- commits:
+    - hash: 57176bba66f83da43c7a3616c1cd1de8fff6b29c
+- commits:
+    - author: curcuz
+- commits:
+    - subject: improve MD rendering to be more GH-like, support pagebreaks
+- commits:
+    - body: null
+- commits:
+    - hash: 8afbcece201ce18cfd9084fb1b2f8cee4161a267
+- commits:
+    - author: curcuz
+- commits:
+    - subject: document the pagebreak syntax
+- commits:
+    - body: null
+- commits:
+    - hash: b5a4efd7699d4df73dba6780a7056a871e172cbe
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Merge branch 'master' into generate-pdf
+- commits:
+    - body: null
+- commits:
+    - hash: e46fc67e26b2d318ed48e390d3d4bc89003757d9
+- commits:
+    - author: curcuz
+- commits:
+    - subject: store persistently the PDF artifacts, since this repo is about it
+- commits:
+    - body: null
+- commits:
+    - hash: cfc6a3958059009f7d476206e26f8db9879cf738
+- commits:
+    - author: curcuz
+- commits:
+    - subject: Merge branch 'generate-pdf' of github.com:resin-io/balena-fin into
+        generate-pdf
+- commits:
+    - body: null
+- commits:
+    - hash: 85451ab28b93c37933cf67ab88bf1de1e503f486
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Carlo Maria Curinga <carlo@balena.io>
+- commits:
+    - subject: Update README.md
+- commits:
+    - body: null
+- version: 0.1.0
+- date: 2018-12-19T16:26:22Z
+- commits:
+    - hash: 6768c9ef73f813a7b2cf517032681b7ef7f2b286
+- commits:
+    - author: curcuz
+- commits:
+    - subject: first draft of automatic pdf generation
+- commits:
+    - body: null
+- commits:
+    - hash: e53fa59af7b3c73cc59acadfa605abf3abab8856
+- commits:
+    - author: curcuz
+- commits:
+    - subject: fix npm start script
+- commits:
+    - body: null
+- commits:
+    - hash: 7f88f1c1348463ed23e7f6a3c4f14dac14226032
+- commits:
+    - author: curcuz
+- commits:
+    - subject: fix typo
+- commits:
+    - body: null
+- commits:
+    - hash: c8e7d55e1f375d70632f596b926cf9d656cfb629
+- commits:
+    - author: Carlo Maria Curinga
+- commits:
+    - subject: Create repo.yml
+- commits:
+    - body: comply with versionbot basic reqs
+- commits:
+    - hash: de279197f76599cb7caf6a70ca8f6a487f55e302
+- commits:
+    - author: Giovanni Garufi
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Giovanni Garufi <giovanni@balena.io>
+- commits:
+    - subject: "Set private: true in package.json"
+- commits:
+    - body: null
+- commits:
+    - hash: abe460e8f2e5b4a63abf38319dfcb9f1ba6881f7
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - subject: Added note on barrel polarity to datasheet
+- commits:
+    - body: null
+- commits:
+    - hash: 44892d4ed48f598440a2eaef6e69196226a43c52
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - subject: Added additional information regarding silkscreen symbols and Phoenix.
+- commits:
+    - body: null
+- commits:
+    - hash: e764076a8a2848e122a600ae85bb2e24b77105c3
+- commits:
+    - author: Alex Bucknall
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Alex Bucknall <alex.bucknall@gmail.com>
+- commits:
+    - subject: Brought forward Master changes and rebased.
+- commits:
+    - body: null
+- commits:
+    - hash: 8f39490104b93a0d140fc1f814381e4f30b4876a
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: "prefix: Removed manual"
+- commits:
+    - body: Manual will reside in the fin-site documentation
+- commits:
+    - hash: c4b81e9fd7f7029698239657168289473e2a74ef
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: "prefix: Rename Balena Fin -> balenaFin"
+- commits:
+    - body: null
+- commits:
+    - hash: 25d35333a2ed306f4d131ae73e60b7be67c37baa
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: "prefix: Rename etcher.io -> balena.io/etcher"
+- commits:
+    - body: null
+- commits:
+    - hash: 55f1aed1b0de1153cd96a6f779e91f8ae7b38ee2
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: "prefix: Add PDF datasheet manually"
+- commits:
+    - body: null
+- commits:
+    - hash: 1fb1585aeeb101af35151884d1a421d4be3313a9
+- commits:
+    - author: Nicolas Tzovanis
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Nicolas Tzovanis <nicolas@balena.io>
+- commits:
+    - subject: "prefix: Remove datasheet.pdf"
+- commits:
+    - body: "Removed pdf datasheet because it will be created automatically on
+        merge.\r
+
+        \r"
