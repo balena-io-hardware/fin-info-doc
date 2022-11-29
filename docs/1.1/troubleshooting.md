@@ -1,10 +1,4 @@
----
-title: Troubleshooting the balenaFin
-order: 5
-domain: fin
-category: docs
-version: 1.0
----
+# Troubleshooting the balenaFin
 
 ## Troubleshooting
 
@@ -46,4 +40,4 @@ Check the list below for potential issues.
 - The Raspberry Pi Compute Module should firmly click into the socket on the rear of the balenaFin. The metal latching mechanism should clip into the notches on the Compute Module. You will hear a distinct click when it fits into place.
 - If running balenaEtcher on Linux, make sure you do so using `sudo` or as the root user.
 
-![Compute Module on balenaFin](/fin/fin-troubleshooting-etcher.jpg)
+![Compute Module on balenaFin](../static/fin-troubleshooting-etcher.jpg)

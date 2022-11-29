@@ -1,20 +1,10 @@
----
-title: Introduction
-order: 0
-domain: fin
-category: docs
-version: 1.1
----
+# balenaFin 1.0
 
 ## What is the balenaFin?
 
 The balenaFin has been designed with field deployment in mind. It is a carrier board for the Raspberry Compute Module 3 and 3+ Lite (CM3L/CM3+L), that can run all the software that the Raspberry Pi can run, hardened for field deployment use cases.
 
-![Balena Fin](/fin/fin_illustration_v1.1.png)
-
-Note : if you have a version number missing from the `balenaFin` text written on the development board, you are using a balenaFin v1.0. Please check our [v1.0 documentation page](https://www.balena.io/fin/1.0/docs/) instead.
-
-![Identifying balenaFin 1.0](/fin/fin1.0-marking.png)
+![Balena Fin](../static/fin_illustration.jpg)
 
 #### Raspberry Pi Compute Module
 
@@ -35,13 +25,9 @@ The balenaFin includes a low-power co-processor (32-bit ARM® Cortex M4) with Bl
 #### Connectivity
 
 The balenaFin's wireless chip supports 802.11ac/a/b/g/n WiFI and Bluetooth 4.2 (including SMART features).
-
 There is a dual-band embedded antenna included in the board and an external antenna connector for improved signal coverage.
 
 #### I/O
 
 The Mini PCI Express port on the balenaFin brings seamless connectivity to a number of different modules. Third party modules are readily available for LTE, Zigbee, LoRA and CANBus and extra storage can be achieved by leveraging the USB interface on the mini PCI Express connector (this will probably require a custom design).
-
 The balenaFin HAT header can be used to connect any Raspberry Pi HAT compatible module (PoE, RS232, ZWave, etc). A smaller 18-pin header exposes the co-processor's analog and time-sensitive I/O.
-
-V1.1 includes an extra 4-pin USB header that allows wire-free design applications such as additional storage, secondary ethernet port, multimedia readers, additional radio interfaces, etc..

@@ -1,10 +1,4 @@
----
-title: Embedding the balenaFin in products
-order: 6
-domain: fin
-category: docs
-version: 1.0
----
+# Embedding the balenaFin in products
 
 ## Labelling
 
