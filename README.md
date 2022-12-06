@@ -1,4 +1,5 @@
 # balenaFin repository
+
 Official documentation repository for the [balenaFin board](https://balenafin.io).  
 Get it now from the official balenaFin [store](https://store.balena.io/).
 

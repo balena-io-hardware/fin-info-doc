@@ -4,17 +4,17 @@
 
 #### Generic instructions for raspbian 2018-06-27 or later:
 
-- Download the pre-build Raspbian (both lite and pixel available) for the balenaFin at [this link](/fin/1.0/docs/downloads/)
+- Download the pre-build Raspbian (both lite and pixel available) for the balenaFin at [this link](./downloads/)
 
-- Flash (we suggest using [balenaEtcher](/etcher)) and boot your device.
+- Flash (we suggest using [balenaEtcher](https://balena.io/etcher)) and boot your device.
 
 #### balenaOS / balenaCloud instructions:
 
-- Download the [balenaFin (CM3) device type image](/os/#download) (on balenaCloud, create a balenaFin (CM3) fleet first):
+- Download the [balenaFin (CM3) device type image](https://balena.io/os/#download) (on balenaCloud, create a balenaFin (CM3) fleet first):
 
 ![Fin device type on balena.io/OS](../static/fin_device_type.png)
 
-- Flash (we suggest using [balenaEtcher](/etcher)) and boot your device.
+- Flash (we suggest using [balenaEtcher](https://balena.io/etcher) and boot your device.
 
 ## Controlling Bluetooth and WiFi
 

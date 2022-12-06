@@ -12,4 +12,5 @@ jobs:
     name: Flowzone
     uses: product-os/flowzone/.github/workflows/flowzone.yml@master
     secrets: inherit
-
+    with:
+      cloudflare_website: "balena-fin"

@@ -58,10 +58,10 @@ _(2): If downloading a non pre-configured version of Raspbian, make sure you add
 
 ### Flashing the OS
 
-This tutorial will asume you are using [balenaEtcher](/etcher) _(1)_ for flashing the OS. You can use any other tool of your choice, please refer to the [official Raspberry Pi documentation](https://www.raspberrypi.org/documentation/hardware/computemodule/cm-emmc-flashing.md) for more information. The following procedure will show you how to put the balenaFin into USB Mass Storage Mode (necessary to flash the OS) and how to flash the selected OS image.
+This tutorial will asume you are using [balenaEtcher](https://balena.io/etcher) _(1)_ for flashing the OS. You can use any other tool of your choice, please refer to the [official Raspberry Pi documentation](https://www.raspberrypi.org/documentation/hardware/computemodule/cm-emmc-flashing.md) for more information. The following procedure will show you how to put the balenaFin into USB Mass Storage Mode (necessary to flash the OS) and how to flash the selected OS image.
 
 - Connect a **USB to Micro-USB** cable between your system and the balenaFin's **PRG** port. __Please note that you can ONLY power the balenaFin from the PRG port for flashing!__
-- Open [balenaEtcher](/etcher) _(2)_ and select the OS image you downloaded on the previous section. _(2)_
+- Open [balenaEtcher](https://balena.io/etcher) _(2)_ and select the OS image you downloaded on the previous section. _(2)_
 - You should see your balenaFin listed as a **Compute Module** under the "Select drive" menu. _(3)_
 - Once selected, two red (5V and 3V3) and one green (ACT) LEDs should be illuminated on the balenaFin LED status panel _(3)_
 - The balenaFin is now ready to be flashed with an OS.
